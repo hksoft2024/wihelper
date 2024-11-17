@@ -66,7 +66,10 @@ const DepartmentsMenu = () => {
 			</ListItem>
 
 			<Fade in={showSubMenu} mountOnEnter unmountOnExit>
-				<List disablePadding sx={{ bgcolor: "#f6f9fc", pb: 2 }}>
+				<List
+					disablePadding
+					sx={{ bgcolor: "#f6f9fc", pb: 2, mt: -2.5, mb: 2.5 }}
+				>
 					{DEPARTMENTS_MENU.map((item, index) => (
 						<DepartmentsMenuItem key={index} item={item} />
 					))}

@@ -5,6 +5,7 @@ import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import Typography from "@mui/material/Typography";
 import { Fragment, useState } from "react";
+import { Link } from "~/i18n/routing";
 import { NavigationItemType } from "~/types/navigation";
 
 type Props = {
@@ -62,6 +63,8 @@ const NavigationItem = ({ item }: Props) => {
 					{item.children.map((sub, index) => (
 						<ListItem
 							key={index}
+							component={Link}
+							href={sub.href}
 							sx={{
 								px: 5.5,
 								borderBottom: 1,

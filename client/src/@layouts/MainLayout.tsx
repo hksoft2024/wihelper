@@ -11,6 +11,7 @@ import Footer from "./components/main/Footer";
 import TopBar from "./components/main/TopBar";
 import Header from "./components/main/header";
 import Navigation from "./components/main/navigation";
+import zIndex from "@mui/material/styles/zIndex";
 
 type Props = ChildrenType;
 
@@ -35,6 +36,7 @@ const MainLayout = ({ children }: Props) => {
 					bottom: 0,
 					left: 0,
 					right: 0,
+					zIndex: zIndex.tooltip,
 					display: { xs: "block", lg: "none" },
 				}}
 				elevation={3}

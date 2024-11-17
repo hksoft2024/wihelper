@@ -25,8 +25,8 @@ const ScrollTopButton = () => {
 					alignItems: "center",
 					justifyContent: "center",
 					position: "fixed",
-					bottom: 20,
-					right: 20,
+					bottom: { xs: 72, lg: 20 },
+					right: trigger ? 20 : -80,
 					zIndex: 999,
 					bgcolor: "primary.light",
 					color: "#fff",
@@ -34,6 +34,8 @@ const ScrollTopButton = () => {
 						`${theme.transitions.create([
 							"opacity",
 							"background-color",
+							"right",
+							"bottom",
 						])} !important`,
 					":hover": {
 						bgcolor: "primary.main",
