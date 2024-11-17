@@ -1,0 +1,35 @@
+:root {
+	--top-bar-height: 2.5rem;
+}
+
+a {
+	text-decoration: none;
+	display: inline-block;
+}
+
+@keyframes slide-up {
+	from {
+		transform: translateY(8px);
+	}
+	to {
+		transform: translateY(0);
+	}
+}
+
+@keyframes slide-down {
+	from {
+		transform: translateY(-10px);
+	}
+	to {
+		transform: translateY(0);
+	}
+}
+
+@keyframes fade-in {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
