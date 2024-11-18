@@ -42,10 +42,15 @@ const BannerRight = () => {
 							opacity: 0,
 							transform: "scale(0.8)",
 							transition: (theme) =>
-								theme.transitions.create(["transform", "opacity"], {
+								`${theme.transitions.create(["transform", "opacity"], {
 									delay: "1.1s",
 									duration: "0.45s",
-								}),
+								})}, ${theme.transitions.create([
+									"background-color",
+									"box-shadow",
+									"border-color",
+									"color",
+								])}`,
 						},
 						"& h1[data-text-animation='slide-up'], & h2[data-text-animation='slide-up'], & h5[data-text-animation='slide-up']":
 							{
