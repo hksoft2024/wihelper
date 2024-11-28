@@ -75,6 +75,7 @@ const DepartmentsMenu = () => {
 				transition
 				placement="bottom-start"
 				sx={{ zIndex: zIndex.tooltip }}
+				disablePortal
 			>
 				{({ TransitionProps }) => (
 					<Fragment>

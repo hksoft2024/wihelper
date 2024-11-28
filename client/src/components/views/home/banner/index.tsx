@@ -8,7 +8,7 @@ const Banner = () => {
 	return (
 		<Box component="section" bgcolor="#f6f9fc" pt={{ xs: 6, md: 12 }} pb={6}>
 			<Container sx={{ py: { xl: 2 } }}>
-				<Box mx={{ xl: -3 }}>
+				<Box mx={{ xl: -4 }}>
 					<Grid
 						container
 						spacing={4}

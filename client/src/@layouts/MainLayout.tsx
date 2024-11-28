@@ -1,17 +1,16 @@
-import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
+import AccessTimeOutlinedIcon from "@mui/icons-material/AccessTimeOutlined";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import StorefrontOutlinedIcon from "@mui/icons-material/StorefrontOutlined";
 import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
+import zIndex from "@mui/material/styles/zIndex";
 import { ChildrenType } from "~/@core/types";
 import ScrollTopButton from "~/components/ui/ScrollTopButton";
 import Footer from "./components/main/Footer";
 import TopBar from "./components/main/TopBar";
-import Header from "./components/main/header";
-import Navigation from "./components/main/navigation";
-import zIndex from "@mui/material/styles/zIndex";
+import Navbar from "./components/main/navbar";
 
 type Props = ChildrenType;
 
@@ -22,8 +21,7 @@ const MainLayout = ({ children }: Props) => {
 
 			<Box component="header">
 				<TopBar />
-				<Header />
-				<Navigation />
+				<Navbar />
 			</Box>
 
 			<Box component="main">{children}</Box>
@@ -55,20 +53,32 @@ const MainLayout = ({ children }: Props) => {
 				>
 					<BottomNavigationAction
 						label="Appointment"
-						icon={<CalendarTodayOutlinedIcon fontSize="small" sx={{ mb: 1 }} />}
-						sx={{ maxWidth: "unset", color: "text.muted" }}
+						icon={<AccessTimeOutlinedIcon sx={{ mb: 0.5 }} />}
+						sx={{
+							maxWidth: "unset",
+							color: "text.muted",
+							fontFamily: "inherit",
+						}}
 					/>
 
 					<BottomNavigationAction
 						label="Shop"
-						icon={<StorefrontOutlinedIcon fontSize="small" sx={{ mb: 1 }} />}
-						sx={{ maxWidth: "unset", color: "text.muted" }}
+						icon={<StorefrontOutlinedIcon sx={{ mb: 0.5 }} />}
+						sx={{
+							maxWidth: "unset",
+							color: "text.muted",
+							fontFamily: "inherit",
+						}}
 					/>
 
 					<BottomNavigationAction
 						label="Locations"
-						icon={<LocationOnOutlinedIcon fontSize="small" sx={{ mb: 1 }} />}
-						sx={{ maxWidth: "unset", color: "text.muted" }}
+						icon={<LocationOnOutlinedIcon sx={{ mb: 0.5 }} />}
+						sx={{
+							maxWidth: "unset",
+							color: "text.muted",
+							fontFamily: "inherit",
+						}}
 					/>
 				</BottomNavigation>
 			</Paper>

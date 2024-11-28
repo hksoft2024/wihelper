@@ -3,7 +3,6 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
-import LoadingButton from "@mui/lab/LoadingButton";
 import Checkbox from "@mui/material/Checkbox";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
@@ -16,12 +15,12 @@ import IconButton from "@mui/material/IconButton";
 import InputAdornment from "@mui/material/InputAdornment";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import Stack from "@mui/material/Stack";
-import { alpha } from "@mui/material/styles";
 import Tab from "@mui/material/Tab";
 import Tabs from "@mui/material/Tabs";
 import Typography from "@mui/material/Typography";
 import { useTranslations } from "next-intl";
 import { Fragment, useState } from "react";
+import LoadingButton from "~/@core/components/mui/LoadingButton";
 import { Link } from "~/i18n/routing";
 
 const AuthActions = () => {
@@ -135,6 +134,7 @@ const AuthActions = () => {
 								transition: (theme) => theme.transitions.create(["opacity"]),
 								":hover": { opacity: 1 },
 							}}
+							onClick={handleCloseModal}
 						>
 							<CloseIcon />
 						</IconButton>
@@ -199,15 +199,7 @@ const AuthActions = () => {
 									fullWidth
 									variant="contained"
 									size="large"
-									sx={{
-										"&": {
-											boxShadow: (theme) =>
-												`0 .5rem 1.125rem -.5rem ${alpha(
-													theme.palette.primary.main,
-													0.9
-												)}`,
-										},
-									}}
+									hasShadow
 								>
 									Sign in
 								</LoadingButton>
@@ -283,15 +275,7 @@ const AuthActions = () => {
 									fullWidth
 									variant="contained"
 									size="large"
-									sx={{
-										"&": {
-											boxShadow: (theme) =>
-												`0 .5rem 1.125rem -.5rem ${alpha(
-													theme.palette.primary.main,
-													0.9
-												)}`,
-										},
-									}}
+									hasShadow
 								>
 									Sign up
 								</LoadingButton>

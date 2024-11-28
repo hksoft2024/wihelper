@@ -1,25 +1,24 @@
 "use client";
 
+import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
+import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import SyncOutlinedIcon from "@mui/icons-material/SyncOutlined";
+import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
+import Fade from "@mui/material/Fade";
+import IconButton from "@mui/material/IconButton";
 import Rating from "@mui/material/Rating";
 import Stack from "@mui/material/Stack";
+import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
 import Image from "next/image";
+import Badge from "~/@core/components/mui/Badge";
+import Button from "~/@core/components/mui/Button";
 import { Link } from "~/i18n/routing";
 import { Product } from "~/types/product";
-import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
-import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
-import Badge from "@mui/material/Badge";
-import { alpha } from "@mui/material/styles";
-import SyncOutlinedIcon from "@mui/icons-material/SyncOutlined";
-import Tooltip from "@mui/material/Tooltip";
-import IconButton from "@mui/material/IconButton";
-import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
-import Fade from "@mui/material/Fade";
 
 type Props = {
 	product: Product;
@@ -48,33 +47,14 @@ const ProductCard = ({ product }: Props) => {
 			}}
 		>
 			<Badge
+				size="small"
 				variant="rounded"
 				color={product.badge_color}
+				hasShadow
 				sx={{
 					position: "absolute",
 					top: 12,
 					left: 12,
-					boxShadow: (theme) => {
-						switch (product.badge_color) {
-							case "primary":
-								return `${alpha(
-									theme.palette.primary.main,
-									0.9
-								)} 0px 0.5rem 1.125rem -0.275rem;`;
-							case "error":
-								return `${alpha(
-									theme.palette.error.main,
-									0.9
-								)} 0px 0.5rem 1.125rem -0.275rem;`;
-							case "info":
-								return `${alpha(
-									theme.palette.info.main,
-									0.9
-								)} 0px 0.5rem 1.125rem -0.275rem;`;
-							default:
-								break;
-						}
-					},
 				}}
 			>
 				{product.badge}
@@ -129,26 +109,6 @@ const ProductCard = ({ product }: Props) => {
 					disableInteractive
 					arrow
 					TransitionComponent={Fade}
-					slotProps={{
-						popper: {
-							sx: {
-								"& .MuiTooltip-tooltip": {
-									bgcolor: "#2b3445",
-									color: alpha("#fff", 0.9),
-									fontSize: 12,
-								},
-								"&[data-popper-placement*='left'] .MuiTooltip-tooltip.MuiTooltip-tooltipPlacementLeft":
-									{
-										mr: 2,
-									},
-							},
-						},
-						arrow: {
-							sx: {
-								color: "#2b3445",
-							},
-						},
-					}}
 				>
 					<IconButton
 						sx={{
@@ -234,7 +194,7 @@ const ProductCard = ({ product }: Props) => {
 						},
 					}}
 				>
-					Share
+					Add to cart
 				</Button>
 				<Box
 					component={Link}
@@ -242,12 +202,26 @@ const ProductCard = ({ product }: Props) => {
 					display="flex"
 					alignItems="center"
 					gap={1}
+					sx={{
+						":hover": {
+							"& > .MuiSvgIcon-root": {
+								fill: (theme) => theme.palette.primary.main,
+							},
+							"& > .MuiTypography-root": {
+								color: "primary.main",
+							},
+						},
+					}}
 				>
 					<VisibilityOutlinedIcon
-						sx={{ fontSize: 14, color: "text.secondary" }}
+						sx={{
+							fontSize: 16,
+							color: "text.secondary",
+							transition: (theme) => theme.transitions.create(["fill"]),
+						}}
 					/>
 					<Typography variant="body2" color="textSecondary">
-						Add to cart
+						Quick view
 					</Typography>
 				</Box>
 			</CardActions>

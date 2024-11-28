@@ -3,7 +3,6 @@ import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import PaymentOutlinedIcon from "@mui/icons-material/PaymentOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import Badge from "@mui/material/Badge";
-import Button from "@mui/material/Button";
 import Fade from "@mui/material/Fade";
 import IconButton from "@mui/material/IconButton";
 import List from "@mui/material/List";
@@ -16,6 +15,7 @@ import { useTranslations } from "next-intl";
 import { MouseEvent, useState } from "react";
 import { CART_ITEMS } from "~/fake-data/cart";
 import CartItem from "./CartItem";
+import Button from "~/@core/components/mui/Button";
 
 const Cart = () => {
 	const t = useTranslations();

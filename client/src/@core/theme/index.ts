@@ -94,7 +94,7 @@ const theme = createTheme({
 		},
 	},
 	components: overrides(),
-	spacing: 4,
+	spacing: (factor: number) => `${0.25 * factor}rem`,
 	breakpoints: {
 		values: {
 			xs: 0,

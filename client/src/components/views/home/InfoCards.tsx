@@ -11,7 +11,7 @@ const InfoCards = () => {
 				{INFO_LIST.map((info, index) => (
 					<Grid key={index} size={{ xs: 12, md: 3 }}>
 						<Box py={6}>
-							<Stack alignItems="center" p={5}>
+							<Stack alignItems="center" p={5} textAlign="center">
 								<Box mt={2} mb={6}>
 									{info.icon}
 								</Box>

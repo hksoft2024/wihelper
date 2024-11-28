@@ -14,10 +14,7 @@ const badge: Theme["components"] = {
 					variant: "rounded",
 				},
 				style: ({ theme }) => ({
-					padding: theme.spacing(0.5, 1.5),
 					borderRadius: theme.shape.borderRadius,
-					fontSize: 12,
-					lineHeight: 1.2,
 				}),
 			},
 		],

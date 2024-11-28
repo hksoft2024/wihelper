@@ -13,9 +13,9 @@ const container: Theme["components"] = {
 				[theme.breakpoints.down("xl")]: {
 					maxWidth: "100%",
 				},
-				[theme.breakpoints.down("sm")]: {
-					paddingLeft: theme.spacing(3),
-					paddingRight: theme.spacing(3),
+				[theme.breakpoints.up("xs")]: {
+					paddingLeft: theme.spacing(4),
+					paddingRight: theme.spacing(4),
 				},
 			}),
 		},

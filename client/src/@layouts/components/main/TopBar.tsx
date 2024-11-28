@@ -66,11 +66,7 @@ const TopBar = () => {
 	};
 
 	return (
-		<Stack
-			height="var(--top-bar-height)"
-			bgcolor="background.dark"
-			color={alpha("#fff", 0.65)}
-		>
+		<Stack py={2.5} bgcolor="background.dark" color={alpha("#fff", 0.65)}>
 			<Container sx={{ height: 1 }}>
 				<Stack
 					height={1}
@@ -93,7 +89,7 @@ const TopBar = () => {
 
 						<Stack display={{ xs: "none", md: "flex" }} direction="row" gap={1}>
 							<Typography
-								color="textMuted"
+								color={alpha("#fff", 0.45)}
 								sx={{ fontSize: (theme) => theme.spacing(3.5) }}
 							>
 								Available operation hours at
@@ -132,6 +128,12 @@ const TopBar = () => {
 						onClick={handleToggleShowMenu}
 						display={{ xs: "flex", md: "none" }}
 						alignItems="center"
+						sx={{
+							cursor: "pointer",
+							":hover": {
+								color: "#fff",
+							},
+						}}
 					>
 						Helpful menu <ArrowDropDownOutlinedIcon fontSize="small" />
 					</Typography>

@@ -12,12 +12,17 @@ import { Link } from "~/i18n/routing";
 
 const Footer = () => {
 	return (
-		<Box component="footer" pt={12} bgcolor="background.dark">
+		<Box
+			component="footer"
+			pt={12}
+			pb={{ xs: 14, lg: 0 }}
+			bgcolor="background.dark"
+		>
 			<Container>
-				<Grid container spacing={7.5}>
+				<Grid container spacing={7.5} sx={{ pb: 2 }}>
 					<Grid size={{ xs: 12, sm: 6, md: 4 }}>
 						{FOOTER_BLOCK_1.map((data, index) => (
-							<Box key={index} mb={6}>
+							<Box key={index} mb={6} pb={2}>
 								<Typography variant="h3" fontSize={18} mb={4.5} color="#fff">
 									{data.title}
 								</Typography>
@@ -44,7 +49,7 @@ const Footer = () => {
 					</Grid>
 					<Grid size={{ xs: 12, sm: 6, md: 4 }}>
 						{FOOTER_BLOCK_2.map((data, index) => (
-							<Box key={index} mb={6}>
+							<Box key={index} mb={6} pb={2}>
 								<Typography variant="h3" fontSize={18} mb={4.5} color="#fff">
 									{data.title}
 								</Typography>
@@ -70,7 +75,7 @@ const Footer = () => {
 						))}
 					</Grid>
 					<Grid size={{ xs: 12, md: 4 }}>
-						<Box mb={6}>
+						<Box mb={6} pb={4}>
 							<Typography variant="h3" fontSize={18} mb={4.5} color="#fff">
 								Download our app
 							</Typography>
@@ -136,10 +141,10 @@ const Footer = () => {
 			</Container>
 			<Box pt={12} bgcolor="background.darker">
 				<Container>
-					<Grid container spacing={7.5}>
+					<Grid container columnSpacing={7.5}>
 						<Grid size={{ xs: 12, md: 6 }}>
 							<Stack mb={8} alignItems={{ xs: "center", md: "unset" }}>
-								<Box display="flex" mb={8}>
+								<Box display="flex" mb={6}>
 									<Image
 										src="/images/app/footer-logo-light.png"
 										alt="wiHelper"
@@ -157,6 +162,7 @@ const Footer = () => {
 									rowGap={2}
 									columnGap={6}
 									flexWrap="wrap"
+									pb={2}
 								>
 									<Typography
 										variant="body2"

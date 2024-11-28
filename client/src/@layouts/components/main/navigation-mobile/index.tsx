@@ -2,7 +2,7 @@
 
 import Box from "@mui/material/Box";
 import Collapse from "@mui/material/Collapse";
-import SearchBox from "../header/SearchBox";
+import SearchBox from "../navbar/SearchBox";
 import DepartmentsMenu from "./departments-menu";
 import NavigationMenu from "./navigation-menu";
 

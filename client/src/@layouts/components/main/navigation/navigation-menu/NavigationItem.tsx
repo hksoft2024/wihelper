@@ -30,7 +30,7 @@ const NavigationItem = ({ item }: Props) => {
 			pb={3.5}
 			sx={{
 				cursor: "pointer",
-				":hover .MuiTypography-root": {
+				":hover > .MuiTypography-root": {
 					color: "primary.main",
 				},
 			}}
@@ -45,6 +45,7 @@ const NavigationItem = ({ item }: Props) => {
 				placement="bottom-start"
 				transition
 				sx={{ zIndex: zIndex.tooltip }}
+				disablePortal
 			>
 				{({ TransitionProps }) => (
 					<Fade {...TransitionProps}>

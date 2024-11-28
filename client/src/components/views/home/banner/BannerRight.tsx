@@ -2,15 +2,14 @@
 
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid2";
 import Stack from "@mui/material/Stack";
-import { alpha } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+import Button from "~/@core/components/mui/Button";
 import { BANNER_RIGHT } from "~/fake-data/home-page";
 
 const BannerRight = () => {
@@ -18,7 +17,7 @@ const BannerRight = () => {
 		<Stack
 			position="relative"
 			pt={{ xl: 6 }}
-			px={{ xl: 3 }}
+			px={{ xl: 4 }}
 			sx={{
 				"& .swiper": {
 					width: 1,
@@ -108,11 +107,11 @@ const BannerRight = () => {
 								alignItems: "center",
 							}}
 						>
-							<Grid size={{ xs: 12, md: 6 }}>
+							<Grid size={{ xs: 12, md: 6, lg: 5 }} offset={{ lg: 1 }}>
 								<Stack
-									ml={{ lg: 20 }}
-									pl={{ xs: 4, md: 1, lg: 4 }}
-									pr={4}
+									pl={{ xs: 1.5, md: 1, lg: 1.5, xl: 0 }}
+									// pr={4}
+									ml={-1}
 									pt={6}
 									pb={{ xs: 0, md: 6 }}
 									alignItems={{ xs: "center", md: "start" }}
@@ -120,7 +119,10 @@ const BannerRight = () => {
 									<Typography
 										variant="h2"
 										fontWeight={300}
-										fontSize={{ xs: "calc(1.325rem + 0.9vw)", xl: 32 }}
+										fontSize={(theme) => ({
+											xs: "calc(1.325rem + 0.9vw)",
+											xl: theme.spacing(8),
+										})}
 										pb={1}
 										mb={3}
 										data-text-animation={item.text_animate}
@@ -131,7 +133,10 @@ const BannerRight = () => {
 									<Typography
 										variant="h1"
 										fontWeight={500}
-										fontSize={{ xs: "calc(1.475rem + 2.7vw)", xl: 56 }}
+										fontSize={(theme) => ({
+											xs: "calc(1.475rem + 2.7vw)",
+											xl: theme.spacing(14),
+										})}
 										mb={3}
 										lineHeight={1}
 										data-text-animation={item.text_animate}
@@ -157,17 +162,18 @@ const BannerRight = () => {
 												item.button_color === "primary" ? "primary" : "info"
 											}
 											size="large"
+											hasShadow
 											sx={{
 												py: 2.5,
-												"&": {
-													boxShadow: (theme) =>
-														`0 .5rem 1.125rem -.5rem ${alpha(
-															item.button_color === "primary"
-																? theme.palette.primary.main
-																: theme.palette.info.main,
-															0.9
-														)}`,
-												},
+												// "&": {
+												// 	boxShadow: (theme) =>
+												// 		`0 .5rem 1.125rem -.5rem ${alpha(
+												// 			item.button_color === "primary"
+												// 				? theme.palette.primary.main
+												// 				: theme.palette.info.main,
+												// 			0.9
+												// 		)}`,
+												// },
 											}}
 											endIcon={<KeyboardArrowRightIcon />}
 										>
@@ -193,36 +199,38 @@ const BannerRight = () => {
 				))}
 			</Swiper>
 
-			<Stack
-				id="swiper-pagination-container"
-				direction="row"
-				alignItems="center"
-				justifyContent="center"
-				position="absolute"
-				bottom={0}
-				zIndex={2}
-				py={5}
-				sx={{
-					"&.swiper-pagination-bullets.swiper-pagination-horizontal": {
-						position: "relative",
-						top: 0,
-						"& .swiper-pagination-bullet": {
-							cursor: "pointer",
-							bgcolor: "rgb(182, 188, 197)",
-							opacity: 1,
-							width: 5,
-							height: 5,
-							mx: 1.5,
-							borderRadius: 99,
-							transition: (theme) => theme.transitions.create(["width"]),
-							"&.swiper-pagination-bullet-active": {
-								bgcolor: "primary.main",
-								width: 20,
+			<Box pt={{ xs: 3.5, xl: 5 }} pb={2}>
+				<Stack
+					id="swiper-pagination-container"
+					direction="row"
+					alignItems="center"
+					justifyContent="center"
+					position="absolute"
+					bottom={0}
+					zIndex={2}
+					height={24}
+					sx={{
+						"&.swiper-pagination-bullets.swiper-pagination-horizontal": {
+							position: "relative",
+							top: 0,
+							"& .swiper-pagination-bullet": {
+								cursor: "pointer",
+								bgcolor: "rgb(182, 188, 197)",
+								opacity: 1,
+								width: 5,
+								height: 5,
+								mx: 1.5,
+								borderRadius: 99,
+								transition: (theme) => theme.transitions.create(["width"]),
+								"&.swiper-pagination-bullet-active": {
+									bgcolor: "primary.main",
+									width: 20,
+								},
 							},
 						},
-					},
-				}}
-			/>
+					}}
+				/>
+			</Box>
 		</Stack>
 	);
 };

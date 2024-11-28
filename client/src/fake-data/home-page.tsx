@@ -181,7 +181,7 @@ export const PURCHASE_PRODUCTS: Product[] = [
 export const INFO_LIST = [
 	{
 		icon: (
-			<AccessTimeOutlinedIcon sx={{ fontSize: 32, color: "warning.main" }} />
+			<AccessTimeOutlinedIcon sx={{ fontSize: 40, color: "warning.main" }} />
 		),
 		title: "Save Time: Fill out the forms now.",
 		description:
@@ -191,7 +191,7 @@ export const INFO_LIST = [
 	{
 		icon: (
 			<MonetizationOnOutlinedIcon
-				sx={{ fontSize: 32, color: "success.main" }}
+				sx={{ fontSize: 40, color: "success.main" }}
 			/>
 		),
 		title: "Insurance and Financing",
@@ -202,7 +202,7 @@ export const INFO_LIST = [
 	{
 		icon: (
 			<FavoriteBorderOutlinedIcon
-				sx={{ fontSize: 32, color: "secondary.main" }}
+				sx={{ fontSize: 40, color: "secondary.main" }}
 			/>
 		),
 		title: "Affordable Podiatry Services",
@@ -211,7 +211,7 @@ export const INFO_LIST = [
 		href: "#",
 	},
 	{
-		icon: <HomeOutlinedIcon sx={{ fontSize: 32, color: "error.main" }} />,
+		icon: <HomeOutlinedIcon sx={{ fontSize: 40, color: "error.main" }} />,
 		title: "Locations Near You",
 		description:
 			"Everyone needs feet. And, with over two locations in California, our podiatry practice is right in your community.",

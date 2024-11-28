@@ -1,11 +1,10 @@
+import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
+import Grid from "@mui/material/Grid2";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
-import React from "react";
-import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
-import Grid from "@mui/material/Grid2";
+import Button from "~/@core/components/mui/Button";
 import { PURCHASE_PRODUCTS } from "~/fake-data/home-page";
 import ProductCard from "./ProductCard";
 

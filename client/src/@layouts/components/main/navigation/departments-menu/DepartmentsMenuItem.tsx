@@ -1,7 +1,6 @@
 import ArrowRightOutlinedIcon from "@mui/icons-material/ArrowRightOutlined";
 import KeyboardArrowRightOutlinedIcon from "@mui/icons-material/KeyboardArrowRightOutlined";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
 import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
@@ -9,11 +8,11 @@ import ListItemText from "@mui/material/ListItemText";
 import Paper from "@mui/material/Paper";
 import Popper from "@mui/material/Popper";
 import Stack from "@mui/material/Stack";
-import { alpha } from "@mui/material/styles";
 import zIndex from "@mui/material/styles/zIndex";
 import Typography from "@mui/material/Typography";
 import Image from "next/image";
 import { useState } from "react";
+import Button from "~/@core/components/mui/Button";
 import { Link } from "~/i18n/routing";
 import { DepartmentsMenuItemType } from "~/types/navigation";
 
@@ -46,10 +45,11 @@ const DepartmentsMenuItem = ({ item, parent }: Props) => {
 					borderBottom: 0,
 				},
 				":hover": {
-					"& .MuiSvgIcon-root": {
-						fill: (theme) => theme.palette.primary.main,
-					},
-					"& .MuiTypography-root": {
+					"& > .MuiListItemIcon-root > .MuiSvgIcon-root, & > .MuiSvgIcon-root":
+						{
+							fill: (theme) => theme.palette.primary.main,
+						},
+					"& > .MuiListItemText-root > .MuiListItemText-primary": {
 						color: "primary.main",
 					},
 				},
@@ -82,6 +82,7 @@ const DepartmentsMenuItem = ({ item, parent }: Props) => {
 				anchorEl={anchorEl}
 				placement="right-start"
 				sx={{ zIndex: zIndex.tooltip }}
+				disablePortal
 			>
 				<Paper elevation={1} sx={{ minWidth: 200 }}>
 					<Stack direction="row" px={2}>
@@ -144,15 +145,7 @@ const DepartmentsMenuItem = ({ item, parent }: Props) => {
 								LinkComponent={Link}
 								href={item.children.href}
 								endIcon={<KeyboardArrowRightOutlinedIcon />}
-								sx={{
-									"&": {
-										boxShadow: (theme) =>
-											`0 .5rem 1.125rem -.5rem ${alpha(
-												theme.palette.primary.main,
-												0.9
-											)}`,
-									},
-								}}
+								hasShadow
 							>
 								See offers
 							</Button>

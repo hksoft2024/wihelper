@@ -1,5 +1,5 @@
-import Badge from "@mui/material/Badge";
 import { Fragment } from "react";
+import Badge from "~/@core/components/mui/Badge";
 import { NavigationItemType } from "~/types/navigation";
 
 export const NAVIGATION_MENU: NavigationItemType[] = [
@@ -16,7 +16,12 @@ export const NAVIGATION_MENU: NavigationItemType[] = [
 				label: (
 					<Fragment>
 						Therapeutic diabetic shoes
-						<Badge color="error" variant="rounded" sx={{ fontSize: 10, ml: 1 }}>
+						<Badge
+							size="small"
+							color="error"
+							variant="rounded"
+							sx={{ fontSize: 10, ml: 1 }}
+						>
 							MEDICARE
 						</Badge>
 					</Fragment>
@@ -49,7 +54,12 @@ export const NAVIGATION_MENU: NavigationItemType[] = [
 				label: (
 					<Fragment>
 						Your first visit
-						<Badge color="error" variant="rounded" sx={{ fontSize: 10, ml: 1 }}>
+						<Badge
+							size="small"
+							color="error"
+							variant="rounded"
+							sx={{ fontSize: 10, ml: 1 }}
+						>
 							NEW
 						</Badge>
 					</Fragment>

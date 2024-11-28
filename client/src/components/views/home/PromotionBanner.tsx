@@ -1,12 +1,12 @@
 import KeyboardArrowRightOutlinedIcon from "@mui/icons-material/KeyboardArrowRightOutlined";
-import Badge from "@mui/material/Badge";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid2";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import Image from "next/image";
+import Badge from "~/@core/components/mui/Badge";
+import Button from "~/@core/components/mui/Button";
 
 const PromotionBanner = () => {
 	return (
@@ -15,9 +15,9 @@ const PromotionBanner = () => {
 				<Box py={6} bgcolor="#69b3fe17" borderRadius={1}>
 					<Grid container spacing={7.5}>
 						<Grid size={{ xs: 12, md: 5 }}>
-							<Stack pl={12}>
+							<Stack height={1} pl={12} justifyContent="center">
 								<Box>
-									<Badge variant="rounded" color="error">
+									<Badge size="small" variant="rounded" color="error">
 										Limited Offer
 									</Badge>
 								</Box>

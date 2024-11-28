@@ -29,7 +29,7 @@ const NavigationItem = ({ item }: Props) => {
 					mb: 2.5,
 					bgcolor: "#f6f9fc",
 					cursor: "pointer",
-					":hover": {
+					":hover, &:has(+ .MuiList-root:hover)": {
 						"& > .MuiListItemIcon-root .MuiSvgIcon-root": {
 							fill: (theme) => theme.palette.primary.main,
 						},

@@ -33,7 +33,7 @@ const DepartmentsMenuItem = ({ item }: Props) => {
 					":last-child": {
 						borderBottom: 0,
 					},
-					":hover": {
+					":hover, &:has(+ .MuiBox-root:hover)": {
 						"& > .MuiListItemIcon-root .MuiSvgIcon-root": {
 							fill: (theme) => theme.palette.primary.main,
 						},

@@ -10,7 +10,7 @@ const Navigation = () => {
 		<Box
 			bgcolor="background.paper"
 			pb={2}
-			mt={-3}
+			mt={-2}
 			display={{ xs: "none", lg: "block" }}
 		>
 			<Container>

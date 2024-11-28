@@ -10,14 +10,12 @@ const button: Theme["components"] = {
 	MuiButton: {
 		defaultProps: {
 			variant: "contained",
+			disableElevation: true,
 		},
 		styleOverrides: {
 			root: ({ ownerState, theme }) => ({
 				textTransform: "unset",
 				fontWeight: 400,
-				"&, &:hover, &:active": {
-					boxShadow: "none",
-				},
 				...(ownerState.variant === "outlined"
 					? {
 							":hover": {
