@@ -1,9 +1,10 @@
 import CloseIcon from "@mui/icons-material/Close";
+import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
+import iconButtonClasses from "@mui/material/IconButton/iconButtonClasses";
 import ListItem from "@mui/material/ListItem";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
-import Image from "next/image";
 import { Link } from "~/i18n/routing";
 import { CartItem as TCartItem } from "~/types/cart";
 
@@ -20,10 +21,10 @@ const CartItem = ({ item }: Props) => {
 				borderBottom: 1,
 				borderColor: "divider",
 				":hover": {
-					"&  > .MuiIconButton-root": {
+					[`> .${iconButtonClasses.root}`]: {
 						opacity: 1,
 					},
-					"&  > .cart-item-detail": {
+					".cart-item-detail": {
 						transform: "translateX(0)",
 					},
 				},
@@ -51,13 +52,9 @@ const CartItem = ({ item }: Props) => {
 					transition: (theme) => theme.transitions.create(["transform"]),
 				}}
 			>
-				<Image
-					src={item.product_image_url}
-					alt={item.product_name}
-					width={64}
-					height={64}
-					priority
-				/>
+				<Box width={64} height={64}>
+					<img src={item.product_image_url} alt={item.product_name} />
+				</Box>
 
 				<Stack>
 					<Typography
@@ -77,7 +74,7 @@ const CartItem = ({ item }: Props) => {
 						<Typography component="span" color="secondary" fontSize={14} mr={2}>
 							{item.product_price}
 						</Typography>
-						<Typography component="span" fontSize={14} color="#7d879c">
+						<Typography component="span" fontSize={14} color="textMuted">
 							x {item.product_quantity}
 						</Typography>
 					</Typography>

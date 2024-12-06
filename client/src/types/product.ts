@@ -9,4 +9,6 @@ export type Product = {
 	badge?: string;
 	badge_color?: "primary" | "error" | "info";
 	href: string;
+	colors?: string[];
+	sizes?: string[];
 };

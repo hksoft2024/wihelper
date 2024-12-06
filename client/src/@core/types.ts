@@ -13,3 +13,8 @@ export type LocaleParam = {
 };
 
 export type Translation = ReturnType<typeof useTranslations>;
+
+export type Option<TValue> = {
+	label: string;
+	value: TValue;
+};

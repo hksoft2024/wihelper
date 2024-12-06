@@ -65,7 +65,7 @@ const Cart = () => {
 			</Badge>
 
 			<Stack display={{ xs: "none", lg: "flex" }}>
-				<Typography variant="caption" sx={{ color: "#7d879c" }}>
+				<Typography variant="caption" color="textMuted">
 					{t("MY_CART")}
 				</Typography>
 				<Typography
@@ -104,26 +104,13 @@ const Cart = () => {
 						>
 							<List
 								disablePadding
+								className="scrollbar"
 								sx={{
 									height: "15rem",
 									width: "20rem",
 									maxWidth: "20rem",
 									overflow: "auto",
 									pr: 4,
-									"::-webkit-scrollbar": {
-										width: 3,
-										height: 3,
-										bgcolor: "white",
-										opacity: 0,
-									},
-									"::-webkit-scrollbar-track": {
-										borderRadius: 1,
-										bgcolor: "#e9edf4",
-									},
-									"::-webkit-scrollbar-thumb": {
-										borderRadius: 1,
-										bgcolor: "#aeb4be",
-									},
 								}}
 							>
 								{CART_ITEMS.map((cartItem, index) => (
@@ -152,7 +139,7 @@ const Cart = () => {
 										fontWeight: 400,
 										":hover": {
 											borderColor: "#dae1e7",
-											color: "#373f50",
+											color: "background.dark",
 											bgcolor: "#f3f5f9",
 										},
 									}}

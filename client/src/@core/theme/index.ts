@@ -24,26 +24,6 @@ const theme = createTheme({
 			color: palette.text.primary,
 			lineHeight: 1.5,
 		},
-		h1: {
-			lineHeight: 1.2,
-			fontSize: "2.25rem",
-			fontWeight: 700,
-		},
-		h2: {
-			lineHeight: 1.2,
-			fontSize: "1.75rem",
-			fontWeight: 600,
-		},
-		h3: {
-			lineHeight: 1.2,
-			fontSize: "1.25rem",
-			fontWeight: 500,
-		},
-		h6: {
-			lineHeight: 1.2,
-			fontSize: "1rem",
-			fontWeight: 500,
-		},
 	}),
 	palette: {
 		mode: themeConfig.mode,

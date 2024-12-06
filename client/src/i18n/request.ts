@@ -9,7 +9,7 @@ export const hasLocale = (locale: Locale) => {
 export default getRequestConfig(async ({ requestLocale }) => {
 	let locale = await requestLocale;
 
-	if (hasLocale(locale as Locale)) {
+	if (!hasLocale(locale as Locale)) {
 		locale = routing.defaultLocale;
 	}
 

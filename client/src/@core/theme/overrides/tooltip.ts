@@ -2,6 +2,10 @@ import { Theme } from "@mui/material/styles";
 
 const tooltip: Theme["components"] = {
 	MuiTooltip: {
+		defaultProps: {
+			disableInteractive: true,
+			arrow: true,
+		},
 		styleOverrides: {
 			popper: ({ theme }) => ({
 				"&.MuiTooltip-popper[data-popper-placement*='top'] .MuiTooltip-tooltip":

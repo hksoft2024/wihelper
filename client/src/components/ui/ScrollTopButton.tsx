@@ -16,7 +16,7 @@ const ScrollTopButton = () => {
 	};
 
 	return (
-		<Fade in={trigger}>
+		<Fade in={trigger} mountOnEnter unmountOnExit>
 			<IconButton
 				onClick={handleClick}
 				sx={{

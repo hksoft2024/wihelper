@@ -4,6 +4,12 @@ const errorIconUrl =
 	"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='none' stroke='%23f34770' stroke-width='1' stroke-linecap='round' stroke-linejoin='round'%3e%3ccircle cx='6' cy='6' r='5'%3e%3c/circle%3e%3cline x1='8' y1='4' x2='4' y2='8'%3e%3c/line%3e%3cline x1='4' y1='4' x2='8' y2='8'%3e%3c/line%3e%3c/svg%3e";
 
 const input: Theme["components"] = {
+	MuiTextField: {
+		defaultProps: {
+			size: "small",
+			fullWidth: true,
+		},
+	},
 	MuiOutlinedInput: {
 		defaultProps: {
 			size: "small",
@@ -31,7 +37,7 @@ const input: Theme["components"] = {
 					paddingBottom: 10,
 					lineHeight: 1.5,
 					"::placeholder": {
-						color: "#7d879c",
+						color: theme.palette.text.muted,
 						opacity: 1,
 					},
 				},
@@ -61,6 +67,15 @@ const input: Theme["components"] = {
 					color: "inherit",
 				},
 			},
+		},
+	},
+	MuiFormHelperText: {
+		styleOverrides: {
+			root: ({ theme }) => ({
+				marginTop: theme.spacing(1.5),
+				marginLeft: 0,
+				marginRight: 0,
+			}),
 		},
 	},
 };

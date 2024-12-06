@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
 import { Rubik } from "next/font/google";
 import { ToastContainer } from "react-toastify";
+import AuthProvider from "~/@core/components/AuthProvider";
+import ReactQueryProvider from "~/@core/components/ReactQueryProvider";
 import ThemeProvider from "~/@core/components/ThemeProvider";
 import { ChildrenType, LocaleParam } from "~/@core/types";
+import ScrollTopButton from "~/components/ui/ScrollTopButton";
 import themeConfig from "~/configs/themeConfig";
 import "./globals.css";
 
@@ -24,18 +27,24 @@ type Props = ChildrenType & {
 	params: LocaleParam;
 };
 
-const RootLayout = ({ children, params: { locale } }: Props) => {
+const RootLayout = async ({ children, params: { locale } }: Props) => {
 	return (
 		<html lang={locale} suppressHydrationWarning>
 			<body className={rubik.className}>
-				<ThemeProvider>
-					<ToastContainer
-						position={themeConfig.toast_position}
-						autoClose={3000}
-					/>
+				<AuthProvider locale={locale}>
+					<ReactQueryProvider>
+						<ThemeProvider>
+							<ToastContainer
+								position={themeConfig.toast_position}
+								autoClose={3000}
+							/>
 
-					{children}
-				</ThemeProvider>
+							<ScrollTopButton />
+
+							{children}
+						</ThemeProvider>
+					</ReactQueryProvider>
+				</AuthProvider>
 			</body>
 		</html>
 	);

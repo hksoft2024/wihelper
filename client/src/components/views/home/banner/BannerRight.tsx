@@ -110,7 +110,6 @@ const BannerRight = () => {
 							<Grid size={{ xs: 12, md: 6, lg: 5 }} offset={{ lg: 1 }}>
 								<Stack
 									pl={{ xs: 1.5, md: 1, lg: 1.5, xl: 0 }}
-									// pr={4}
 									ml={-1}
 									pt={6}
 									pb={{ xs: 0, md: 6 }}
@@ -133,10 +132,6 @@ const BannerRight = () => {
 									<Typography
 										variant="h1"
 										fontWeight={500}
-										fontSize={(theme) => ({
-											xs: "calc(1.475rem + 2.7vw)",
-											xl: theme.spacing(14),
-										})}
 										mb={3}
 										lineHeight={1}
 										data-text-animation={item.text_animate}
@@ -163,18 +158,6 @@ const BannerRight = () => {
 											}
 											size="large"
 											hasShadow
-											sx={{
-												py: 2.5,
-												// "&": {
-												// 	boxShadow: (theme) =>
-												// 		`0 .5rem 1.125rem -.5rem ${alpha(
-												// 			item.button_color === "primary"
-												// 				? theme.palette.primary.main
-												// 				: theme.palette.info.main,
-												// 			0.9
-												// 		)}`,
-												// },
-											}}
 											endIcon={<KeyboardArrowRightIcon />}
 										>
 											{item.button_text}

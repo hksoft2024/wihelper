@@ -22,13 +22,7 @@ const PromotionBanner = () => {
 									</Badge>
 								</Box>
 
-								<Typography
-									variant="h3"
-									fontSize={{ xs: "calc(1.3rem + 0.6vw)", xl: 28 }}
-									fontWeight={300}
-									pt={6}
-									pb={1}
-								>
+								<Typography variant="h3" fontWeight={300} pt={6} pb={1}>
 									All new
 								</Typography>
 

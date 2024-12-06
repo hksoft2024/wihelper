@@ -7,7 +7,6 @@ import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import zIndex from "@mui/material/styles/zIndex";
 import { ChildrenType } from "~/@core/types";
-import ScrollTopButton from "~/components/ui/ScrollTopButton";
 import Footer from "./components/main/Footer";
 import TopBar from "./components/main/TopBar";
 import Navbar from "./components/main/navbar";
@@ -17,8 +16,6 @@ type Props = ChildrenType;
 const MainLayout = ({ children }: Props) => {
 	return (
 		<Box minHeight="100vh" bgcolor="common.white">
-			<ScrollTopButton />
-
 			<Box component="header">
 				<TopBar />
 				<Navbar />

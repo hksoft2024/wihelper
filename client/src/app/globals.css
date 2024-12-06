@@ -7,6 +7,32 @@ a {
 	display: inline-block;
 }
 
+img {
+	width: 100%;
+	height: auto;
+	display: block;
+	border-radius: inherit;
+}
+
+.scrollbar {
+	&::-webkit-scrollbar {
+		width: 3px;
+		height: 3px;
+		background-color: #fff;
+		opacity: 0;
+	}
+
+	&::-webkit-scrollbar-track {
+		border-radius: 1px;
+		background-color: #e9edf4;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		border-radius: 1px;
+		background-color: #aeb4be;
+	}
+}
+
 @keyframes slide-up {
 	from {
 		transform: translateY(8px);

@@ -1,12 +1,15 @@
 "use client";
 
+import InstagramIcon from "@mui/icons-material/Instagram";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid2";
 import Stack from "@mui/material/Stack";
 import { alpha } from "@mui/material/styles";
+import svgIconClasses from "@mui/material/SvgIcon/svgIconClasses";
 import Typography from "@mui/material/Typography";
 import Image from "next/image";
+import FacebookIcon from "~/components/ui/icons/Facebook";
 import { FOOTER_BLOCK_1, FOOTER_BLOCK_2 } from "~/fake-data/footer";
 import { Link } from "~/i18n/routing";
 
@@ -209,27 +212,19 @@ const Footer = () => {
 											cursor: "pointer",
 											transition: (theme) =>
 												theme.transitions.create(["background-color"]),
-											"& svg": {
-												transition: (theme) =>
-													theme.transitions.create(["fill"]),
-											},
 											":hover": {
 												bgcolor: "#fff",
-												"& svg": { fill: "#3b5998" },
+												[`.${svgIconClasses.root}`]: { fill: "#3b5998" },
 											},
 										}}
 									>
-										<svg
-											fill="#fff"
-											width={16}
-											height={16}
-											viewBox="-7 -2 24 24"
-											xmlns="http://www.w3.org/2000/svg"
-											preserveAspectRatio="xMinYMin"
-											className="jam jam-facebook"
-										>
-											<path d="M2.046 3.865v2.748H.032v3.36h2.014v9.986H6.18V9.974h2.775s.26-1.611.386-3.373H6.197V4.303c0-.343.45-.805.896-.805h2.254V0H6.283c-4.34 0-4.237 3.363-4.237 3.865z" />
-										</svg>
+										<FacebookIcon
+											sx={(theme) => ({
+												fontSize: 16,
+												fill: "#fff",
+												transition: theme.transitions.create(["fill"]),
+											})}
+										/>
 									</Box>
 									<Box
 										width={36}
@@ -243,30 +238,19 @@ const Footer = () => {
 											cursor: "pointer",
 											transition: (theme) =>
 												theme.transitions.create(["background-color"]),
-											"& svg path": {
-												transition: (theme) =>
-													theme.transitions.create(["fill"]),
-											},
 											":hover": {
 												bgcolor: "#fff",
-												"& svg path": { fill: "red" },
+												[`.${svgIconClasses.root}`]: { fill: "#5851db" },
 											},
 										}}
 									>
-										<svg
-											width={16}
-											height={16}
-											viewBox="0 0 24 24"
-											fill="none"
-											xmlns="http://www.w3.org/2000/svg"
-										>
-											<path
-												fillRule="evenodd"
-												clipRule="evenodd"
-												d="M22.54 6.42a2.765 2.765 0 0 0-1.945-1.957C18.88 4 12 4 12 4s-6.88 0-8.595.463A2.765 2.765 0 0 0 1.46 6.42C1 8.148 1 11.75 1 11.75s0 3.602.46 5.33a2.765 2.765 0 0 0 1.945 1.958C5.121 19.5 12 19.5 12 19.5s6.88 0 8.595-.462a2.765 2.765 0 0 0 1.945-1.958c.46-1.726.46-5.33.46-5.33s0-3.602-.46-5.33ZM9.75 8.479v6.542l5.75-3.271-5.75-3.271Z"
-												fill="#fff"
-											/>
-										</svg>
+										<InstagramIcon
+											sx={(theme) => ({
+												fontSize: 16,
+												fill: "#fff",
+												transition: theme.transitions.create(["fill"]),
+											})}
+										/>
 									</Box>
 								</Stack>
 

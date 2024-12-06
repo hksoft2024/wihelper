@@ -1,10 +1,13 @@
 import { Theme } from "@mui/material/styles";
-import button from "./button";
-import container from "./container";
-import typography from "./typography";
-import input from "./input";
 import badge from "./badge";
+import button from "./button";
+import card from "./card";
+import container from "./container";
+import input from "./input";
+import menu from "./menu";
+import select from "./select";
 import tooltip from "./tooltip";
+import typography from "./typography";
 
 const overrides = (): Theme["components"] => {
 	return Object.assign(
@@ -14,7 +17,10 @@ const overrides = (): Theme["components"] => {
 		button,
 		input,
 		typography,
-		tooltip
+		tooltip,
+		select,
+		menu,
+		card
 	);
 };
 

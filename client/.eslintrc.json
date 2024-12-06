@@ -1,6 +1,27 @@
 {
 	"extends": ["next/core-web-vitals", "next/typescript"],
 	"rules": {
-		"@next/next/no-img-element": "off"
+		"@next/next/no-img-element": "off",
+		"react/display-name": "off",
+		"padding-line-between-statements": [
+			"error",
+			{ "blankLine": "always", "prev": "*", "next": "return" },
+			{ "blankLine": "always", "prev": "*", "next": "break" },
+			{ "blankLine": "always", "prev": "*", "next": "continue" },
+			{ "blankLine": "always", "prev": "*", "next": "throw" },
+			{ "blankLine": "always", "prev": "*", "next": "if" },
+			{ "blankLine": "always", "prev": "*", "next": "export" },
+			{ "blankLine": "always", "prev": "*", "next": "switch" },
+			{ "blankLine": "always", "prev": "*", "next": "try" },
+			{ "blankLine": "always", "prev": "*", "next": "function" },
+			{ "blankLine": "always", "prev": "*", "next": "for" }
+		],
+		"@typescript-eslint/no-unused-vars": [
+			"error",
+			{
+				"argsIgnorePattern": "^_",
+				"varsIgnorePattern": "^_"
+			}
+		]
 	}
 }
