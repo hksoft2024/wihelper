@@ -8,9 +8,9 @@ import Typography from "@mui/material/Typography";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { DEPARTMENTS_MENU } from "~/fake-data/departments-menu";
-import DepartmentsMenuItem from "./DepartmentsMenuItem";
+import ShopMenuItem from "./ShopMenuItem";
 
-const DepartmentsMenu = () => {
+const ShopMenu = () => {
 	const t = useTranslations();
 
 	const [showSubMenu, setShowSubMenu] = useState(false);
@@ -71,7 +71,7 @@ const DepartmentsMenu = () => {
 					sx={{ bgcolor: "#f6f9fc", pb: 2, mt: -2.5, mb: 2.5 }}
 				>
 					{DEPARTMENTS_MENU.map((item, index) => (
-						<DepartmentsMenuItem key={index} item={item} />
+						<ShopMenuItem key={index} item={item} />
 					))}
 				</List>
 			</Fade>
@@ -79,4 +79,4 @@ const DepartmentsMenu = () => {
 	);
 };
 
-export default DepartmentsMenu;
+export default ShopMenu;

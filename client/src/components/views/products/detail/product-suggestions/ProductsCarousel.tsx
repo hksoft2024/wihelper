@@ -3,6 +3,7 @@
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid2";
 import IconButton from "@mui/material/IconButton";
 import { styled, useTheme } from "@mui/material/styles";
 import { useEffect, useState } from "react";
@@ -10,9 +11,9 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import Loader from "~/components/ui/Loader";
 import { SUGGESTED_PRODUCTS } from "~/fake-data/product";
-import ProductCard from "../../shared/ProductCard";
+import ProductCard from "../../shared/product-card";
+import ProductCardSkeleton from "../../shared/product-card/ProductCardSkeleton";
 
 type Props = {
 	name?: string;
@@ -43,7 +44,22 @@ const ProductsCarousel = ({ name }: Props) => {
 	}, []);
 
 	if (isLoading) {
-		return <Loader scope="component" height={200} size={32} />;
+		return (
+			<Grid container spacing={7.5}>
+				<Grid size={{ xs: 12, sm: 6, md: 4, xl: 3 }}>
+					<ProductCardSkeleton />
+				</Grid>
+				<Grid size={{ xs: 12, sm: 6, md: 4, xl: 3 }}>
+					<ProductCardSkeleton />
+				</Grid>
+				<Grid size={{ xs: 12, sm: 6, md: 4, xl: 3 }}>
+					<ProductCardSkeleton />
+				</Grid>
+				<Grid size={{ xs: 12, sm: 6, md: 4, xl: 3 }}>
+					<ProductCardSkeleton />
+				</Grid>
+			</Grid>
+		);
 	}
 
 	return (

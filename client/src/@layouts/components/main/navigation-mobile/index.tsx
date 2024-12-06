@@ -3,7 +3,7 @@
 import Box from "@mui/material/Box";
 import Collapse from "@mui/material/Collapse";
 import SearchBox from "../navbar/SearchBox";
-import DepartmentsMenu from "./departments-menu";
+import ShopMenu from "./shop-menu";
 import NavigationMenu from "./navigation-menu";
 
 type Props = {
@@ -18,7 +18,7 @@ const NavigationMobile = ({ open }: Props) => {
 					<SearchBox />
 				</Box>
 
-				<DepartmentsMenu />
+				<ShopMenu />
 
 				<NavigationMenu />
 			</Box>

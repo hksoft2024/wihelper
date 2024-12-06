@@ -2,7 +2,7 @@ import Grid from "@mui/material/Grid2";
 import { Fragment } from "react";
 import { PRODUCTS } from "~/fake-data/product";
 import Banner from "./Banner";
-import ProductCard from "./shared/ProductCard";
+import ProductCard from "../shared/product-card";
 
 const ProductsGrid = () => {
 	return (

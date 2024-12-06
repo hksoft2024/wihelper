@@ -78,7 +78,7 @@ const ProductSizeSelect = ({
 				anchorEl={menuAnchorEl}
 				transition
 				placement="bottom"
-				sx={{ width: inputRef.current?.offsetWidth }}
+				sx={{ width: inputRef.current?.offsetWidth, zIndex: 1 }}
 			>
 				{({ TransitionProps }) => (
 					<Fade {...TransitionProps}>

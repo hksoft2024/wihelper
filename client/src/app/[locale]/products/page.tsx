@@ -8,10 +8,10 @@ import { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { Fragment } from "react";
 import Breadcrumbs from "~/components/ui/Breadcrumbs";
-import ProductsGrid from "~/components/views/products/ProductsGrid";
-import ProductsPagination from "~/components/views/products/ProductsPagination";
-import ProductsToolbar from "~/components/views/products/toolbar";
-import Widgets from "~/components/views/products/widgets";
+import ProductsGrid from "~/components/views/products/list/ProductsGrid";
+import ProductsPagination from "~/components/views/products/list/ProductsPagination";
+import ProductsToolbar from "~/components/views/products/list/toolbar";
+import Widgets from "~/components/views/products/list/widgets";
 
 export const generateMetadata = async (): Promise<Metadata> => {
 	const t = await getTranslations();

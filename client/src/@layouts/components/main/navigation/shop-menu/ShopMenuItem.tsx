@@ -4,11 +4,14 @@ import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
 import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
+import listItemIconClasses from "@mui/material/ListItemIcon/listItemIconClasses";
 import ListItemText from "@mui/material/ListItemText";
+import listItemTextClasses from "@mui/material/ListItemText/listItemTextClasses";
 import Paper from "@mui/material/Paper";
 import Popper from "@mui/material/Popper";
 import Stack from "@mui/material/Stack";
 import zIndex from "@mui/material/styles/zIndex";
+import svgIconClasses from "@mui/material/SvgIcon/svgIconClasses";
 import Typography from "@mui/material/Typography";
 import Image from "next/image";
 import { useState } from "react";
@@ -21,7 +24,7 @@ type Props = {
 	parent: HTMLDivElement | null;
 };
 
-const DepartmentsMenuItem = ({ item, parent }: Props) => {
+const ShopMenuItem = ({ item, parent }: Props) => {
 	const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
 
 	const handleShowSubMenu = () => {
@@ -45,13 +48,14 @@ const DepartmentsMenuItem = ({ item, parent }: Props) => {
 					borderBottom: 0,
 				},
 				":hover": {
-					"& > .MuiListItemIcon-root > .MuiSvgIcon-root, & > .MuiSvgIcon-root":
+					[`> .${listItemIconClasses.root} > .${svgIconClasses.root}, > .${svgIconClasses.root}`]:
 						{
 							fill: (theme) => theme.palette.primary.main,
 						},
-					"& > .MuiListItemText-root > .MuiListItemText-primary": {
-						color: "primary.main",
-					},
+					[`> .${listItemTextClasses.root} > .${listItemTextClasses.primary}`]:
+						{
+							color: "primary.main",
+						},
 				},
 			}}
 			onMouseEnter={handleShowSubMenu}
@@ -157,4 +161,4 @@ const DepartmentsMenuItem = ({ item, parent }: Props) => {
 	);
 };
 
-export default DepartmentsMenuItem;
+export default ShopMenuItem;

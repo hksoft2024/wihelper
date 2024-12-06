@@ -23,8 +23,8 @@ import Badge from "~/@core/components/mui/Badge";
 import Button from "~/@core/components/mui/Button";
 import ColorCheckbox from "~/components/ui/ColorCheckbox";
 import FacebookIcon from "~/components/ui/icons/Facebook";
-import ProductGallery from "../shared/ProductGallery";
-import ProductPanels from "./ProductPanels";
+import ProductGallery from "../../shared/ProductGallery";
+import ProductPanels from "../ProductPanels";
 import SizeGuideButton from "./SizeGuideButton";
 
 type Props = {

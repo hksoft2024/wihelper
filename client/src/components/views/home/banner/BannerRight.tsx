@@ -2,6 +2,7 @@
 
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import Box from "@mui/material/Box";
+import buttonClasses from "@mui/material/Button/buttonClasses";
 import Grid from "@mui/material/Grid2";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
@@ -19,11 +20,11 @@ const BannerRight = () => {
 			pt={{ xl: 6 }}
 			px={{ xl: 4 }}
 			sx={{
-				"& .swiper": {
+				".swiper": {
 					width: 1,
 					height: 1,
-					"& .swiper-slide": {
-						"& h1, & h2, & h5": {
+					".swiper-slide": {
+						"h1, h2, h5": {
 							opacity: 0,
 							transition: (theme) =>
 								theme.transitions.create(["transform", "opacity"], {
@@ -31,13 +32,13 @@ const BannerRight = () => {
 									duration: "0.45s",
 								}),
 						},
-						"& h1": {
+						h1: {
 							transitionDelay: "0.5s",
 						},
-						"& h5": {
+						h5: {
 							transitionDelay: "0.7s",
 						},
-						"& .MuiButton-root": {
+						[`.${buttonClasses.root}`]: {
 							opacity: 0,
 							transform: "scale(0.8)",
 							transition: (theme) =>
@@ -51,35 +52,35 @@ const BannerRight = () => {
 									"color",
 								])}`,
 						},
-						"& h1[data-text-animation='slide-up'], & h2[data-text-animation='slide-up'], & h5[data-text-animation='slide-up']":
+						"h1[data-text-animation='slide-up'], h2[data-text-animation='slide-up'], h5[data-text-animation='slide-up']":
 							{
 								transform: "translateY(45px)",
 							},
-						"& h1[data-text-animation='slide-right'], & h2[data-text-animation='slide-right'], & h5[data-text-animation='slide-right']":
+						"h1[data-text-animation='slide-right'], h2[data-text-animation='slide-right'], h5[data-text-animation='slide-right']":
 							{
 								transform: "translateX(-45px)",
 							},
-						"& h1[data-text-animation='grow'], & h2[data-text-animation='grow'], & h5[data-text-animation='grow']":
+						"h1[data-text-animation='grow'], h2[data-text-animation='grow'], h5[data-text-animation='grow']":
 							{
 								transform: "scale(0.8)",
 							},
 						"&.swiper-slide-active": {
-							"& h1, & h2, & h5": {
+							"h1, h2, h5": {
 								opacity: 1,
 							},
-							"& h1[data-text-animation='slide-up'], & h2[data-text-animation='slide-up'], & h5[data-text-animation='slide-up']":
+							"h1[data-text-animation='slide-up'], h2[data-text-animation='slide-up'], h5[data-text-animation='slide-up']":
 								{
 									transform: "translateY(0)",
 								},
-							"& h1[data-text-animation='slide-right'], & h2[data-text-animation='slide-right'], & h5[data-text-animation='slide-right']":
+							"h1[data-text-animation='slide-right'], h2[data-text-animation='slide-right'], h5[data-text-animation='slide-right']":
 								{
 									transform: "translateX(0)",
 								},
-							"& h1[data-text-animation='grow'], & h2[data-text-animation='grow'], & h5[data-text-animation='grow']":
+							"h1[data-text-animation='grow'], h2[data-text-animation='grow'], h5[data-text-animation='grow']":
 								{
 									transform: "scale(1)",
 								},
-							"& .MuiButton-root": {
+							[`.${buttonClasses.root}`]: {
 								opacity: 1,
 								transform: "scale(1)",
 							},
@@ -118,10 +119,6 @@ const BannerRight = () => {
 									<Typography
 										variant="h2"
 										fontWeight={300}
-										fontSize={(theme) => ({
-											xs: "calc(1.325rem + 0.9vw)",
-											xl: theme.spacing(8),
-										})}
 										pb={1}
 										mb={3}
 										data-text-animation={item.text_animate}
@@ -142,7 +139,6 @@ const BannerRight = () => {
 									<Typography
 										variant="h5"
 										fontWeight={300}
-										fontSize="1.25rem"
 										pb={4}
 										mb={3}
 										data-text-animation={item.text_animate}
@@ -196,7 +192,7 @@ const BannerRight = () => {
 						"&.swiper-pagination-bullets.swiper-pagination-horizontal": {
 							position: "relative",
 							top: 0,
-							"& .swiper-pagination-bullet": {
+							".swiper-pagination-bullet": {
 								cursor: "pointer",
 								bgcolor: "rgb(182, 188, 197)",
 								opacity: 1,

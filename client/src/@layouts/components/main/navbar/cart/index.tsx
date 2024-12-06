@@ -3,6 +3,7 @@ import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import PaymentOutlinedIcon from "@mui/icons-material/PaymentOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import Badge from "@mui/material/Badge";
+import badgeClasses from "@mui/material/Badge/badgeClasses";
 import Fade from "@mui/material/Fade";
 import IconButton from "@mui/material/IconButton";
 import List from "@mui/material/List";
@@ -13,9 +14,9 @@ import zIndex from "@mui/material/styles/zIndex";
 import Typography from "@mui/material/Typography";
 import { useTranslations } from "next-intl";
 import { MouseEvent, useState } from "react";
+import Button from "~/@core/components/mui/Button";
 import { CART_ITEMS } from "~/fake-data/cart";
 import CartItem from "./CartItem";
-import Button from "~/@core/components/mui/Button";
 
 const Cart = () => {
 	const t = useTranslations();
@@ -44,7 +45,7 @@ const Cart = () => {
 				badgeContent={4}
 				color="primary"
 				sx={{
-					"& .MuiBadge-anchorOriginTopRight": {
+					[`.${badgeClasses.anchorOriginTopRight}`]: {
 						top: 3,
 						right: 6,
 					},

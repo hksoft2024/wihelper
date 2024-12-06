@@ -1,29 +1,24 @@
 "use client";
 
-import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import Box from "@mui/material/Box";
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import cardActionsClasses from "@mui/material/CardActions/cardActionsClasses";
 import CardContent from "@mui/material/CardContent";
-import Fade from "@mui/material/Fade";
-import IconButton from "@mui/material/IconButton";
 import Rating from "@mui/material/Rating";
 import ratingClasses from "@mui/material/Rating/ratingClasses";
 import Stack from "@mui/material/Stack";
-import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
-import { useTranslations } from "next-intl";
 import { useState } from "react";
 import Badge from "~/@core/components/mui/Badge";
 import ColorCheckbox from "~/components/ui/ColorCheckbox";
 import { Link } from "~/i18n/routing";
 import { Product } from "~/types/product";
 import AddToCartButton from "./AddToCartButton";
+import AddWishlistButton from "./AddWishlistButton";
 import CompareButton from "./CompareButton";
 import ProductSizeCheckbox from "./ProductSizeCheckbox";
 import ProductSizeSelect from "./ProductSizeSelect";
 import QuickViewButton from "./QuickViewButton";
+import ProductCardFooter from "./styles/ProductCardFooter";
+import ProductCardWrapper from "./styles/ProductCardWrapper";
 
 type Props = {
 	product: Product;
@@ -32,39 +27,12 @@ type Props = {
 };
 
 const ProductCard = ({ product, showCompareAction, disableHover }: Props) => {
-	const t = useTranslations();
-
 	const [isHoveredProduct, setIsHoveredProduct] = useState(false);
 
 	return (
-		<Card
+		<ProductCardWrapper
 			elevation={0}
-			sx={{
-				backgroundColor: "background.paper",
-				position: "relative",
-				overflow: "visible",
-				borderRadius: 2,
-				transition: (theme) =>
-					theme.transitions.create(["box-shadow", "border-radius"]),
-				...(!disableHover
-					? {
-							":hover": {
-								boxShadow: 1,
-								borderBottomLeftRadius: 0,
-								borderBottomRightRadius: 0,
-								[`.${cardActionsClasses.root}`]: {
-									boxShadow: 1,
-									opacity: 1,
-									pointerEvents: "auto",
-								},
-								".compare-btn": {
-									opacity: 1,
-									pointerEvents: "auto",
-								},
-							},
-					  }
-					: {}),
-			}}
+			disableHover={disableHover}
 			onMouseEnter={() => setIsHoveredProduct(true)}
 			onMouseLeave={() => setIsHoveredProduct(false)}
 		>
@@ -94,20 +62,7 @@ const ProductCard = ({ product, showCompareAction, disableHover }: Props) => {
 			>
 				{showCompareAction && <CompareButton product={product} />}
 
-				<Tooltip
-					title={t("ADD_TO_WISHLIST")}
-					placement="left"
-					TransitionComponent={Fade}
-				>
-					<IconButton
-						sx={{
-							bgcolor: "#f3f5f9",
-							":hover": { bgcolor: "#f3f5f9", color: "primary.main" },
-						}}
-					>
-						<FavoriteBorderOutlinedIcon sx={{ fontSize: 16 }} />
-					</IconButton>
-				</Tooltip>
+				<AddWishlistButton />
 			</Stack>
 
 			<Box
@@ -131,9 +86,7 @@ const ProductCard = ({ product, showCompareAction, disableHover }: Props) => {
 						fontSize={14}
 						component={Link}
 						href="/products/1"
-						sx={{
-							":hover": { color: "primary.main" },
-						}}
+						sx={{ ":hover": { color: "primary.main" } }}
 					>
 						{product.name}
 					</Typography>
@@ -159,28 +112,7 @@ const ProductCard = ({ product, showCompareAction, disableHover }: Props) => {
 			</CardContent>
 
 			{!disableHover && (
-				<CardActions
-					disableSpacing
-					sx={{
-						flexDirection: "column",
-						alignItems: "center",
-						gap: 2,
-						p: 5,
-						pt: 0,
-						position: "absolute",
-						top: "100%",
-						zIndex: 1,
-						width: 1,
-						bgcolor: "background.paper",
-						boxShadow: "none",
-						opacity: 0,
-						pointerEvents: "none",
-						borderBottomLeftRadius: 8,
-						borderBottomRightRadius: 8,
-						transition: (theme) =>
-							theme.transitions.create(["opacity", "box-shadow"]),
-					}}
-				>
+				<ProductCardFooter disableSpacing>
 					{!!product.colors && (
 						<Stack
 							width={1}
@@ -221,12 +153,13 @@ const ProductCard = ({ product, showCompareAction, disableHover }: Props) => {
 
 						<AddToCartButton product={product} />
 					</Stack>
+
 					<Box width={1} textAlign="center">
 						<QuickViewButton product={product} />
 					</Box>
-				</CardActions>
+				</ProductCardFooter>
 			)}
-		</Card>
+		</ProductCardWrapper>
 	);
 };
 

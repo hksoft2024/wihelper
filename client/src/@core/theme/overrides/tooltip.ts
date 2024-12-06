@@ -1,3 +1,4 @@
+import Fade from "@mui/material/Fade";
 import { Theme } from "@mui/material/styles";
 
 const tooltip: Theme["components"] = {
@@ -5,6 +6,7 @@ const tooltip: Theme["components"] = {
 		defaultProps: {
 			disableInteractive: true,
 			arrow: true,
+			TransitionComponent: Fade,
 		},
 		styleOverrides: {
 			popper: ({ theme }) => ({

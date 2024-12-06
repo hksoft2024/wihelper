@@ -11,7 +11,7 @@ import { Fragment, useState } from "react";
 import Dialog from "~/components/ui/Dialog";
 import { Link } from "~/i18n/routing";
 import { Product } from "~/types/product";
-import ProductDetail from "../../detail/ProductDetail";
+import ProductDetail from "../../detail/product-detail";
 
 type Props = {
 	product: Product;

@@ -9,11 +9,11 @@ import { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { Fragment } from "react";
 import Breadcrumbs from "~/components/ui/Breadcrumbs";
+import ProductDetail from "~/components/views/products/detail/product-detail";
+import ProductReviews from "~/components/views/products/detail/product-reviews";
+import ProductSuggestions from "~/components/views/products/detail/product-suggestions";
 import ProductDescriptionSection from "~/components/views/products/detail/ProductDescriptionSection";
-import ProductDetail from "~/components/views/products/detail/ProductDetail";
-import ProductReviews from "~/components/views/products/detail/ProductReviews";
 import ProductReviewStatistics from "~/components/views/products/detail/ProductReviewStatistics";
-import ProductSuggestions from "~/components/views/products/detail/ProductSuggestions";
 
 type Props = {
 	params: {

@@ -1,11 +1,10 @@
 import HeadsetMicOutlinedIcon from "@mui/icons-material/HeadsetMicOutlined";
 import MenuIcon from "@mui/icons-material/Menu";
-import Fade from "@mui/material/Fade";
 import IconButton from "@mui/material/IconButton";
 import Stack from "@mui/material/Stack";
 import Tooltip from "@mui/material/Tooltip";
 import { useTranslations } from "next-intl";
-import AuthActions from "./AuthActions";
+import AuthActions from "./auth-actions";
 import Cart from "./cart";
 
 type Props = {
@@ -28,11 +27,7 @@ const Toolbar = ({ onToggleNavigation, hideToggleMenuButton }: Props) => {
 				</IconButton>
 			)}
 
-			<Tooltip
-				title={t("HELP_AND_SUPPORT")}
-				placement="top"
-				TransitionComponent={Fade}
-			>
+			<Tooltip title={t("HELP_AND_SUPPORT")} placement="top">
 				<IconButton
 					size="large"
 					sx={{ mr: 2, display: { xs: "none", lg: "flex" } }}

@@ -36,7 +36,7 @@ const typography: Theme["components"] = {
 			}),
 			h5: {
 				lineHeight: 1.2,
-				fontSize: "1rem",
+				fontSize: "1.25rem",
 				fontWeight: 500,
 			},
 			h6: {

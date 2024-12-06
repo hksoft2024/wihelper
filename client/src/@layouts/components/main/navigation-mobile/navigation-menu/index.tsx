@@ -1,5 +1,4 @@
 import List from "@mui/material/List";
-import React from "react";
 import { NAVIGATION_MENU } from "~/fake-data/navigation-menu";
 import NavigationItem from "./NavigationItem";
 

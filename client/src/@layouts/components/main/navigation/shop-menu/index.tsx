@@ -8,13 +8,15 @@ import Paper from "@mui/material/Paper";
 import Popper from "@mui/material/Popper";
 import Stack from "@mui/material/Stack";
 import zIndex from "@mui/material/styles/zIndex";
+import svgIconClasses from "@mui/material/SvgIcon/svgIconClasses";
 import Typography from "@mui/material/Typography";
+import typographyClasses from "@mui/material/Typography/typographyClasses";
 import { useTranslations } from "next-intl";
 import { Fragment, MouseEvent, useRef, useState } from "react";
 import { DEPARTMENTS_MENU } from "~/fake-data/departments-menu";
-import DepartmentsMenuItem from "./DepartmentsMenuItem";
+import ShopMenuItem from "./ShopMenuItem";
 
-const DepartmentsMenu = () => {
+const ShopMenu = () => {
 	const t = useTranslations();
 
 	const parentRef = useRef<HTMLDivElement | null>(null);
@@ -39,10 +41,10 @@ const DepartmentsMenu = () => {
 			sx={{
 				cursor: "pointer",
 				":hover": {
-					"& > .MuiSvgIcon-root": {
+					[`> .${svgIconClasses.root}`]: {
 						fill: (theme) => theme.palette.primary.main,
 					},
-					"& > .MuiTypography-root": {
+					[`> .${typographyClasses.root}`]: {
 						color: "primary.main",
 					},
 				},
@@ -86,7 +88,7 @@ const DepartmentsMenu = () => {
 							>
 								<List>
 									{DEPARTMENTS_MENU.map((item, index) => (
-										<DepartmentsMenuItem
+										<ShopMenuItem
 											key={index}
 											item={item}
 											parent={parentRef.current}
@@ -102,4 +104,4 @@ const DepartmentsMenu = () => {
 	);
 };
 
-export default DepartmentsMenu;
+export default ShopMenu;

@@ -2,13 +2,24 @@ import FormatListBulletedOutlinedIcon from "@mui/icons-material/FormatListBullet
 import GridViewOutlinedIcon from "@mui/icons-material/GridViewOutlined";
 import IconButton from "@mui/material/IconButton";
 import Stack from "@mui/material/Stack";
-import { alpha } from "@mui/material/styles";
+import { alpha, styled } from "@mui/material/styles";
 import { useState } from "react";
 
 enum ProductsLayout {
 	Grid = "grid",
 	List = "list",
 }
+
+const SwitchButton = styled(IconButton)(({ theme }) => ({
+	color: alpha("#fff", 0.65),
+	borderRadius: theme.spacing(1),
+	transition: theme.transitions.create(["color", "background-color"]),
+	":hover": { color: "#fff" },
+	"&.Mui-disabled": {
+		backgroundColor: "#fff",
+		color: theme.palette.background.dark,
+	},
+}));
 
 const ProductsLayoutSwitcher = () => {
 	const [selectedLayout, setSelectedLayout] = useState<ProductsLayout>(
@@ -21,43 +32,21 @@ const ProductsLayoutSwitcher = () => {
 
 	return (
 		<Stack direction="row" alignItems="center" gap={2} mb={4}>
-			<IconButton
+			<SwitchButton
 				size="large"
 				disabled={selectedLayout === ProductsLayout.Grid}
 				onClick={() => handleChangeLayout(ProductsLayout.Grid)}
-				sx={{
-					color: alpha("#fff", 0.65),
-					borderRadius: 1,
-					transition: (theme) =>
-						theme.transitions.create(["color", "background-color"]),
-					":hover": { color: "#fff" },
-					"&.Mui-disabled": {
-						backgroundColor: "#fff",
-						color: "background.dark",
-					},
-				}}
 			>
 				<GridViewOutlinedIcon fontSize="small" />
-			</IconButton>
+			</SwitchButton>
 
-			<IconButton
+			<SwitchButton
 				size="large"
 				disabled={selectedLayout === ProductsLayout.List}
 				onClick={() => handleChangeLayout(ProductsLayout.List)}
-				sx={{
-					color: alpha("#fff", 0.65),
-					borderRadius: 1,
-					transition: (theme) =>
-						theme.transitions.create(["color", "background-color"]),
-					":hover": { color: "#fff" },
-					"&.Mui-disabled": {
-						backgroundColor: "#fff",
-						color: "background.dark",
-					},
-				}}
 			>
 				<FormatListBulletedOutlinedIcon fontSize="small" />
-			</IconButton>
+			</SwitchButton>
 		</Stack>
 	);
 };

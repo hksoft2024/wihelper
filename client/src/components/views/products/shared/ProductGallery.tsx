@@ -1,9 +1,9 @@
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import { useState } from "react";
+import InnerImageZoom from "react-inner-image-zoom";
 import "react-inner-image-zoom/lib/InnerImageZoom/styles.min.css";
 import { PRODUCT_GALLERY } from "~/fake-data/product";
-import InnerImageZoom from "react-inner-image-zoom";
 
 const ProductGallery = () => {
 	const [activeImageUrl, setActiveImageUrl] = useState(

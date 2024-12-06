@@ -5,6 +5,7 @@ import Popper from "@mui/material/Popper";
 import Stack from "@mui/material/Stack";
 import zIndex from "@mui/material/styles/zIndex";
 import Typography from "@mui/material/Typography";
+import typographyClasses from "@mui/material/Typography/typographyClasses";
 import { MouseEvent, useState } from "react";
 import { Link } from "~/i18n/routing";
 import { NavigationItemType } from "~/types/navigation";
@@ -30,8 +31,10 @@ const NavigationItem = ({ item }: Props) => {
 			pb={3.5}
 			sx={{
 				cursor: "pointer",
-				":hover > .MuiTypography-root": {
-					color: "primary.main",
+				":hover": {
+					[`> .${typographyClasses.root}`]: {
+						color: "primary.main",
+					},
 				},
 			}}
 			onMouseEnter={handleShowMenu}

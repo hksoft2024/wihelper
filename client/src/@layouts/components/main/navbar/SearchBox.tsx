@@ -1,7 +1,9 @@
+import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import Box from "@mui/material/Box";
 import InputAdornment from "@mui/material/InputAdornment";
+import inputAdornmentClasses from "@mui/material/InputAdornment/inputAdornmentClasses";
+import svgIconClasses from "@mui/material/SvgIcon/svgIconClasses";
 import TextField from "@mui/material/TextField";
-import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import { useTranslations } from "next-intl";
 
 const SearchBox = () => {
@@ -13,9 +15,10 @@ const SearchBox = () => {
 				fullWidth
 				placeholder={t("SEARCH_WORKING_FEET")}
 				sx={{
-					":has(input:focus) .MuiInputAdornment-root svg": {
-						opacity: 0,
-					},
+					[`:has(input:focus) .${inputAdornmentClasses.root} .${svgIconClasses.root}`]:
+						{
+							opacity: 0,
+						},
 				}}
 				slotProps={{
 					input: {

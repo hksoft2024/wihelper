@@ -2,8 +2,8 @@ import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Divider from "@mui/material/Divider";
 import Stack from "@mui/material/Stack";
-import DepartmentsMenu from "./departments-menu";
 import NavigationMenu from "./navigation-menu";
+import ShopMenu from "./shop-menu";
 
 const Navigation = () => {
 	return (
@@ -15,7 +15,7 @@ const Navigation = () => {
 		>
 			<Container>
 				<Stack direction="row" alignItems="center">
-					<DepartmentsMenu />
+					<ShopMenu />
 
 					<Divider
 						flexItem

@@ -1,10 +1,14 @@
 import ArrowDropDownOutlinedIcon from "@mui/icons-material/ArrowDropDownOutlined";
 import Box from "@mui/material/Box";
+import boxClasses from "@mui/material/Box/boxClasses";
 import Fade from "@mui/material/Fade";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
+import listItemIconClasses from "@mui/material/ListItemIcon/listItemIconClasses";
+import svgIconClasses from "@mui/material/SvgIcon/svgIconClasses";
 import Typography from "@mui/material/Typography";
+import typographyClasses from "@mui/material/Typography/typographyClasses";
 import { Fragment, useState } from "react";
 import { Link } from "~/i18n/routing";
 import { DepartmentsMenuItemType } from "~/types/navigation";
@@ -13,7 +17,7 @@ type Props = {
 	item: DepartmentsMenuItemType;
 };
 
-const DepartmentsMenuItem = ({ item }: Props) => {
+const ShopMenuItem = ({ item }: Props) => {
 	const [openSubMenu, setOpenSubMenu] = useState(false);
 
 	const handleToggleSubMenu = () => {
@@ -33,14 +37,14 @@ const DepartmentsMenuItem = ({ item }: Props) => {
 					":last-child": {
 						borderBottom: 0,
 					},
-					":hover, &:has(+ .MuiBox-root:hover)": {
-						"& > .MuiListItemIcon-root .MuiSvgIcon-root": {
+					[`:hover, :has(+ .${boxClasses.root}:hover)`]: {
+						[`> .${listItemIconClasses.root} .${svgIconClasses.root}`]: {
 							fill: (theme) => theme.palette.primary.main,
 						},
-						"& > .MuiSvgIcon-root": {
+						[`> .${svgIconClasses.root}`]: {
 							fill: (theme) => theme.palette.primary.main,
 						},
-						"& > .MuiTypography-root": {
+						[`> .${typographyClasses.root}`]: {
 							color: "primary.main",
 						},
 					},
@@ -94,4 +98,4 @@ const DepartmentsMenuItem = ({ item }: Props) => {
 	);
 };
 
-export default DepartmentsMenuItem;
+export default ShopMenuItem;

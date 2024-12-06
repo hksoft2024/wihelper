@@ -1,9 +1,13 @@
 import ArrowDropDownOutlinedIcon from "@mui/icons-material/ArrowDropDownOutlined";
 import Fade from "@mui/material/Fade";
 import List from "@mui/material/List";
+import listClasses from "@mui/material/List/listClasses";
 import ListItem from "@mui/material/ListItem";
+import listItemIconClasses from "@mui/material/ListItemIcon/listItemIconClasses";
 import ListItemText from "@mui/material/ListItemText";
+import svgIconClasses from "@mui/material/SvgIcon/svgIconClasses";
 import Typography from "@mui/material/Typography";
+import typographyClasses from "@mui/material/Typography/typographyClasses";
 import { Fragment, useState } from "react";
 import { Link } from "~/i18n/routing";
 import { NavigationItemType } from "~/types/navigation";
@@ -29,14 +33,14 @@ const NavigationItem = ({ item }: Props) => {
 					mb: 2.5,
 					bgcolor: "#f6f9fc",
 					cursor: "pointer",
-					":hover, &:has(+ .MuiList-root:hover)": {
-						"& > .MuiListItemIcon-root .MuiSvgIcon-root": {
+					[`:hover, :has(+ .${listClasses.root}:hover)`]: {
+						[`> .${listItemIconClasses.root} .${svgIconClasses.root}`]: {
 							fill: (theme) => theme.palette.primary.main,
 						},
-						"& > .MuiSvgIcon-root": {
+						[`> .${svgIconClasses.root}`]: {
 							fill: (theme) => theme.palette.primary.main,
 						},
-						"& > .MuiTypography-root": {
+						[`> .${typographyClasses.root}`]: {
 							color: "primary.main",
 						},
 					},

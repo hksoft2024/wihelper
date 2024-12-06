@@ -1,9 +1,7 @@
-"use client";
-
-import React from "react";
+import NotFound from "~/components/ui/NotFound";
 
 const NotFoundPage = () => {
-	return <div>NotFoundPage</div>;
+	return <NotFound />;
 };
 
 export default NotFoundPage;
