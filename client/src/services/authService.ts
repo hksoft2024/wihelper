@@ -1,5 +1,11 @@
 import http from "~/libs/http";
-import { AuthData, LoginPayload, RefreshTokenPayload } from "~/types/auth";
+import {
+	AuthData,
+	LoginPayload,
+	RefreshTokenPayload,
+	RegisterPayload,
+} from "~/types/auth";
+import { User } from "~/types/user";
 
 const login = async (payload: LoginPayload) => {
 	return await http.post<AuthData>("/logins", payload, {
@@ -13,6 +19,11 @@ const refreshToken = async (payload: RefreshTokenPayload) => {
 	});
 };
 
-const authService = { login, refreshToken };
+const register = async (payload: RegisterPayload) => {
+	return await http.post<User>("/users/register-user", payload, {
+		apiClassification: "identity",
+	});
+};
+const authService = { login, refreshToken, register };
 
 export default authService;

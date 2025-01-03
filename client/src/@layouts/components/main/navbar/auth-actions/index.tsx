@@ -17,6 +17,7 @@ import Typography from "@mui/material/Typography";
 import { useSession } from "next-auth/react";
 import { useTranslations } from "next-intl";
 import { Fragment, MouseEvent, useMemo, useState } from "react";
+import { toast } from "react-toastify";
 import { Option } from "~/@core/types";
 import { logout } from "~/actions/authActions";
 import Dialog from "~/components/ui/Dialog";
@@ -70,6 +71,11 @@ const AuthActions = () => {
 
 	const handleFormFinish = () => {
 		setIsLoading(false);
+	};
+
+	const handleRegisterSuccess = () => {
+		setActiveTab(Tab.SIGN_IN);
+		toast.success(t("MESSAGE.REGISTER_SUCCESS"));
 	};
 
 	const handleLoginSuccess = () => {
@@ -245,7 +251,7 @@ const AuthActions = () => {
 					<SignupForm
 						onStart={handleFormStart}
 						onFinish={handleFormFinish}
-						onSuccess={() => {}}
+						onSuccess={handleRegisterSuccess}
 					/>
 				)}
 			</Dialog>

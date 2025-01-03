@@ -47,6 +47,8 @@
 		"NO_DATA_AVAILABLE": "No data available.",
 		"BLANK_INPUT": "This field is required.",
 		"EXCEED_MAX_LENGTH": "Please enter {maxLength} characters or less.",
-		"LOGIN_FAIL": "Failed to login."
+		"LOGIN_FAIL": "Failed to login.",
+		"PASSWORD_MISMATCH": "Passwords do not match.",
+		"REGISTER_SUCCESS": "You have successfully registered an account."
 	}
 }

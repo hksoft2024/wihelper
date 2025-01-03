@@ -1,7 +1,8 @@
 "use server";
 
 import { signIn, signOut } from "~/auth";
-import { LoginPayload } from "~/types/auth";
+import authService from "~/services/authService";
+import { LoginPayload, RegisterPayload } from "~/types/auth";
 
 export const login = async (payload: LoginPayload) => {
 	try {
@@ -19,4 +20,8 @@ export const login = async (payload: LoginPayload) => {
 
 export const logout = async () => {
 	await signOut({ redirectTo: `/` });
+};
+
+export const register = async (payload: RegisterPayload) => {
+	return await authService.register(payload);
 };

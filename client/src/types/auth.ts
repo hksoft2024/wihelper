@@ -16,3 +16,12 @@ export interface AuthData {
 	refresh_token: string;
 	scope: string;
 }
+
+export interface RegisterPayload {
+	first_name: string;
+	last_name: string;
+	user_name: string;
+	password: string;
+	password_confirm: string;
+	app_name: string;
+}

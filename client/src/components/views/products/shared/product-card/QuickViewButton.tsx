@@ -81,6 +81,8 @@ const QuickViewButton = ({ product }: Props) => {
 				onClose={handleCloseModal}
 				maxWidth="lg"
 				hiddenFooter
+				scroll="body"
+				overflow="visible"
 			>
 				<ProductDetail viewType="quick-view" />
 			</Dialog>

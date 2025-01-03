@@ -30,6 +30,8 @@ type Props = {
 	isLoading?: boolean;
 	disableOkButton?: boolean;
 	closeOnClickAway?: boolean;
+	scroll?: "paper" | "body";
+	overflow?: "visible" | "auto";
 };
 
 const Dialog = ({
@@ -50,6 +52,8 @@ const Dialog = ({
 	isLoading,
 	disableOkButton,
 	closeOnClickAway = true,
+	scroll = "paper",
+	overflow = "auto",
 }: Props) => {
 	const t = useTranslations();
 
@@ -69,8 +73,9 @@ const Dialog = ({
 			closeAfterTransition
 			disableRestoreFocus
 			PaperProps={{
-				sx: { borderRadius: 2, overflow: "visible" },
+				sx: { borderRadius: 2, overflow },
 			}}
+			scroll={scroll}
 		>
 			{renderHeader ?? (
 				<Stack
