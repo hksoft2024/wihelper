@@ -26,7 +26,7 @@
 		"react-dom": "^18",
 		"react-hook-form": "^7.53.2",
 		"react-inner-image-zoom": "^3.0.2",
-		"react-toastify": "^10.0.6",
+		"react-toastify": "^11.0.2",
 		"swiper": "^11.1.14",
 		"use-debounce": "^10.0.4",
 		"zod": "^3.23.8"
