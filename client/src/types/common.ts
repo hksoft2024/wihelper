@@ -23,3 +23,8 @@ export type PaginatedData<TData> = {
 	page_size: number;
 	total_count: number;
 };
+
+export type PaginationQuery = {
+	PageIndex: number;
+	PageSize: number;
+};

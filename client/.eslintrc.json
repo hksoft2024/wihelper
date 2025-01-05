@@ -3,6 +3,7 @@
 	"rules": {
 		"@next/next/no-img-element": "off",
 		"react/display-name": "off",
+		"react-hooks/exhaustive-deps": "off",
 		"padding-line-between-statements": [
 			"error",
 			{ "blankLine": "always", "prev": "*", "next": "return" },

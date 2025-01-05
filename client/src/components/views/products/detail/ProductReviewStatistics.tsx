@@ -10,33 +10,49 @@ import Stack from "@mui/material/Stack";
 import { styled } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
 import { useTranslations } from "next-intl";
+import { Product } from "~/types/product";
+
+type Props = {
+	product: Product;
+};
 
 const StyledLinearProgress = styled(LinearProgress)({
 	borderRadius: 99,
 	backgroundColor: "#f3f5f9",
 });
 
-const ProductReviewStatistics = () => {
+const ProductReviewStatistics = ({ product }: Props) => {
 	const t = useTranslations();
+
+	const calculateDistributorPercentage = (distributorsCount: number) => {
+		return Math.ceil((distributorsCount / product.review_overview.total) * 100);
+	};
 
 	return (
 		<Grid container spacing={7.5}>
 			<Grid size={{ xs: 12, md: 5, lg: 4 }}>
 				<Typography variant="h3" mb={6}>
-					{t("REVIEWS_COUNT", { count: 74 })}
+					{t("REVIEWS_COUNT", { count: product.review_overview.total })}
 				</Typography>
 				<Stack direction="row" alignItems="center" gap={2}>
 					<Rating
 						size="small"
-						value={4}
+						value={product.rating}
 						readOnly
 						sx={{ color: "secondary.main" }}
 					/>
-					<Typography color="textSecondary">4.1 Overall rating</Typography>
+					<Typography color="textSecondary">
+						{product.review_overview.average} Overall rating
+					</Typography>
 				</Stack>
 				<Stack my={4}>
 					<Typography variant="body2" color="textMuted">
-						58 out of 74 (77%)
+						{product.review_overview.distribution[5]} out of{" "}
+						{product.review_overview.total} (
+						{calculateDistributorPercentage(
+							product.review_overview.distribution[5]
+						)}
+						%)
 						<br />
 						Customers recommended this product
 					</Typography>
@@ -62,12 +78,16 @@ const ProductReviewStatistics = () => {
 						</Typography>
 						<Box flex={1}>
 							<StyledLinearProgress
-								value={60}
+								value={calculateDistributorPercentage(
+									product.review_overview.distribution[5]
+								)}
 								variant="determinate"
 								color="success"
 							/>
 						</Box>
-						<Typography color="textMuted">43</Typography>
+						<Typography color="textMuted">
+							{product.review_overview.distribution[5]}
+						</Typography>
 					</Stack>
 					<Stack direction="row" alignItems="center" gap={4}>
 						<Typography
@@ -87,7 +107,9 @@ const ProductReviewStatistics = () => {
 						</Typography>
 						<Box flex={1}>
 							<StyledLinearProgress
-								value={27}
+								value={calculateDistributorPercentage(
+									product.review_overview.distribution[4]
+								)}
 								variant="determinate"
 								sx={{
 									[`.${linearProgressClasses.bar}`]: {
@@ -96,7 +118,9 @@ const ProductReviewStatistics = () => {
 								}}
 							/>
 						</Box>
-						<Typography color="textMuted">16</Typography>
+						<Typography color="textMuted">
+							{product.review_overview.distribution[4]}
+						</Typography>
 					</Stack>
 					<Stack direction="row" alignItems="center" gap={4}>
 						<Typography
@@ -116,7 +140,9 @@ const ProductReviewStatistics = () => {
 						</Typography>
 						<Box flex={1}>
 							<StyledLinearProgress
-								value={17}
+								value={calculateDistributorPercentage(
+									product.review_overview.distribution[3]
+								)}
 								variant="determinate"
 								sx={{
 									[`.${linearProgressClasses.bar}`]: {
@@ -125,7 +151,9 @@ const ProductReviewStatistics = () => {
 								}}
 							/>
 						</Box>
-						<Typography color="textMuted">9</Typography>
+						<Typography color="textMuted">
+							{product.review_overview.distribution[3]}
+						</Typography>
 					</Stack>
 					<Stack direction="row" alignItems="center" gap={4}>
 						<Typography
@@ -145,12 +173,16 @@ const ProductReviewStatistics = () => {
 						</Typography>
 						<Box flex={1}>
 							<StyledLinearProgress
-								value={9}
+								value={calculateDistributorPercentage(
+									product.review_overview.distribution[2]
+								)}
 								variant="determinate"
 								color="warning"
 							/>
 						</Box>
-						<Typography color="textMuted">4</Typography>
+						<Typography color="textMuted">
+							{product.review_overview.distribution[2]}
+						</Typography>
 					</Stack>
 					<Stack direction="row" alignItems="center" gap={4}>
 						<Typography
@@ -170,12 +202,16 @@ const ProductReviewStatistics = () => {
 						</Typography>
 						<Box flex={1}>
 							<StyledLinearProgress
-								value={4}
+								value={calculateDistributorPercentage(
+									product.review_overview.distribution[1]
+								)}
 								variant="determinate"
 								color="error"
 							/>
 						</Box>
-						<Typography color="textMuted">2</Typography>
+						<Typography color="textMuted">
+							{product.review_overview.distribution[1]}
+						</Typography>
 					</Stack>
 				</Stack>
 			</Grid>

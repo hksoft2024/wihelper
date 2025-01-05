@@ -11,14 +11,14 @@ const ProductSuggestions = () => {
 					Style with
 				</Typography>
 
-				<ProductsCarousel name="complementary" />
+				<ProductsCarousel name="style-with" />
 			</Box>
 			<Box>
 				<Typography variant="h3" pb={6} mb={4} textAlign="center">
 					You may also like
 				</Typography>
 
-				<ProductsCarousel name="recommended" />
+				<ProductsCarousel name="also-like" />
 			</Box>
 		</Stack>
 	);

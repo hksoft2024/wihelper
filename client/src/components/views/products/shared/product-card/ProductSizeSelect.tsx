@@ -10,11 +10,12 @@ import OutlinedInput from "@mui/material/OutlinedInput";
 import Paper from "@mui/material/Paper";
 import Popper from "@mui/material/Popper";
 import { MouseEvent, useEffect, useRef, useState } from "react";
+import { ProductSize } from "~/types/product";
 
 type Props = {
-	options: string[];
+	options: ProductSize[];
 	value: string;
-	onChange: (value: string) => void;
+	onChange: (sizeId: string) => void;
 	isHoveredParent?: boolean;
 };
 
@@ -32,6 +33,7 @@ const ProductSizeSelect = ({
 	useEffect(() => {
 		if (!isHoveredParent) {
 			handleCloseMenu();
+			inputRef.current?.blur();
 		}
 	}, [isHoveredParent]);
 
@@ -88,11 +90,11 @@ const ProductSizeSelect = ({
 									{options.map((option, index) => (
 										<MenuItem
 											key={index}
-											selected={option === value}
-											onClick={() => onChange(option)}
+											selected={option.id === value}
+											onClick={() => onChange(option.id)}
 											sx={{ fontSize: 14 }}
 										>
-											{option}
+											{option.name}
 										</MenuItem>
 									))}
 								</List>

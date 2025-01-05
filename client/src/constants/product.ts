@@ -1,0 +1,1 @@
+export const PRODUCT_REVIEWS_COUNT_PER_PAGE = 3;

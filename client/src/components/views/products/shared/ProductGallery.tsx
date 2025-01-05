@@ -3,12 +3,14 @@ import Stack from "@mui/material/Stack";
 import { useState } from "react";
 import InnerImageZoom from "react-inner-image-zoom";
 import "react-inner-image-zoom/lib/InnerImageZoom/styles.min.css";
-import { PRODUCT_GALLERY } from "~/fake-data/product";
+import { ProductMediaPreview } from "~/types/product";
 
-const ProductGallery = () => {
-	const [activeImageUrl, setActiveImageUrl] = useState(
-		PRODUCT_GALLERY[0].image_url
-	);
+type Props = {
+	mediaPreviews: ProductMediaPreview[];
+};
+
+const ProductGallery = ({ mediaPreviews }: Props) => {
+	const [activeImageUrl, setActiveImageUrl] = useState(mediaPreviews[0].url);
 
 	return (
 		<Stack
@@ -23,27 +25,33 @@ const ProductGallery = () => {
 				my={{ xs: 1.25, sm: 2.5 }}
 				mr={{ xs: 1.25, sm: 2.5 }}
 			>
-				{PRODUCT_GALLERY.map((gallery, index) => (
+				{mediaPreviews.map((media, index) => (
 					<Box
 						key={index}
 						width={80}
 						height={80}
+						overflow="hidden"
 						border={1}
 						borderColor={
-							activeImageUrl === gallery.image_url ? "primary.main" : "divider"
+							activeImageUrl === media.url ? "primary.main" : "divider"
 						}
 						borderRadius={1}
 						sx={(theme) => ({
 							cursor: "pointer",
-							opacity: activeImageUrl === gallery.image_url ? 1 : 0.6,
+							opacity: activeImageUrl === media.url ? 1 : 0.6,
 							transition: theme.transitions.create(["opacity", "border-color"]),
 							":hover": {
 								opacity: 1,
 							},
+							img: {
+								width: 1,
+								height: 1,
+								objectFit: "cover",
+							},
 						})}
-						onClick={() => setActiveImageUrl(gallery.image_url)}
+						onClick={() => setActiveImageUrl(media.url)}
 					>
-						<img src={gallery.thumbnail_url} alt="" />
+						<img src={media.url} alt="" />
 					</Box>
 				))}
 			</Stack>

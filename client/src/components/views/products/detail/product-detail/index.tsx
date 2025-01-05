@@ -1,16 +1,21 @@
 "use client";
 
+import AddIcon from "@mui/icons-material/Add";
 import ErrorOutlineOutlinedIcon from "@mui/icons-material/ErrorOutlineOutlined";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import InstagramIcon from "@mui/icons-material/Instagram";
+import RemoveIcon from "@mui/icons-material/Remove";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import VerifiedUserOutlinedIcon from "@mui/icons-material/VerifiedUserOutlined";
 import Box from "@mui/material/Box";
 import buttonClasses from "@mui/material/Button/buttonClasses";
+import Divider from "@mui/material/Divider";
 import Grid from "@mui/material/Grid2";
 import IconButton from "@mui/material/IconButton";
+import InputAdornment from "@mui/material/InputAdornment";
 import MenuItem from "@mui/material/MenuItem";
+import OutlinedInput from "@mui/material/OutlinedInput";
 import Rating from "@mui/material/Rating";
 import Select from "@mui/material/Select";
 import Stack from "@mui/material/Stack";
@@ -19,27 +24,60 @@ import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
 import { alpha } from "@mui/material/styles";
 import { useTranslations } from "next-intl";
+import { useMemo } from "react";
 import Badge from "~/@core/components/mui/Badge";
 import Button from "~/@core/components/mui/Button";
 import ColorCheckbox from "~/components/ui/ColorCheckbox";
 import FacebookIcon from "~/components/ui/icons/Facebook";
+import { Product, ProductColor, ProductSize } from "~/types/product";
 import ProductGallery from "../../shared/ProductGallery";
 import ProductPanels from "../ProductPanels";
 import SizeGuideButton from "./SizeGuideButton";
 
 type Props = {
 	viewType?: "detail" | "quick-view";
+	product: Product;
 };
 
-const ProductDetail = ({ viewType = "detail" }: Props) => {
+const ProductDetail = ({ viewType = "detail", product }: Props) => {
 	const t = useTranslations();
+
+	const productColors = useMemo(() => {
+		const colors: ProductColor[] = [];
+
+		product.variants.forEach((variant) => {
+			const hasColor = colors.some(
+				(color) => color.code === variant.color.code
+			);
+
+			if (!hasColor) {
+				colors.push(variant.color);
+			}
+		});
+
+		return colors;
+	}, [product]);
+
+	const productSizes = useMemo(() => {
+		const sizes: ProductSize[] = [];
+
+		product.variants.forEach((variant) => {
+			const hasSize = sizes.some((size) => size.name === variant.size.name);
+
+			if (!hasSize) {
+				sizes.push(variant.size);
+			}
+		});
+
+		return sizes;
+	}, [product]);
 
 	return (
 		<Box px={{ lg: 4 }}>
 			<Grid container spacing={4}>
 				<Grid size={{ xs: 12, lg: 7 }}>
 					<Box pt={viewType === "detail" ? { lg: 6 } : undefined}>
-						<ProductGallery />
+						<ProductGallery mediaPreviews={product.media_previews} />
 					</Box>
 				</Grid>
 				<Grid size={{ xs: 12, lg: 5 }}>
@@ -62,10 +100,10 @@ const ProductDetail = ({ viewType = "detail" }: Props) => {
 								gap={1}
 								flexWrap="wrap"
 							>
-								<Rating size="small" value={4} readOnly />
+								<Rating size="small" value={product.rating} readOnly />
 
 								<Typography variant="body2" color="textSecondary" mt={1}>
-									{t("REVIEWS_COUNT", { count: 74 })}
+									{t("REVIEWS_COUNT", { count: product.review_overview.total })}
 								</Typography>
 							</Stack>
 
@@ -94,27 +132,31 @@ const ProductDetail = ({ viewType = "detail" }: Props) => {
 								mr={1}
 								fontWeight={400}
 							>
-								$18.99
+								${product.current_price}
 							</Typography>
-							<Typography
-								variant="h4"
-								color="textMuted"
-								component="del"
-								fontWeight={400}
-								mr={4}
-								lineHeight={1.5}
-							>
-								$25.00
-							</Typography>
-							<Badge
-								hasShadow
-								color="error"
-								variant="rounded"
-								size="small"
-								sx={{ mb: 2 }}
-							>
-								Sale
-							</Badge>
+							{product.current_price !== product.original_price && (
+								<Typography
+									variant="h4"
+									color="textMuted"
+									component="del"
+									fontWeight={400}
+									mr={4}
+									lineHeight={1.5}
+								>
+									${product.original_price}
+								</Typography>
+							)}
+							{product.current_price < product.original_price && (
+								<Badge
+									hasShadow
+									color="error"
+									variant="rounded"
+									size="small"
+									sx={{ mb: 2 }}
+								>
+									Sale
+								</Badge>
+							)}
 						</Stack>
 
 						{/* Color text */}
@@ -128,7 +170,7 @@ const ProductDetail = ({ viewType = "detail" }: Props) => {
 								{t("COLOR")}:
 							</Typography>
 							<Typography variant="body2" color="textMuted">
-								Red/Dark blue/White
+								{productColors.map((color) => color.name).join("/")}
 							</Typography>
 						</Stack>
 
@@ -141,9 +183,9 @@ const ProductDetail = ({ viewType = "detail" }: Props) => {
 							mr={{ xs: -6, lg: -10 }}
 						>
 							<Stack direction="row" alignItems="center">
-								<ColorCheckbox colorCode="black" />
-								<ColorCheckbox colorCode="red" />
-								<ColorCheckbox colorCode="blue" />
+								{productColors.map((color, index) => (
+									<ColorCheckbox key={index} colorCode={color.code} />
+								))}
 							</Stack>
 
 							<Stack
@@ -205,32 +247,64 @@ const ProductDetail = ({ viewType = "detail" }: Props) => {
 									{viewType === "detail" && <SizeGuideButton />}
 								</Stack>
 
-								<Select
-									value=""
-									displayEmpty
-									fullWidth
-									MenuProps={{ disableAutoFocusItem: true }}
-								>
+								<Select value="" displayEmpty fullWidth>
 									<MenuItem value="">Select size</MenuItem>
-									<MenuItem value="XS">XS</MenuItem>
-									<MenuItem value="S">S</MenuItem>
-									<MenuItem value="M">M</MenuItem>
+									{productSizes.map((size, index) => (
+										<MenuItem key={index} value={size.id}>
+											{size.name}
+										</MenuItem>
+									))}
 								</Select>
 							</Box>
 
 							<Stack direction="row" alignItems="center" gap={4}>
 								<Box flex={0.2}>
-									<Select
-										value="1"
-										displayEmpty
-										fullWidth
-										MenuProps={{ disableAutoFocusItem: true }}
-									>
-										<MenuItem value="1">1</MenuItem>
-										<MenuItem value="2">2</MenuItem>
-										<MenuItem value="2">2</MenuItem>
-										<MenuItem value="3">M</MenuItem>
-									</Select>
+									<OutlinedInput
+										defaultValue={1}
+										endAdornment={
+											<InputAdornment
+												position="end"
+												sx={{ mr: -3.5, maxHeight: 1 }}
+											>
+												<Stack height={1} divider={<Divider />}>
+													<Box
+														flex={1}
+														display="flex"
+														alignItems="center"
+														justifyContent="center"
+														p={0.5}
+														borderLeft={1}
+														borderColor="divider"
+														sx={{
+															cursor: "pointer",
+															transition: (theme) =>
+																theme.transitions.create(["color"]),
+															":hover": { color: "primary.main" },
+														}}
+													>
+														<AddIcon sx={{ fontSize: 16 }} />
+													</Box>
+													<Box
+														flex={1}
+														display="flex"
+														alignItems="center"
+														justifyContent="center"
+														p={0.5}
+														borderLeft={1}
+														borderColor="divider"
+														sx={{
+															cursor: "pointer",
+															transition: (theme) =>
+																theme.transitions.create(["color"]),
+															":hover": { color: "primary.main" },
+														}}
+													>
+														<RemoveIcon sx={{ fontSize: 16 }} />
+													</Box>
+												</Stack>
+											</InputAdornment>
+										}
+									/>
 								</Box>
 
 								<Box flex={0.8}>
@@ -251,7 +325,7 @@ const ProductDetail = ({ viewType = "detail" }: Props) => {
 						<Stack spacing={6}>
 							{/* Panels */}
 							{viewType === "detail" ? (
-								<ProductPanels />
+								<ProductPanels product={product} />
 							) : (
 								<Box>
 									<Typography
@@ -266,15 +340,10 @@ const ProductDetail = ({ viewType = "detail" }: Props) => {
 										borderColor="divider"
 									>
 										<ErrorOutlineOutlinedIcon fontSize="small" color="action" />
-										Product info
+										{t("PRODUCT_INFO")}
 									</Typography>
 
-									<Typography variant="body2">
-										Lorem ipsum dolor sit amet consectetur adipisicing elit.
-										Animi possimus nulla hic architecto, incidunt laudantium
-										nesciunt sapiente beatae! Eveniet eum laboriosam soluta
-										beatae ad? Suscipit odit deleniti earum totam distinctio!
-									</Typography>
+									<Typography variant="body2">{product.description}</Typography>
 								</Box>
 							)}
 

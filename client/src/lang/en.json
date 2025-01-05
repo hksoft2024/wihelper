@@ -42,6 +42,8 @@
 	"PRODUCT": "Product",
 	"SHARE": "Share",
 	"REVIEW_HELPFULNESS": "{percentage}% of users found this review helpful",
+	"GO_TO_PRODUCT_PAGE": "Go to product page",
+	"PRODUCT_INFO": "Product info",
 	"MESSAGE": {
 		"INTERNAL_SERVER_ERROR": "An error has occurred, please try again later.",
 		"NO_DATA_AVAILABLE": "No data available.",

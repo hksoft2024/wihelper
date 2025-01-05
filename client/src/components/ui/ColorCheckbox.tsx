@@ -16,9 +16,7 @@ const ColorCheckbox = ({ colorCode, checked, onChange, colorName }: Props) => {
 		}
 	};
 
-	if (!colorCode) {
-		return null;
-	}
+	if (!colorCode) return null;
 
 	return (
 		<FormGroup

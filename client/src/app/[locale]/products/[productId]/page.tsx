@@ -7,6 +7,7 @@ import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
+import { notFound } from "next/navigation";
 import { Fragment } from "react";
 import Breadcrumbs from "~/components/ui/Breadcrumbs";
 import ProductDetail from "~/components/views/products/detail/product-detail";
@@ -14,21 +15,44 @@ import ProductReviews from "~/components/views/products/detail/product-reviews";
 import ProductSuggestions from "~/components/views/products/detail/product-suggestions";
 import ProductDescriptionSection from "~/components/views/products/detail/ProductDescriptionSection";
 import ProductReviewStatistics from "~/components/views/products/detail/ProductReviewStatistics";
+import productService from "~/services/productService";
 
 type Props = {
 	params: {
-		slug: string;
+		productId: string;
 	};
 };
 
-export const generateMetadata = (): Metadata => {
+export const generateMetadata = async ({
+	params: { productId },
+}: Props): Promise<Metadata> => {
+	const res = await productService.getProductById(productId);
+
+	if (!res.is_succeeded) {
+		if (res.code === 404) {
+			notFound();
+		} else {
+			throw new Error();
+		}
+	}
+
 	return {
-		title: "Product Detail",
+		title: res.data.name,
 	};
 };
 
-const ProductDetailPage = async ({ params: { slug } }: Props) => {
+const ProductDetailPage = async ({ params: { productId } }: Props) => {
 	const t = await getTranslations();
+
+	const res = await productService.getProductById(productId);
+
+	if (!res.is_succeeded) {
+		if (res.code === 404) {
+			notFound();
+		} else {
+			throw new Error();
+		}
+	}
 
 	return (
 		<Fragment>
@@ -42,7 +66,7 @@ const ProductDetailPage = async ({ params: { slug } }: Props) => {
 						gap={4}
 					>
 						<Typography variant="h3" color="white" fontWeight={500}>
-							Sports Hooded Sweatshirt
+							{res.data.name}
 						</Typography>
 
 						<Breadcrumbs
@@ -58,7 +82,7 @@ const ProductDetailPage = async ({ params: { slug } }: Props) => {
 			<Container sx={{ transform: "translateY(-4.875rem)" }}>
 				<Card sx={{ mb: 12, overflow: "visible" }}>
 					<CardContent sx={{ px: 6 }}>
-						<ProductDetail />
+						<ProductDetail product={res.data} />
 					</CardContent>
 				</Card>
 
@@ -69,7 +93,7 @@ const ProductDetailPage = async ({ params: { slug } }: Props) => {
 				<Container>
 					<Box pt={2}>
 						<Box pb={4}>
-							<ProductReviewStatistics />
+							<ProductReviewStatistics product={res.data} />
 						</Box>
 
 						<Divider sx={{ mt: 6, mb: 4 }} />

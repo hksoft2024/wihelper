@@ -62,14 +62,10 @@ const authConfig: NextAuthConfig = {
 			if (user) {
 				token.user = user;
 			} else if (token.user.expires_in <= Date.now()) {
-				console.log("Before refresh token", token.user);
-
 				const res = await authService.refreshToken({
 					app_name: "Patients",
 					refresh_token: token.user.refresh_token,
 				});
-
-				console.log("Res refresh token", res);
 
 				if (!res.is_succeeded) return null;
 

@@ -3,12 +3,18 @@ import { Fragment } from "react";
 import { PRODUCTS } from "~/fake-data/product";
 import Banner from "./Banner";
 import ProductCard from "../shared/product-card";
+import { PaginatedData } from "~/types/common";
+import { Product } from "~/types/product";
 
-const ProductsGrid = () => {
+type Props = {
+	data: PaginatedData<Product>;
+};
+
+const ProductsGrid = ({ data }: Props) => {
 	return (
 		<Grid container columnSpacing={4} rowSpacing={6}>
-			{PRODUCTS.map((product, index) => (
-				<Fragment key={index}>
+			{data.items.map((product, index) => (
+				<Fragment key={product.id}>
 					<Grid size={{ xs: 12, sm: 6, md: 4 }}>
 						<ProductCard product={product} />
 					</Grid>

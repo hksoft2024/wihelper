@@ -12,6 +12,10 @@ import ProductsGrid from "~/components/views/products/list/ProductsGrid";
 import ProductsPagination from "~/components/views/products/list/ProductsPagination";
 import ProductsToolbar from "~/components/views/products/list/toolbar";
 import Widgets from "~/components/views/products/list/widgets";
+import { DEFAULT_PAGE_INDEX, DEFAULT_PAGE_SIZE } from "~/constants/common";
+import productService from "~/services/productService";
+import { PaginationQuery } from "~/types/common";
+import commonSchemas from "~/validations/commonSchemas";
 
 export const generateMetadata = async (): Promise<Metadata> => {
 	const t = await getTranslations();
@@ -21,8 +25,27 @@ export const generateMetadata = async (): Promise<Metadata> => {
 	};
 };
 
-const ProductsPage = async () => {
+type Props = {
+	searchParams: Record<string, string>;
+};
+
+const ProductsPage = async ({ searchParams }: Props) => {
 	const t = await getTranslations();
+
+	const parseQuery = await commonSchemas(t).paginationSchema.safeParseAsync(
+		searchParams
+	);
+
+	const query: PaginationQuery = parseQuery.data ?? {
+		PageIndex: DEFAULT_PAGE_INDEX,
+		PageSize: DEFAULT_PAGE_SIZE,
+	};
+
+	const res = await productService.getProducts(query);
+
+	if (!res.is_succeeded) {
+		throw new Error();
+	}
 
 	return (
 		<Fragment>
@@ -54,13 +77,13 @@ const ProductsPage = async () => {
 						<Widgets />
 					</Grid>
 					<Grid size={{ xs: 12, lg: 8 }}>
-						<ProductsToolbar />
+						<ProductsToolbar data={res.data} />
 
-						<ProductsGrid />
+						<ProductsGrid data={res.data} />
 
 						<Divider sx={{ my: 4 }} />
 
-						<ProductsPagination />
+						<ProductsPagination data={res.data} />
 					</Grid>
 				</Grid>
 			</Container>

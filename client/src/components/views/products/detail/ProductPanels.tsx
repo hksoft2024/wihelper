@@ -16,7 +16,13 @@ import Stack from "@mui/material/Stack";
 import { styled } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
 import typographyClasses from "@mui/material/Typography/typographyClasses";
+import { useTranslations } from "next-intl";
 import { SyntheticEvent, useState } from "react";
+import { Product } from "~/types/product";
+
+type Props = {
+	product: Product;
+};
 
 const StyledAccordion = styled(Accordion)({
 	[`&.${accordionClasses.expanded}::before`]: {
@@ -67,7 +73,9 @@ const SHOPPING_OPTIONS = [
 	{ label: "Local pickup from store", time: "—", price: "$0.00" },
 ];
 
-const ProductPanels = () => {
+const ProductPanels = ({ product }: Props) => {
+	const t = useTranslations();
+
 	const [expanded, setExpanded] = useState<Panel | false>(false);
 
 	const handleChangePanel =
@@ -91,14 +99,14 @@ const ProductPanels = () => {
 				>
 					<AccordionHeading>
 						<ErrorOutlineOutlinedIcon fontSize="small" color="action" />
-						Product info
+						{t("PRODUCT_INFO")}
 					</AccordionHeading>
 				</StyledAccordionSummary>
 				<StyledAccordionDetails>
-					<Typography>
-						Nulla facilisi. Phasellus sollicitudin nulla et quam mattis feugiat.
-						Aliquam eget maximus est, id dignissim quam.
-					</Typography>
+					<Typography
+						component="div"
+						dangerouslySetInnerHTML={{ __html: product.description }}
+					/>
 				</StyledAccordionDetails>
 			</StyledAccordion>
 			<StyledAccordion

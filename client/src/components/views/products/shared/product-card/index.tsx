@@ -6,11 +6,11 @@ import Rating from "@mui/material/Rating";
 import ratingClasses from "@mui/material/Rating/ratingClasses";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import Badge from "~/@core/components/mui/Badge";
 import ColorCheckbox from "~/components/ui/ColorCheckbox";
 import { Link } from "~/i18n/routing";
-import { Product } from "~/types/product";
+import { Product, ProductColor, ProductSize } from "~/types/product";
 import AddToCartButton from "./AddToCartButton";
 import AddWishlistButton from "./AddWishlistButton";
 import CompareButton from "./CompareButton";
@@ -29,6 +29,36 @@ type Props = {
 const ProductCard = ({ product, showCompareAction, disableHover }: Props) => {
 	const [isHoveredProduct, setIsHoveredProduct] = useState(false);
 
+	const productColors = useMemo(() => {
+		const colors: ProductColor[] = [];
+
+		product.variants.forEach((variant) => {
+			const hasColor = colors.some(
+				(color) => color.code === variant.color.code
+			);
+
+			if (!hasColor) {
+				colors.push(variant.color);
+			}
+		});
+
+		return colors;
+	}, []);
+
+	const productSizes = useMemo(() => {
+		const sizes: ProductSize[] = [];
+
+		product.variants.forEach((variant) => {
+			const hasSize = sizes.some((size) => size.name === variant.size.name);
+
+			if (!hasSize) {
+				sizes.push(variant.size);
+			}
+		});
+
+		return sizes;
+	}, []);
+
 	return (
 		<ProductCardWrapper
 			elevation={0}
@@ -36,11 +66,11 @@ const ProductCard = ({ product, showCompareAction, disableHover }: Props) => {
 			onMouseEnter={() => setIsHoveredProduct(true)}
 			onMouseLeave={() => setIsHoveredProduct(false)}
 		>
-			{!!product.badge && (
+			{product.current_price < product.original_price && (
 				<Badge
 					size="small"
 					variant="rounded"
-					color={product.badge_color}
+					color="primary"
 					hasShadow
 					sx={{
 						position: "absolute",
@@ -48,7 +78,7 @@ const ProductCard = ({ product, showCompareAction, disableHover }: Props) => {
 						left: 12,
 					}}
 				>
-					{product.badge}
+					Sale
 				</Badge>
 			)}
 
@@ -70,7 +100,7 @@ const ProductCard = ({ product, showCompareAction, disableHover }: Props) => {
 				borderRadius="inherit"
 				overflow="hidden"
 				component={Link}
-				href="/products/1"
+				href={`/products/${product.id}`}
 			>
 				<img src={product.thumbnail_url} alt="" />
 			</Box>
@@ -78,7 +108,7 @@ const ProductCard = ({ product, showCompareAction, disableHover }: Props) => {
 			<CardContent sx={{ px: 5, py: 2 }}>
 				<Stack>
 					<Typography gutterBottom variant="caption">
-						{product.category_name}
+						{product.category.name}
 					</Typography>
 					<Typography
 						variant="h3"
@@ -96,7 +126,14 @@ const ProductCard = ({ product, showCompareAction, disableHover }: Props) => {
 					alignItems="center"
 					justifyContent="space-between"
 				>
-					<Typography color="secondary">{product.original_price}</Typography>
+					<Typography color="secondary">
+						${product.current_price}{" "}
+						{product.current_price !== product.original_price && (
+							<Typography component="del" variant="body2" color="textMuted">
+								product.original_price
+							</Typography>
+						)}
+					</Typography>
 
 					<Rating
 						size="small"
@@ -113,38 +150,38 @@ const ProductCard = ({ product, showCompareAction, disableHover }: Props) => {
 
 			{!disableHover && (
 				<ProductCardFooter disableSpacing>
-					{!!product.colors && (
+					{!!productColors.length && (
 						<Stack
 							width={1}
 							direction="row"
 							alignItems="center"
 							justifyContent="center"
 						>
-							{product.colors.map((color, index) => (
-								<ColorCheckbox key={index} colorCode={color} />
+							{productColors.map((color, index) => (
+								<ColorCheckbox key={index} colorCode={color.code} />
 							))}
 						</Stack>
 					)}
 
-					{!!product.sizes && !product.colors && (
+					{!!productSizes.length && !productColors.length && (
 						<Stack
 							width={1}
 							direction="row"
 							alignItems="center"
 							justifyContent="center"
 						>
-							{product.sizes.map((size, index) => (
-								<ProductSizeCheckbox key={index} label={size} />
+							{productSizes.map((size, index) => (
+								<ProductSizeCheckbox key={index} label={size.name} />
 							))}
 						</Stack>
 					)}
 
 					<Stack width={1} direction="row" alignItems="center" gap={2}>
-						{!!product.sizes && !!product.colors && (
+						{!!productSizes.length && !!productColors.length && (
 							<Box flex={0.7}>
 								<ProductSizeSelect
-									options={product.sizes}
-									value={product.sizes[0]}
+									options={productSizes}
+									value={productSizes[0].id}
 									onChange={(value) => console.log(value)}
 									isHoveredParent={isHoveredProduct}
 								/>

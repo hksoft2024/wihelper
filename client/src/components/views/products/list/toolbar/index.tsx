@@ -3,12 +3,22 @@
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import SimplePagination from "~/components/ui/pagination/SimplePagination";
+import { useRouter } from "~/i18n/routing";
+import { PaginatedData } from "~/types/common";
+import { Product } from "~/types/product";
+import { stringifyUrl } from "~/utils/string";
 import ProductsLayoutSwitcher from "./ProductsLayoutSwitcher";
 import SortProducts from "./SortProducts";
 
-const ProductsToolbar = () => {
+type Props = {
+	data: PaginatedData<Product>;
+};
+
+const ProductsToolbar = ({ data }: Props) => {
+	const router = useRouter();
+
 	const handleChangePage = (page: number) => {
-		console.log(page);
+		router.push(stringifyUrl("/products", { PageIndex: page }));
 	};
 
 	return (
@@ -23,8 +33,8 @@ const ProductsToolbar = () => {
 
 			<Box pb={4}>
 				<SimplePagination
-					page={2}
-					total_pages={5}
+					page={data.current_page}
+					total_pages={data.total_pages}
 					onChange={handleChangePage}
 				/>
 			</Box>

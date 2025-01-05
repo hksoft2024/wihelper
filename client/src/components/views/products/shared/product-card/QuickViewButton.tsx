@@ -61,19 +61,19 @@ const QuickViewButton = ({ product }: Props) => {
 
 			<Dialog
 				title={
-					<Tooltip title={t("QUICK_VIEW")} placement="right">
+					<Tooltip title={t("GO_TO_PRODUCT_PAGE")} placement="right">
 						<Typography
 							component={Link}
 							href="/products/1"
-							fontSize={{ xs: "calc(1.275rem + 0.3vw)", xl: 24 }}
-							fontWeight={500}
+							variant="h4"
 							display="inline-flex"
 							alignItems="center"
 							gap={2}
+							sx={{ ":hover": { color: "primary.main" } }}
 						>
 							{product.name}
 
-							<ArrowForwardIosIcon color="action" />
+							<ArrowForwardIosIcon />
 						</Typography>
 					</Tooltip>
 				}
@@ -84,7 +84,7 @@ const QuickViewButton = ({ product }: Props) => {
 				scroll="body"
 				overflow="visible"
 			>
-				<ProductDetail viewType="quick-view" />
+				<ProductDetail viewType="quick-view" product={product} />
 			</Dialog>
 		</Fragment>
 	);

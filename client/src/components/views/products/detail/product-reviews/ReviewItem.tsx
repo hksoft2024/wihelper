@@ -7,28 +7,22 @@ import Rating from "@mui/material/Rating";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import { useTranslations } from "next-intl";
-
-export type Review = {
-	reviewer: {
-		avatar_url: string;
-		full_name: string;
-	};
-	created_at: string;
-	rating: number;
-	review_helpfulness_percentage: number;
-	content: string;
-	likes_count: number;
-	dislikes_count: number;
-	pros: string[];
-	cons: string[];
-};
+import { ProductReview } from "~/types/product";
 
 type Props = {
-	review: Review;
+	review: ProductReview;
 };
 
 const ReviewItem = ({ review }: Props) => {
 	const t = useTranslations();
+
+	const calculateHelpfulPercentage = () => {
+		const totalReactions = review.likes_count + review.dislikes_count;
+
+		return totalReactions > 0
+			? Math.ceil((review.likes_count * 100) / totalReactions)
+			: 0;
+	};
 
 	return (
 		<Stack spacing={4}>
@@ -41,10 +35,10 @@ const ReviewItem = ({ review }: Props) => {
 
 					<Stack ml={4}>
 						<Typography variant="body2" fontWeight={500}>
-							{review.reviewer.full_name}
+							{review.reviewer.name}
 						</Typography>
 						<Typography variant="caption" color="textMuted">
-							{review.created_at}
+							{review.date}
 						</Typography>
 					</Stack>
 				</Stack>
@@ -57,7 +51,7 @@ const ReviewItem = ({ review }: Props) => {
 					/>
 					<Typography variant="caption" color="textMuted">
 						{t("REVIEW_HELPFULNESS", {
-							percentage: review.review_helpfulness_percentage,
+							percentage: calculateHelpfulPercentage(),
 						})}
 					</Typography>
 				</Stack>
@@ -70,7 +64,7 @@ const ReviewItem = ({ review }: Props) => {
 							Pros:
 						</Typography>
 						<Typography variant="body2" color="textSecondary">
-							{review.pros.join(", ")}
+							{review.pros}
 						</Typography>
 					</Stack>
 					<Stack direction="row" gap={1}>
@@ -78,7 +72,7 @@ const ReviewItem = ({ review }: Props) => {
 							Cons:
 						</Typography>
 						<Typography variant="body2" color="textSecondary">
-							{review.cons.join(", ")}
+							{review.cons}
 						</Typography>
 					</Stack>
 				</Stack>
