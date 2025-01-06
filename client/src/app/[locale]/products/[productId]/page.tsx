@@ -40,8 +40,8 @@ export const generateMetadata = async ({
 	};
 };
 
-const ProductDetailPage = async ({ params }: Props) => {
-	const productId = (await params).productId;
+const ProductDetailPage = async (props: Props) => {
+	const { productId } = await props.params;
 	const t = await getTranslations();
 
 	const res = await productService.getProductById(productId);

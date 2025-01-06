@@ -37,7 +37,7 @@ export type ProductReviewOverview = {
 
 export type Product = {
 	id: string;
-	category: Category | null;
+	category: Category;
 	name: string;
 	description: string;
 	current_price: number;

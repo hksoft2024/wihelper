@@ -172,7 +172,7 @@ const Footer = () => {
 										component={Link}
 										href="#"
 										color={alpha("#fff", 0.65)}
-										sx={{ ":hover": { bgcolor: "#fff" } }}
+										sx={{ ":hover": { color: "#fff" } }}
 									>
 										Accessibility
 									</Typography>
@@ -181,7 +181,7 @@ const Footer = () => {
 										component={Link}
 										href="#"
 										color={alpha("#fff", 0.65)}
-										sx={{ ":hover": { bgcolor: "#fff" } }}
+										sx={{ ":hover": { color: "#fff" } }}
 									>
 										Policy & Privacy
 									</Typography>
@@ -190,7 +190,7 @@ const Footer = () => {
 										component={Link}
 										href="#"
 										color={alpha("#fff", 0.65)}
-										sx={{ ":hover": { bgcolor: "#fff" } }}
+										sx={{ ":hover": { color: "#fff" } }}
 									>
 										Terms & Conditions
 									</Typography>

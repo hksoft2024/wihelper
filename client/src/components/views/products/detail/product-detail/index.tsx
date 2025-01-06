@@ -1,21 +1,16 @@
 "use client";
 
-import AddIcon from "@mui/icons-material/Add";
 import ErrorOutlineOutlinedIcon from "@mui/icons-material/ErrorOutlineOutlined";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import InstagramIcon from "@mui/icons-material/Instagram";
-import RemoveIcon from "@mui/icons-material/Remove";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import VerifiedUserOutlinedIcon from "@mui/icons-material/VerifiedUserOutlined";
 import Box from "@mui/material/Box";
 import buttonClasses from "@mui/material/Button/buttonClasses";
-import Divider from "@mui/material/Divider";
 import Grid from "@mui/material/Grid2";
 import IconButton from "@mui/material/IconButton";
-import InputAdornment from "@mui/material/InputAdornment";
 import MenuItem from "@mui/material/MenuItem";
-import OutlinedInput from "@mui/material/OutlinedInput";
 import Rating from "@mui/material/Rating";
 import Select from "@mui/material/Select";
 import Stack from "@mui/material/Stack";
@@ -28,6 +23,7 @@ import { useMemo } from "react";
 import Badge from "~/@core/components/mui/Badge";
 import Button from "~/@core/components/mui/Button";
 import ColorCheckbox from "~/components/ui/ColorCheckbox";
+import NumericInput from "~/components/ui/NumericInput";
 import FacebookIcon from "~/components/ui/icons/Facebook";
 import { Product, ProductColor, ProductSize } from "~/types/product";
 import ProductGallery from "../../shared/ProductGallery";
@@ -45,7 +41,7 @@ const ProductDetail = ({ viewType = "detail", product }: Props) => {
 	const productColors = useMemo(() => {
 		const colors: ProductColor[] = [];
 
-		product.variants.forEach((variant) => {
+		product.variants?.forEach((variant) => {
 			const hasColor = colors.some(
 				(color) => color.code === variant.color.code
 			);
@@ -61,7 +57,7 @@ const ProductDetail = ({ viewType = "detail", product }: Props) => {
 	const productSizes = useMemo(() => {
 		const sizes: ProductSize[] = [];
 
-		product.variants.forEach((variant) => {
+		product.variants?.forEach((variant) => {
 			const hasSize = sizes.some((size) => size.name === variant.size.name);
 
 			if (!hasSize) {
@@ -77,7 +73,7 @@ const ProductDetail = ({ viewType = "detail", product }: Props) => {
 			<Grid container spacing={4}>
 				<Grid size={{ xs: 12, lg: 7 }}>
 					<Box pt={viewType === "detail" ? { lg: 6 } : undefined}>
-						<ProductGallery mediaPreviews={product.media_previews} />
+						<ProductGallery mediaPreviews={product.media_previews ?? []} />
 					</Box>
 				</Grid>
 				<Grid size={{ xs: 12, lg: 5 }}>
@@ -103,7 +99,9 @@ const ProductDetail = ({ viewType = "detail", product }: Props) => {
 								<Rating size="small" value={product.rating} readOnly />
 
 								<Typography variant="body2" color="textSecondary" mt={1}>
-									{t("REVIEWS_COUNT", { count: product.review_overview.total })}
+									{t("REVIEWS_COUNT", {
+										count: product.review_overview?.total,
+									})}
 								</Typography>
 							</Stack>
 
@@ -259,52 +257,7 @@ const ProductDetail = ({ viewType = "detail", product }: Props) => {
 
 							<Stack direction="row" alignItems="center" gap={4}>
 								<Box flex={0.2}>
-									<OutlinedInput
-										defaultValue={1}
-										endAdornment={
-											<InputAdornment
-												position="end"
-												sx={{ mr: -3.5, maxHeight: 1 }}
-											>
-												<Stack height={1} divider={<Divider />}>
-													<Box
-														flex={1}
-														display="flex"
-														alignItems="center"
-														justifyContent="center"
-														p={0.5}
-														borderLeft={1}
-														borderColor="divider"
-														sx={{
-															cursor: "pointer",
-															transition: (theme) =>
-																theme.transitions.create(["color"]),
-															":hover": { color: "primary.main" },
-														}}
-													>
-														<AddIcon sx={{ fontSize: 16 }} />
-													</Box>
-													<Box
-														flex={1}
-														display="flex"
-														alignItems="center"
-														justifyContent="center"
-														p={0.5}
-														borderLeft={1}
-														borderColor="divider"
-														sx={{
-															cursor: "pointer",
-															transition: (theme) =>
-																theme.transitions.create(["color"]),
-															":hover": { color: "primary.main" },
-														}}
-													>
-														<RemoveIcon sx={{ fontSize: 16 }} />
-													</Box>
-												</Stack>
-											</InputAdornment>
-										}
-									/>
+									<NumericInput value={1} />
 								</Box>
 
 								<Box flex={0.8}>

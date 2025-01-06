@@ -113,7 +113,7 @@ const ProductCard = ({ product, showCompareAction, disableHover }: Props) => {
 						color="textMuted"
 						sx={{ ":hover": { color: "text.secondary" } }}
 					>
-						{product.category?.name}
+						{product.category.name}
 					</Typography>
 					<Typography
 						variant="h3"
