@@ -32,7 +32,7 @@ const ProductCard = ({ product, showCompareAction, disableHover }: Props) => {
 	const productColors = useMemo(() => {
 		const colors: ProductColor[] = [];
 
-		product.variants.forEach((variant) => {
+		product.variants?.forEach((variant) => {
 			const hasColor = colors.some(
 				(color) => color.code === variant.color.code
 			);
@@ -48,7 +48,7 @@ const ProductCard = ({ product, showCompareAction, disableHover }: Props) => {
 	const productSizes = useMemo(() => {
 		const sizes: ProductSize[] = [];
 
-		product.variants.forEach((variant) => {
+		product.variants?.forEach((variant) => {
 			const hasSize = sizes.some((size) => size.name === variant.size.name);
 
 			if (!hasSize) {
@@ -107,8 +107,13 @@ const ProductCard = ({ product, showCompareAction, disableHover }: Props) => {
 
 			<CardContent sx={{ px: 5, py: 2 }}>
 				<Stack>
-					<Typography gutterBottom variant="caption">
-						{product.category.name}
+					<Typography
+						gutterBottom
+						variant="caption"
+						color="textMuted"
+						sx={{ ":hover": { color: "text.secondary" } }}
+					>
+						{product.category?.name}
 					</Typography>
 					<Typography
 						variant="h3"
@@ -130,7 +135,7 @@ const ProductCard = ({ product, showCompareAction, disableHover }: Props) => {
 						${product.current_price}{" "}
 						{product.current_price !== product.original_price && (
 							<Typography component="del" variant="body2" color="textMuted">
-								product.original_price
+								{product.original_price}
 							</Typography>
 						)}
 					</Typography>

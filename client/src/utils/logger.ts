@@ -2,7 +2,7 @@
 
 import fs from "fs";
 
-export const logErrorToFile = (message: string) => {
+export const logErrorToFile = async (message: string) => {
 	try {
 		const folderName = "logs";
 		const today = new Date().toLocaleDateString("vi-VN").replace(/\//g, "_");

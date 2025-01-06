@@ -6,10 +6,12 @@ import MainLayout from "~/@layouts/MainLayout";
 import { hasLocale } from "~/i18n/request";
 
 type Props = ChildrenType & {
-	params: LocaleParam;
+	params: Promise<LocaleParam>;
 };
 
-const LocaleLayout = async ({ children, params: { locale } }: Props) => {
+const LocaleLayout = async ({ children, params }: Props) => {
+	const locale = (await params).locale;
+
 	if (!hasLocale(locale)) {
 		notFound();
 	}

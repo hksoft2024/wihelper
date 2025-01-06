@@ -3,14 +3,14 @@
 import productService from "~/services/productService";
 import { ProductReviewsQuery } from "~/types/product";
 
-export const getProductReviews = (query: ProductReviewsQuery) => {
-	return productService.getProductReviews(query);
+export const getProductReviews = async (query: ProductReviewsQuery) => {
+	return await productService.getProductReviews(query);
 };
 
-export const getProductsStyleWith = (productId: string) => {
-	return productService.getProductsStyleWith(productId);
+export const getProductsStyleWith = async (productId: string) => {
+	return await productService.getProductsStyleWith(productId);
 };
 
-export const getProductsAlsoLike = (productId: string) => {
-	return productService.getProductsAlsoLike(productId);
+export const getProductsAlsoLike = async (productId: string) => {
+	return await productService.getProductsAlsoLike(productId);
 };

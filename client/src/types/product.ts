@@ -37,20 +37,20 @@ export type ProductReviewOverview = {
 
 export type Product = {
 	id: string;
-	category: Category;
+	category: Category | null;
 	name: string;
 	description: string;
 	current_price: number;
 	original_price: number;
 	rating: number;
 	thumbnail_url: string;
-	href: string;
+	href: string | null;
 	quantity: number;
-	status: string;
-	extra_information: "";
-	media_previews: ProductMediaPreview[];
-	variants: ProductVariant[];
-	review_overview: ProductReviewOverview;
+	status: string | null;
+	extra_information: string | null;
+	media_previews: ProductMediaPreview[] | null;
+	variants: ProductVariant[] | null;
+	review_overview: ProductReviewOverview | null;
 };
 
 type ProductReviewer = {

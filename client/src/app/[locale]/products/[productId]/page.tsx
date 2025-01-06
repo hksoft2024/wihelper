@@ -18,14 +18,13 @@ import ProductReviewStatistics from "~/components/views/products/detail/ProductR
 import productService from "~/services/productService";
 
 type Props = {
-	params: {
-		productId: string;
-	};
+	params: Promise<{ productId: string }>;
 };
 
 export const generateMetadata = async ({
-	params: { productId },
+	params,
 }: Props): Promise<Metadata> => {
+	const productId = (await params).productId;
 	const res = await productService.getProductById(productId);
 
 	if (!res.is_succeeded) {
@@ -41,7 +40,8 @@ export const generateMetadata = async ({
 	};
 };
 
-const ProductDetailPage = async ({ params: { productId } }: Props) => {
+const ProductDetailPage = async ({ params }: Props) => {
+	const productId = (await params).productId;
 	const t = await getTranslations();
 
 	const res = await productService.getProductById(productId);

@@ -88,7 +88,7 @@ const ProductsCarousel = ({ name }: Props) => {
 		<Box px={5.5}>
 			<Box position="relative">
 				<Swiper
-					loop
+					loop={products.length >= 4}
 					navigation={{
 						enabled: true,
 						prevEl: `#${name}-swiper-prev-btn`,

@@ -26,10 +26,11 @@ export const generateMetadata = async (): Promise<Metadata> => {
 };
 
 type Props = {
-	searchParams: Record<string, string>;
+	searchParams: Promise<Record<string, string>>;
 };
 
-const ProductsPage = async ({ searchParams }: Props) => {
+const ProductsPage = async (props: Props) => {
+	const searchParams = await props.searchParams;
 	const t = await getTranslations();
 
 	const parseQuery = await commonSchemas(t).paginationSchema.safeParseAsync(

@@ -13,6 +13,7 @@ import { PRODUCT_REVIEWS_COUNT_PER_PAGE } from "~/constants/product";
 import { ProductReview, ProductReviewsQuery } from "~/types/product";
 import ReviewForm from "./ReviewForm";
 import ReviewList from "./ReviewList";
+import { PaginatedData } from "~/types/common";
 
 const ProductReviews = () => {
 	const productId = String(useParams().productId);
@@ -24,7 +25,8 @@ const ProductReviews = () => {
 		productId: String(productId),
 		PageSize: pageSize,
 	};
-	const [reviews, setReviews] = useState<ProductReview[]>([]);
+	const [reviewData, setReviewData] =
+		useState<PaginatedData<ProductReview> | null>(null);
 	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
@@ -38,7 +40,7 @@ const ProductReviews = () => {
 			const res = await getProductReviews(query);
 
 			if (res.is_succeeded) {
-				setReviews(res.data.items);
+				setReviewData(res.data);
 			}
 
 			setIsLoading(false);
@@ -59,22 +61,24 @@ const ProductReviews = () => {
 		<Grid container spacing={7.5}>
 			<Grid size={{ xs: 12, md: 7 }}>
 				<Stack>
-					<ReviewList reviews={reviews} />
+					<ReviewList reviews={reviewData?.items ?? []} />
 				</Stack>
-				{reviews.length > 0 && (
-					<Box textAlign="center" mt={11.25}>
-						<LoadingButton
-							variant="outlined"
-							color="secondary"
-							size="large"
-							startIcon={<RefreshOutlinedIcon />}
-							onClick={handleLoadMore}
-							loading={isLoading}
-						>
-							Load more reviews
-						</LoadingButton>
-					</Box>
-				)}
+				{reviewData?.items &&
+					reviewData.items.length > 0 &&
+					reviewData.items.length < reviewData.total_count && (
+						<Box textAlign="center" mt={11.25}>
+							<LoadingButton
+								variant="outlined"
+								color="secondary"
+								size="large"
+								startIcon={<RefreshOutlinedIcon />}
+								onClick={handleLoadMore}
+								loading={isLoading}
+							>
+								Load more reviews
+							</LoadingButton>
+						</Box>
+					)}
 			</Grid>
 			<Grid size={{ xs: 12, md: 5 }}>
 				<Box pt={{ xs: 24, md: 0 }} mt={{ xs: 2, md: 0 }}>

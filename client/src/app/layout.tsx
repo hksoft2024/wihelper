@@ -14,6 +14,8 @@ const rubik = Rubik({
 	display: "swap",
 	preload: true,
 	subsets: ["latin"],
+	fallback: ["sans-serif"],
+	adjustFontFallback: true,
 });
 
 export const metadata: Metadata = {

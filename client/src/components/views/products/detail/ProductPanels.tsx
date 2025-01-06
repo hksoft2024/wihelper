@@ -9,7 +9,6 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import accordionSummaryClasses from "@mui/material/AccordionSummary/accordionSummaryClasses";
 import Card from "@mui/material/Card";
 import Divider from "@mui/material/Divider";
-import IconButton from "@mui/material/IconButton";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import Stack from "@mui/material/Stack";
@@ -30,15 +29,15 @@ const StyledAccordion = styled(Accordion)({
 	},
 });
 
-const ExpandIconButton = styled(IconButton)({
-	backgroundColor: "#f3f5f9",
-	":hover": { backgroundColor: "#f3f5f9" },
-});
-
 const StyledAccordionSummary = styled(AccordionSummary)(({ theme }) => ({
 	padding: theme.spacing(2.5, 5),
 	[`.${accordionSummaryClasses.content}`]: {
 		margin: 0,
+	},
+	[`.${accordionSummaryClasses.expandIconWrapper}`]: {
+		padding: theme.spacing(1.25),
+		backgroundColor: "#f3f5f9",
+		borderRadius: "50%",
 	},
 	":hover": {
 		[`.${accordionSummaryClasses.content} .${typographyClasses.root}`]: {
@@ -90,13 +89,7 @@ const ProductPanels = ({ product }: Props) => {
 				expanded={expanded === Panel.ProductInfo}
 				onChange={handleChangePanel(Panel.ProductInfo)}
 			>
-				<StyledAccordionSummary
-					expandIcon={
-						<ExpandIconButton size="small">
-							<ExpandMoreIcon />
-						</ExpandIconButton>
-					}
-				>
+				<StyledAccordionSummary expandIcon={<ExpandMoreIcon />}>
 					<AccordionHeading>
 						<ErrorOutlineOutlinedIcon fontSize="small" color="action" />
 						{t("PRODUCT_INFO")}
@@ -114,13 +107,7 @@ const ProductPanels = ({ product }: Props) => {
 				expanded={expanded === Panel.ShippingOptions}
 				onChange={handleChangePanel(Panel.ShippingOptions)}
 			>
-				<StyledAccordionSummary
-					expandIcon={
-						<ExpandIconButton size="small">
-							<ExpandMoreIcon />
-						</ExpandIconButton>
-					}
-				>
+				<StyledAccordionSummary expandIcon={<ExpandMoreIcon />}>
 					<AccordionHeading>
 						<LocalShippingOutlinedIcon fontSize="small" color="action" />
 						Shipping options
@@ -152,13 +139,7 @@ const ProductPanels = ({ product }: Props) => {
 				expanded={expanded === Panel.LocalStore}
 				onChange={handleChangePanel(Panel.LocalStore)}
 			>
-				<StyledAccordionSummary
-					expandIcon={
-						<ExpandIconButton size="small">
-							<ExpandMoreIcon />
-						</ExpandIconButton>
-					}
-				>
+				<StyledAccordionSummary expandIcon={<ExpandMoreIcon />}>
 					<AccordionHeading>
 						<LocationOnOutlinedIcon fontSize="small" color="action" />
 						Find in local store

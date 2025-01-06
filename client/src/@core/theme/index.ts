@@ -19,8 +19,8 @@ shadows[1] =
 
 const theme = createTheme({
 	typography: (palette) => ({
-		fontFamily: "inherit",
 		allVariants: {
+			fontFamily: "inherit",
 			color: palette.text.primary,
 			lineHeight: 1.5,
 		},
