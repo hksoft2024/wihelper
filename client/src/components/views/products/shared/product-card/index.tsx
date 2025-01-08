@@ -66,11 +66,11 @@ const ProductCard = ({ product, showCompareAction, disableHover }: Props) => {
 			onMouseEnter={() => setIsHoveredProduct(true)}
 			onMouseLeave={() => setIsHoveredProduct(false)}
 		>
-			{product.current_price < product.original_price && (
+			{product.badge && (
 				<Badge
 					size="small"
 					variant="rounded"
-					color="primary"
+					color={product.badge_color ?? "default"}
 					hasShadow
 					sx={{
 						position: "absolute",
@@ -78,7 +78,7 @@ const ProductCard = ({ product, showCompareAction, disableHover }: Props) => {
 						left: 12,
 					}}
 				>
-					Sale
+					{product.badge}
 				</Badge>
 			)}
 
@@ -133,7 +133,7 @@ const ProductCard = ({ product, showCompareAction, disableHover }: Props) => {
 				>
 					<Typography color="secondary">
 						${product.current_price}{" "}
-						{product.current_price !== product.original_price && (
+						{product.original_price > 0 && (
 							<Typography component="del" variant="body2" color="textMuted">
 								{product.original_price}
 							</Typography>

@@ -45,12 +45,20 @@ const getProductReviews = async (query: ProductReviewsQuery) => {
 	);
 };
 
+const getBestSellingProducts = async () => {
+	return await http.get<Product[]>("/products/bestselling", {
+		apiClassification: "data",
+		next: { tags: ["products-best-selling"] },
+	});
+};
+
 const productService = {
 	getProducts,
 	getProductById,
 	getProductsStyleWith,
 	getProductsAlsoLike,
 	getProductReviews,
+	getBestSellingProducts,
 };
 
 export default productService;

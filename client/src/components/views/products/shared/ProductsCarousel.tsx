@@ -3,25 +3,22 @@
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid2";
 import IconButton from "@mui/material/IconButton";
 import { styled, useTheme } from "@mui/material/styles";
-import { useParams } from "next/navigation";
-import { useEffect, useState } from "react";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import {
-	getProductsAlsoLike,
-	getProductsStyleWith,
-} from "~/actions/productActions";
 import { Product } from "~/types/product";
-import ProductCard from "../../shared/product-card";
-import ProductCardSkeleton from "../../shared/product-card/ProductCardSkeleton";
+import ProductCard from "./product-card";
+import { useEffect, useState } from "react";
+import Grid from "@mui/material/Grid2";
+import ProductCardSkeleton from "./product-card/ProductCardSkeleton";
 
 type Props = {
-	name?: string;
+	name: string;
+	products: Product[];
+	shouldLoadingOnInit?: boolean;
 };
 
 const NavigationButton = styled(IconButton)(({ theme }) => ({
@@ -39,30 +36,15 @@ const NavigationButton = styled(IconButton)(({ theme }) => ({
 	},
 }));
 
-const ProductsCarousel = ({ name }: Props) => {
-	const productId = String(useParams().productId);
+const ProductsCarousel = ({ name, products, shouldLoadingOnInit }: Props) => {
 	const theme = useTheme();
 
-	const [products, setProducts] = useState<Product[]>([]);
-	const [isLoading, setIsLoading] = useState(true);
+	const [isLoading, setIsLoading] = useState(shouldLoadingOnInit);
 
 	useEffect(() => {
-		const fetchProducts = async () => {
-			setIsLoading(true);
-
-			const res =
-				name === "style-with"
-					? await getProductsStyleWith(productId)
-					: await getProductsAlsoLike(productId);
-
+		if (shouldLoadingOnInit) {
 			setIsLoading(false);
-
-			if (res.is_succeeded) {
-				setProducts(res.data);
-			}
-		};
-
-		fetchProducts();
+		}
 	}, []);
 
 	if (isLoading) {
@@ -88,7 +70,7 @@ const ProductsCarousel = ({ name }: Props) => {
 		<Box px={5.5}>
 			<Box position="relative">
 				<Swiper
-					loop={products.length >= 4}
+					loop={products.length > 4}
 					navigation={{
 						enabled: true,
 						prevEl: `#${name}-swiper-prev-btn`,

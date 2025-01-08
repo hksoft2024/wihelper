@@ -12,9 +12,9 @@ import { Fragment } from "react";
 import Breadcrumbs from "~/components/ui/Breadcrumbs";
 import ProductDetail from "~/components/views/products/detail/product-detail";
 import ProductReviews from "~/components/views/products/detail/product-reviews";
-import ProductSuggestions from "~/components/views/products/detail/product-suggestions";
 import ProductDescriptionSection from "~/components/views/products/detail/ProductDescriptionSection";
 import ProductReviewStatistics from "~/components/views/products/detail/ProductReviewStatistics";
+import ProductSuggestionsSection from "~/components/views/products/detail/ProductSuggestionsSection";
 import productService from "~/services/productService";
 
 type Props = {
@@ -107,7 +107,7 @@ const ProductDetailPage = async (props: Props) => {
 
 			<Container>
 				<Box mb={4} py={12}>
-					<ProductSuggestions />
+					<ProductSuggestionsSection productId={productId} />
 				</Box>
 			</Container>
 		</Fragment>

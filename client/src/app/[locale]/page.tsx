@@ -4,7 +4,7 @@ import { Fragment } from "react";
 import Banner from "~/components/views/home/banner";
 import InfoCards from "~/components/views/home/InfoCards";
 import PromotionBanner from "~/components/views/home/PromotionBanner";
-import PurchaseProducts from "~/components/views/home/purchase-products";
+import PurchaseProductsSection from "~/components/views/home/PurchaseProductsSection";
 
 export const generateMetadata = async (): Promise<Metadata> => {
 	const t = await getTranslations();
@@ -18,7 +18,7 @@ const HomePage = () => {
 	return (
 		<Fragment>
 			<Banner />
-			<PurchaseProducts />
+			<PurchaseProductsSection />
 			<PromotionBanner />
 			<InfoCards />
 		</Fragment>

@@ -132,50 +132,6 @@ export const BANNER_RIGHT = [
 	},
 ];
 
-export const PURCHASE_PRODUCTS: Product[] = [
-	{
-		category_name: "Light Green Comfort Inserts",
-		name: "Stopping Sweating Feet",
-		original_price: "$49.99",
-		rating: 4,
-		thumbnail_url: "/images/shop/catalog/21.jpg",
-		quantity: 1,
-		href: "#",
-	},
-	{
-		category_name: "Inserts",
-		name: "Moldable Orthotics for Adults",
-		current_price: "$98.50",
-		original_price: "$149.99",
-		rating: 4,
-		thumbnail_url: "/images/shop/catalog/22.jpg",
-		badge: "DME",
-		badge_color: "error",
-		quantity: 1,
-		href: "#",
-	},
-	{
-		category_name: "Ultimate Flying Shoes",
-		name: "Monitoring Foot Motions",
-		original_price: "$198.00",
-		rating: 5,
-		thumbnail_url: "/images/shop/catalog/23.jpg",
-		badge: "Used",
-		badge_color: "info",
-		quantity: 0,
-		href: "#",
-	},
-	{
-		category_name: "Light Green Comfort Inserts",
-		name: "Stopping Sweating Feet",
-		original_price: "$49.99",
-		rating: 4,
-		thumbnail_url: "/images/shop/catalog/24.jpg",
-		quantity: 1,
-		href: "#",
-	},
-];
-
 export const INFO_LIST = [
 	{
 		icon: (

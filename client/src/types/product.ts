@@ -1,3 +1,4 @@
+import { BadgeOwnProps } from "@mui/material/Badge";
 import { Category } from "./category";
 import { PaginationQuery } from "./common";
 
@@ -51,6 +52,8 @@ export type Product = {
 	media_previews: ProductMediaPreview[] | null;
 	variants: ProductVariant[] | null;
 	review_overview: ProductReviewOverview | null;
+	badge: string | null;
+	badge_color: BadgeOwnProps["color"] | null;
 };
 
 type ProductReviewer = {
