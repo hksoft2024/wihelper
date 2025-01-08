@@ -15,7 +15,7 @@ import ReviewForm from "./ReviewForm";
 import ReviewList from "./ReviewList";
 import { PaginatedData } from "~/types/common";
 
-const ProductReviews = () => {
+const ProductReviewsSection = () => {
 	const productId = String(useParams().productId);
 
 	const isFirstMount = useRef(true);
@@ -89,4 +89,4 @@ const ProductReviews = () => {
 	);
 };
 
-export default ProductReviews;
+export default ProductReviewsSection;

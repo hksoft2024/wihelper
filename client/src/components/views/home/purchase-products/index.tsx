@@ -1,16 +1,42 @@
-import productService from "~/services/productService";
-import { Product } from "~/types/product";
-import ProductsCarousel from "../../products/shared/ProductsCarousel";
+import Box from "@mui/material/Box";
+import Container from "@mui/material/Container";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
+import { Suspense } from "react";
+import MoreProductsButton from "~/components/views/home/purchase-products/MoreProductsButton";
+import PurchaseProducts from "~/components/views/home/purchase-products/PurchaseProducts";
+import ProductsCarouselSkeleton from "../../products/shared/products-carousel/ProductsCarouselSkeleton";
 
-const PurchaseProducts = async () => {
-	let products: Product[] = [];
-	const res = await productService.getBestSellingProducts();
+const PurchaseProductsSection = () => {
+	return (
+		<Box component="section">
+			<Container>
+				<Box pt={12} mb={6}>
+					<Stack
+						direction="row"
+						alignItems="center"
+						justifyContent="space-between"
+						gap={2}
+						pt={1}
+						pb={6}
+						mb={6}
+						borderBottom={1}
+						borderColor="divider"
+					>
+						<Typography variant="h2" pt={4}>
+							Purchase products
+						</Typography>
 
-	if (res.is_succeeded) {
-		products = res.data;
-	}
+						<MoreProductsButton />
+					</Stack>
 
-	return <ProductsCarousel name="best-selling" products={products} />;
+					<Suspense fallback={<ProductsCarouselSkeleton />}>
+						<PurchaseProducts />
+					</Suspense>
+				</Box>
+			</Container>
+		</Box>
+	);
 };
 
-export default PurchaseProducts;
+export default PurchaseProductsSection;

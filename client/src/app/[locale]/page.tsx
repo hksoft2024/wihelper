@@ -4,7 +4,7 @@ import { Fragment } from "react";
 import Banner from "~/components/views/home/banner";
 import InfoCards from "~/components/views/home/InfoCards";
 import PromotionBanner from "~/components/views/home/PromotionBanner";
-import PurchaseProductsSection from "~/components/views/home/PurchaseProductsSection";
+import PurchaseProductsSection from "~/components/views/home/purchase-products";
 
 export const generateMetadata = async (): Promise<Metadata> => {
 	const t = await getTranslations();

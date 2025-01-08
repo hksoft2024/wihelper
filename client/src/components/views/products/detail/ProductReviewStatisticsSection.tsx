@@ -21,12 +21,16 @@ const StyledLinearProgress = styled(LinearProgress)({
 	backgroundColor: "#f3f5f9",
 });
 
-const ProductReviewStatistics = ({ product }: Props) => {
+const ProductReviewStatisticsSection = ({ product }: Props) => {
 	const t = useTranslations();
 
 	const calculateDistributorPercentage = (distributorsCount: number) => {
+		if (!product.review_overview) return 0;
+
 		return Math.ceil((distributorsCount / product.review_overview.total) * 100);
 	};
+
+	if (!product.review_overview) return null;
 
 	return (
 		<Grid container spacing={7.5}>
@@ -219,4 +223,4 @@ const ProductReviewStatistics = ({ product }: Props) => {
 	);
 };
 
-export default ProductReviewStatistics;
+export default ProductReviewStatisticsSection;

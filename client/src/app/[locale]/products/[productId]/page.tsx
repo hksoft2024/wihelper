@@ -10,10 +10,10 @@ import { getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { Fragment } from "react";
 import Breadcrumbs from "~/components/ui/Breadcrumbs";
-import ProductDetail from "~/components/views/products/detail/product-detail";
-import ProductReviews from "~/components/views/products/detail/product-reviews";
+import ProductDetailSection from "~/components/views/products/detail/product-detail";
+import ProductReviewsSection from "~/components/views/products/detail/product-reviews";
 import ProductDescriptionSection from "~/components/views/products/detail/ProductDescriptionSection";
-import ProductReviewStatistics from "~/components/views/products/detail/ProductReviewStatistics";
+import ProductReviewStatisticsSection from "~/components/views/products/detail/ProductReviewStatisticsSection";
 import ProductSuggestionsSection from "~/components/views/products/detail/ProductSuggestionsSection";
 import productService from "~/services/productService";
 
@@ -82,7 +82,7 @@ const ProductDetailPage = async (props: Props) => {
 			<Container sx={{ transform: "translateY(-4.875rem)" }}>
 				<Card sx={{ mb: 12, overflow: "visible" }}>
 					<CardContent sx={{ px: 6 }}>
-						<ProductDetail product={res.data} />
+						<ProductDetailSection product={res.data} />
 					</CardContent>
 				</Card>
 
@@ -93,13 +93,13 @@ const ProductDetailPage = async (props: Props) => {
 				<Container>
 					<Box pt={2}>
 						<Box pb={4}>
-							<ProductReviewStatistics product={res.data} />
+							<ProductReviewStatisticsSection product={res.data} />
 						</Box>
 
 						<Divider sx={{ mt: 6, mb: 4 }} />
 
 						<Box pt={6}>
-							<ProductReviews />
+							<ProductReviewsSection />
 						</Box>
 					</Box>
 				</Container>

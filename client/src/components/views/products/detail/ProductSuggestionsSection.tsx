@@ -1,7 +1,7 @@
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
-import ProductsCarousel from "../shared/ProductsCarousel";
+import ProductsCarousel from "../shared/products-carousel";
 import productService from "~/services/productService";
 import { Product } from "~/types/product";
 

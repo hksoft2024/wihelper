@@ -27,7 +27,7 @@ import NumericInput from "~/components/ui/NumericInput";
 import FacebookIcon from "~/components/ui/icons/Facebook";
 import { Product, ProductColor, ProductSize } from "~/types/product";
 import ProductGallery from "../../shared/ProductGallery";
-import ProductPanels from "../ProductPanels";
+import ProductPanels from "./ProductPanels";
 import SizeGuideButton from "./SizeGuideButton";
 
 type Props = {
@@ -35,7 +35,7 @@ type Props = {
 	product: Product;
 };
 
-const ProductDetail = ({ viewType = "detail", product }: Props) => {
+const ProductDetailSection = ({ viewType = "detail", product }: Props) => {
 	const t = useTranslations();
 
 	const productColors = useMemo(() => {
@@ -381,4 +381,4 @@ const ProductDetail = ({ viewType = "detail", product }: Props) => {
 	);
 };
 
-export default ProductDetail;
+export default ProductDetailSection;
