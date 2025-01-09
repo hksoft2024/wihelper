@@ -3,13 +3,13 @@
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import Box from "@mui/material/Box";
-import IconButton from "@mui/material/IconButton";
-import { styled, useTheme } from "@mui/material/styles";
+import { useTheme } from "@mui/material/styles";
 import { useEffect, useState } from "react";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+import CarouselNavigationButton from "~/components/ui/styles/CarouselNavigationButton";
 import { Product } from "~/types/product";
 import ProductCard from "../product-card";
 import ProductsCarouselSkeleton from "./ProductsCarouselSkeleton";
@@ -17,38 +17,21 @@ import ProductsCarouselSkeleton from "./ProductsCarouselSkeleton";
 type Props = {
 	name: string;
 	products: Product[];
-	shouldLoadingOnInit?: boolean;
 };
 
-const NavigationButton = styled(IconButton)(({ theme }) => ({
-	backgroundColor: "#fff",
-	height: 44,
-	width: 44,
-	padding: theme.spacing(2),
-	border: `1px solid ${theme.palette.divider}`,
-	borderRadius: "50%",
-	position: "absolute",
-	top: "50%",
-	zIndex: 2,
-	":hover": {
-		backgroundColor: "#fff",
-	},
-}));
-
-const ProductsCarousel = ({ name, products, shouldLoadingOnInit }: Props) => {
+const ProductsCarousel = ({ name, products }: Props) => {
 	const theme = useTheme();
 
-	const [isLoading, setIsLoading] = useState(shouldLoadingOnInit);
+	const [isLoading, setIsLoading] = useState(true);
+
+	const swiperPrevBtnId = `${name}-swiper-prev-btn`;
+	const swiperNextBtnId = `${name}-swiper-next-btn`;
 
 	useEffect(() => {
-		if (shouldLoadingOnInit) {
-			setIsLoading(false);
-		}
+		setIsLoading(false);
 	}, []);
 
-	if (isLoading) {
-		return <ProductsCarouselSkeleton />;
-	}
+	if (isLoading) return <ProductsCarouselSkeleton />;
 
 	return (
 		<Box px={5.5}>
@@ -57,8 +40,8 @@ const ProductsCarousel = ({ name, products, shouldLoadingOnInit }: Props) => {
 					loop={products.length > 4}
 					navigation={{
 						enabled: true,
-						prevEl: `#${name}-swiper-prev-btn`,
-						nextEl: `#${name}-swiper-next-btn`,
+						prevEl: `#${swiperPrevBtnId}`,
+						nextEl: `#${swiperNextBtnId}`,
 					}}
 					modules={[Navigation]}
 					grabCursor
@@ -88,24 +71,24 @@ const ProductsCarousel = ({ name, products, shouldLoadingOnInit }: Props) => {
 					))}
 				</Swiper>
 
-				<NavigationButton
-					id={`${name}-swiper-prev-btn`}
+				<CarouselNavigationButton
+					id={swiperPrevBtnId}
 					sx={{
 						left: 0,
 						transform: "translate(-50%,-50%)",
 					}}
 				>
 					<ArrowBackIosNewIcon fontSize="small" />
-				</NavigationButton>
-				<NavigationButton
-					id={`${name}-swiper-next-btn`}
+				</CarouselNavigationButton>
+				<CarouselNavigationButton
+					id={swiperNextBtnId}
 					sx={{
 						right: 0,
 						transform: "translate(50%,-50%)",
 					}}
 				>
 					<ArrowForwardIosIcon fontSize="small" />
-				</NavigationButton>
+				</CarouselNavigationButton>
 			</Box>
 		</Box>
 	);

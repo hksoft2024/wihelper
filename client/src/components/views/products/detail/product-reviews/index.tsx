@@ -14,8 +14,10 @@ import { ProductReview, ProductReviewsQuery } from "~/types/product";
 import ReviewForm from "./ReviewForm";
 import ReviewList from "./ReviewList";
 import { PaginatedData } from "~/types/common";
+import { useTranslations } from "next-intl";
 
 const ProductReviewsSection = () => {
+	const t = useTranslations();
 	const productId = String(useParams().productId);
 
 	const isFirstMount = useRef(true);
@@ -75,7 +77,7 @@ const ProductReviewsSection = () => {
 								onClick={handleLoadMore}
 								loading={isLoading}
 							>
-								Load more reviews
+								{t("LOAD_MORE_REVIEWS")}
 							</LoadingButton>
 						</Box>
 					)}

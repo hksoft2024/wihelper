@@ -16,6 +16,7 @@ img {
 	height: auto;
 	display: block;
 	border-radius: inherit;
+	object-fit: cover;
 }
 
 .scrollbar {

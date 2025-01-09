@@ -3,7 +3,7 @@ import { getTranslations } from "next-intl/server";
 import { Fragment } from "react";
 import Banner from "~/components/views/home/banner";
 import InfoCards from "~/components/views/home/InfoCards";
-import PromotionBanner from "~/components/views/home/PromotionBanner";
+import PromotionProductsSection from "~/components/views/home/promotion-products";
 import PurchaseProductsSection from "~/components/views/home/purchase-products";
 
 export const generateMetadata = async (): Promise<Metadata> => {
@@ -19,7 +19,7 @@ const HomePage = () => {
 		<Fragment>
 			<Banner />
 			<PurchaseProductsSection />
-			<PromotionBanner />
+			<PromotionProductsSection />
 			<InfoCards />
 		</Fragment>
 	);

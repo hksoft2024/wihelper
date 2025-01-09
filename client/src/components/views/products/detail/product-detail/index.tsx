@@ -6,6 +6,7 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import VerifiedUserOutlinedIcon from "@mui/icons-material/VerifiedUserOutlined";
+import Alert from "@mui/material/Alert";
 import Box from "@mui/material/Box";
 import buttonClasses from "@mui/material/Button/buttonClasses";
 import Grid from "@mui/material/Grid2";
@@ -17,9 +18,9 @@ import Stack from "@mui/material/Stack";
 import svgIconClasses from "@mui/material/SvgIcon/svgIconClasses";
 import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
-import { alpha } from "@mui/material/styles";
+import { styled } from "@mui/material/styles";
 import { useTranslations } from "next-intl";
-import { useMemo } from "react";
+import { CSSProperties, useMemo } from "react";
 import Badge from "~/@core/components/mui/Badge";
 import Button from "~/@core/components/mui/Button";
 import ColorCheckbox from "~/components/ui/ColorCheckbox";
@@ -35,37 +36,42 @@ type Props = {
 	product: Product;
 };
 
+const SocialShareButton = styled(Button)(({ theme }) => ({
+	padding: theme.spacing(1, 2.5),
+	backgroundColor: "rgb(var(--social-color) / 0.08)",
+	color: "rgb(var(--social-color))",
+	[`.${buttonClasses.startIcon} .${svgIconClasses.root}`]: {
+		fontSize: 16,
+	},
+	":hover": {
+		backgroundColor: "rgb(var(--social-color))",
+		color: "#fff",
+	},
+}));
+
 const ProductDetailSection = ({ viewType = "detail", product }: Props) => {
 	const t = useTranslations();
 
-	const productColors = useMemo(() => {
+	const [productColors, productSizes] = useMemo(() => {
 		const colors: ProductColor[] = [];
+		const sizes: ProductSize[] = [];
 
 		product.variants?.forEach((variant) => {
 			const hasColor = colors.some(
 				(color) => color.code === variant.color.code
 			);
+			const hasSize = sizes.some((size) => size.name === variant.size.name);
 
 			if (!hasColor) {
 				colors.push(variant.color);
 			}
-		});
-
-		return colors;
-	}, [product]);
-
-	const productSizes = useMemo(() => {
-		const sizes: ProductSize[] = [];
-
-		product.variants?.forEach((variant) => {
-			const hasSize = sizes.some((size) => size.name === variant.size.name);
 
 			if (!hasSize) {
 				sizes.push(variant.size);
 			}
 		});
 
-		return sizes;
+		return [colors, sizes];
 	}, [product]);
 
 	return (
@@ -73,7 +79,13 @@ const ProductDetailSection = ({ viewType = "detail", product }: Props) => {
 			<Grid container spacing={4}>
 				<Grid size={{ xs: 12, lg: 7 }}>
 					<Box pt={viewType === "detail" ? { lg: 6 } : undefined}>
-						<ProductGallery mediaPreviews={product.media_previews ?? []} />
+						{product.media_previews && product.media_previews.length > 0 ? (
+							<ProductGallery mediaPreviews={product.media_previews} />
+						) : (
+							<Alert color="error" severity="error">
+								{t("NO_MEDIA_PREVIEWS_AVAILABLE")}
+							</Alert>
+						)}
 					</Box>
 				</Grid>
 				<Grid size={{ xs: 12, lg: 5 }}>
@@ -224,7 +236,7 @@ const ProductDetailSection = ({ viewType = "detail", product }: Props) => {
 									sx={{ fill: "#fff" }}
 								/>
 								<Typography variant="body2" color="#fff">
-									Product available
+									{t("PRODUCT_AVAILABLE")}
 								</Typography>
 							</Stack>
 						</Stack>
@@ -246,7 +258,7 @@ const ProductDetailSection = ({ viewType = "detail", product }: Props) => {
 								</Stack>
 
 								<Select value="" displayEmpty fullWidth>
-									<MenuItem value="">Select size</MenuItem>
+									<MenuItem value="">{t("SELECT_SIZE")}</MenuItem>
 									{productSizes.map((size, index) => (
 										<MenuItem key={index} value={size.id}>
 											{size.name}
@@ -313,63 +325,26 @@ const ProductDetailSection = ({ viewType = "detail", product }: Props) => {
 										gap={2}
 										flexWrap="wrap"
 									>
-										<Button
+										<SocialShareButton
 											startIcon={<TwitterIcon />}
-											sx={{
-												py: 1,
-												px: 2.5,
-												bgcolor: alpha("#1da1f2", 0.08),
-												color: "#1da1f2",
-												[`.${buttonClasses.startIcon} .${svgIconClasses.root}`]:
-													{
-														fontSize: 16,
-													},
-												":hover": {
-													bgcolor: "#1da1f2",
-													color: "#fff",
-												},
-											}}
+											style={
+												{ "--social-color": "29 161 242" } as CSSProperties
+											}
 										>
 											Twitter
-										</Button>
-										<Button
+										</SocialShareButton>
+										<SocialShareButton
 											startIcon={<InstagramIcon />}
-											sx={{
-												py: 1,
-												px: 2.5,
-												bgcolor: alpha("#5851db", 0.08),
-												color: "#5851db",
-												[`.${buttonClasses.startIcon} .${svgIconClasses.root}`]:
-													{
-														fontSize: 16,
-													},
-												":hover": {
-													bgcolor: "#5851db",
-													color: "#fff",
-												},
-											}}
+											style={{ "--social-color": "88 81 819" } as CSSProperties}
 										>
 											Instagram
-										</Button>
-										<Button
+										</SocialShareButton>
+										<SocialShareButton
 											startIcon={<FacebookIcon />}
-											sx={{
-												py: 1,
-												px: 2.5,
-												bgcolor: alpha("#3b5998", 0.08),
-												color: "#3b5998",
-												[`.${buttonClasses.startIcon} .${svgIconClasses.root}`]:
-													{
-														fontSize: 16,
-													},
-												":hover": {
-													bgcolor: "#3b5998",
-													color: "#fff",
-												},
-											}}
+											style={{ "--social-color": "59 89 152" } as CSSProperties}
 										>
 											Facebook
-										</Button>
+										</SocialShareButton>
 									</Stack>
 								</Stack>
 							)}

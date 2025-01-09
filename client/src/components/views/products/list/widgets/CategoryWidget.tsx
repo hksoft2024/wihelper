@@ -63,7 +63,11 @@ const CategoryWidget = ({ categories }: Props) => {
 								<ListItemText
 									primary={category.name}
 									sx={{ my: 0 }}
-									primaryTypographyProps={{ color: "textSecondary" }}
+									slotProps={{
+										primary: {
+											color: "textSecondary",
+										},
+									}}
 								/>
 
 								<Box
@@ -116,33 +120,38 @@ const CategoryWidget = ({ categories }: Props) => {
 											overflow: "auto",
 										}}
 									>
-										<ListItem
-											disableGutters
-											disablePadding
-											sx={{
-												mb: 1.5,
-												cursor: "pointer",
-												":hover": {
-													[`> .${listItemTextClasses.root} .${listItemTextClasses.primary}`]:
-														{
-															color: "primary.main",
-														},
-												},
-											}}
-										>
-											<ListItemText
-												primary="View all"
-												sx={{ my: 0 }}
-												primaryTypographyProps={{
-													variant: "body2",
-													color: "textSecondary",
+										{category.subcategories.map((subcategory) => (
+											<ListItem
+												key={subcategory.id}
+												disableGutters
+												disablePadding
+												sx={{
+													mb: 1.5,
+													cursor: "pointer",
+													":hover": {
+														[`> .${listItemTextClasses.root} .${listItemTextClasses.primary}`]:
+															{
+																color: "primary.main",
+															},
+													},
 												}}
-											/>
+											>
+												<ListItemText
+													primary={subcategory.name}
+													sx={{ my: 0 }}
+													slotProps={{
+														primary: {
+															variant: "body2",
+															color: "textSecondary",
+														},
+													}}
+												/>
 
-											<Typography variant="caption" color="textMuted">
-												2,548
-											</Typography>
-										</ListItem>
+												<Typography variant="caption" color="textMuted">
+													{category.product_count}
+												</Typography>
+											</ListItem>
+										))}
 									</List>
 								</Stack>
 							</Collapse>

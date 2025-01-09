@@ -4,12 +4,15 @@ import Typography from "@mui/material/Typography";
 import ProductsCarousel from "../shared/products-carousel";
 import productService from "~/services/productService";
 import { Product } from "~/types/product";
+import { getTranslations } from "next-intl/server";
 
 type Props = {
 	productId: string;
 };
 
 const ProductSuggestionsSection = async ({ productId }: Props) => {
+	const t = await getTranslations();
+
 	let styleWithProducts: Product[] = [];
 	let alsoLikeProducts: Product[] = [];
 
@@ -30,25 +33,17 @@ const ProductSuggestionsSection = async ({ productId }: Props) => {
 		<Stack spacing={16}>
 			<Box>
 				<Typography variant="h3" pb={6} mb={4} textAlign="center">
-					Style with
+					{t("STYLE_WITH")}
 				</Typography>
 
-				<ProductsCarousel
-					name="style-with"
-					products={styleWithProducts}
-					shouldLoadingOnInit
-				/>
+				<ProductsCarousel name="style-with" products={styleWithProducts} />
 			</Box>
 			<Box>
 				<Typography variant="h3" pb={6} mb={4} textAlign="center">
-					You may also like
+					{t("YOU_MAY_ALSO_LIKE")}
 				</Typography>
 
-				<ProductsCarousel
-					name="also-like"
-					products={alsoLikeProducts}
-					shouldLoadingOnInit
-				/>
+				<ProductsCarousel name="also-like" products={alsoLikeProducts} />
 			</Box>
 		</Stack>
 	);

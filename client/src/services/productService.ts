@@ -52,6 +52,20 @@ const getBestSellingProducts = async () => {
 	});
 };
 
+const getTopRatedProducts = async () => {
+	return await http.get<Product[]>("/products/toprated", {
+		apiClassification: "data",
+		next: { tags: ["products-top-rated"] },
+	});
+};
+
+const getNewestProducts = async () => {
+	return await http.get<Product[]>("/products/newest", {
+		apiClassification: "data",
+		next: { tags: ["products-newest"] },
+	});
+};
+
 const productService = {
 	getProducts,
 	getProductById,
@@ -59,6 +73,8 @@ const productService = {
 	getProductsAlsoLike,
 	getProductReviews,
 	getBestSellingProducts,
+	getTopRatedProducts,
+	getNewestProducts,
 };
 
 export default productService;

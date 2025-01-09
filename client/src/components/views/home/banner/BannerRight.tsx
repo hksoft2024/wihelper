@@ -94,7 +94,6 @@ const BannerRight = () => {
 					clickable: true,
 					el: "#swiper-pagination-container",
 				}}
-				spaceBetween={50}
 				modules={[Pagination]}
 				grabCursor
 			>

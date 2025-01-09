@@ -12,7 +12,7 @@ import SizeWidget from "./SizeWidget";
 const Widgets = async () => {
 	let categories: Category[] = [];
 
-	const res = await categoryService.getAllCategories();
+	const res = await categoryService.getAllCategoriesWithSub();
 
 	if (res.is_succeeded) {
 		categories = res.data;

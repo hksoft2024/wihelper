@@ -46,19 +46,23 @@ const ProductReviewStatisticsSection = ({ product }: Props) => {
 						sx={{ color: "secondary.main" }}
 					/>
 					<Typography color="textSecondary">
-						{product.review_overview.average} Overall rating
+						{t("AVERAGE_OVERALL_RATING", {
+							average: product.review_overview.average,
+						})}
 					</Typography>
 				</Stack>
 				<Stack my={4}>
 					<Typography variant="body2" color="textMuted">
-						{product.review_overview.distribution[5]} out of{" "}
-						{product.review_overview.total} (
-						{calculateDistributorPercentage(
-							product.review_overview.distribution[5]
-						)}
-						%)
+						{[
+							product.review_overview.distribution[5],
+							t("OUT_OF"),
+							product.review_overview.total,
+							`(${calculateDistributorPercentage(
+								product.review_overview.distribution[5]
+							)}%)`,
+						].join(" ")}
 						<br />
-						Customers recommended this product
+						{t("CUSTOMERS_RECOMMENDED_THIS_PRODUCT")}
 					</Typography>
 				</Stack>
 			</Grid>

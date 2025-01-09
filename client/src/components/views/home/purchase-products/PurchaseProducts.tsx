@@ -4,10 +4,18 @@ import ProductsCarousel from "../../products/shared/products-carousel";
 
 const PurchaseProducts = async () => {
 	let products: Product[] = [];
-	const res = await productService.getBestSellingProducts();
+	const bestSellingProductsRes = await productService.getBestSellingProducts();
 
-	if (res.is_succeeded) {
-		products = res.data;
+	if (bestSellingProductsRes.is_succeeded) {
+		if (bestSellingProductsRes.data.length > 0) {
+			products = bestSellingProductsRes.data;
+		} else {
+			const newestProductsRes = await productService.getTopRatedProducts();
+
+			if (newestProductsRes.is_succeeded) {
+				products = newestProductsRes.data;
+			}
+		}
 	}
 
 	return <ProductsCarousel name="best-selling" products={products} />;

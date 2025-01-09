@@ -61,7 +61,7 @@ const ReviewItem = ({ review }: Props) => {
 				<Stack spacing={1}>
 					<Stack direction="row" gap={1}>
 						<Typography variant="body2" fontWeight={500} color="textSecondary">
-							Pros:
+							{t("PROS")}:
 						</Typography>
 						<Typography variant="body2" color="textSecondary">
 							{review.pros}
@@ -69,7 +69,7 @@ const ReviewItem = ({ review }: Props) => {
 					</Stack>
 					<Stack direction="row" gap={1}>
 						<Typography variant="body2" fontWeight={500} color="textSecondary">
-							Cons:
+							{t("CONS")}:
 						</Typography>
 						<Typography variant="body2" color="textSecondary">
 							{review.cons}

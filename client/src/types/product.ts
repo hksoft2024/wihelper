@@ -54,6 +54,8 @@ export type Product = {
 	review_overview: ProductReviewOverview | null;
 	badge: string | null;
 	badge_color: BadgeOwnProps["color"] | null;
+	start_time: string | null;
+	end_time: string | null;
 };
 
 type ProductReviewer = {

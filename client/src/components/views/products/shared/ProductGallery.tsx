@@ -1,3 +1,4 @@
+import { styled } from "@mui/material";
 import Box from "@mui/material/Box";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -13,8 +14,27 @@ type Props = {
 	mediaPreviews: ProductMediaPreview[];
 };
 
+type StyledMediaPreviewProps = {
+	isActive: boolean;
+};
+
+const StyledMediaPreview = styled("div", {
+	shouldForwardProp: (prop) => prop !== "isActive",
+})<StyledMediaPreviewProps>(({ theme, isActive }) => ({
+	width: 80,
+	height: 80,
+	cursor: "pointer",
+	opacity: isActive ? 1 : 0.6,
+	border: `1px solid ${theme.palette.divider}`,
+	borderRadius: theme.spacing(1),
+	borderColor: isActive ? theme.palette.primary.main : theme.palette.divider,
+	transition: theme.transitions.create(["opacity", "border-color"]),
+	":hover": { opacity: 1 },
+}));
+
 const ProductGallery = ({ mediaPreviews }: Props) => {
-	const [activeImageUrl, setActiveImageUrl] = useState(mediaPreviews[0].url);
+	const [activeMediaPreview, setActiveMediaPreview] =
+		useState<ProductMediaPreview>(mediaPreviews[0]);
 	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
@@ -47,38 +67,45 @@ const ProductGallery = ({ mediaPreviews }: Props) => {
 							":last-child": { mb: 0, mr: 0 },
 						}}
 					>
-						<Image
-							src={media.url}
-							alt=""
-							containerSx={{
-								width: 80,
-								height: 80,
-								cursor: "pointer",
-								opacity: activeImageUrl === media.url ? 1 : 0.6,
-								border: 1,
-								borderRadius: 1,
-								borderColor:
-									activeImageUrl === media.url ? "primary.main" : "divider",
-								transition: (theme) =>
-									theme.transitions.create(["opacity", "border-color"]),
-								":hover": { opacity: 1 },
-							}}
-							onClick={() => setActiveImageUrl(media.url)}
-						/>
+						<StyledMediaPreview isActive={activeMediaPreview.url === media.url}>
+							{media.type === "image" ? (
+								<Image
+									src={media.url}
+									alt=""
+									containerSx={{ width: 1, height: 1 }}
+									onClick={() => setActiveMediaPreview(media)}
+								/>
+							) : (
+								<Box
+									component="video"
+									src={media.url}
+									width={1}
+									height={1}
+									onClick={() => setActiveMediaPreview(media)}
+								/>
+							)}
+						</StyledMediaPreview>
 					</ListItem>
 				))}
 			</List>
 
-			<Box width={1} height={1} ml={{ sm: 2.5 }} mt={2.5}>
+			<Box flex={1} width={1} height={1} ml={{ sm: 2.5 }} mt={2.5}>
 				{isLoading ? (
 					<Loader scope="component" height={300} />
-				) : (
+				) : activeMediaPreview.type === "image" ? (
 					<InnerImageZoom
-						src={activeImageUrl}
-						zoomSrc={activeImageUrl}
+						src={activeMediaPreview.url}
+						zoomSrc={activeMediaPreview.url}
 						zoomType="hover"
 						zoomPreload
 						hideHint
+					/>
+				) : (
+					<Box
+						component="video"
+						src={activeMediaPreview.url}
+						width={1}
+						controls
 					/>
 				)}
 			</Box>
