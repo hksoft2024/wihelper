@@ -67,22 +67,18 @@ const ProductGallery = ({ mediaPreviews }: Props) => {
 							":last-child": { mb: 0, mr: 0 },
 						}}
 					>
-						<StyledMediaPreview isActive={activeMediaPreview.url === media.url}>
+						<StyledMediaPreview
+							isActive={activeMediaPreview.url === media.url}
+							onClick={() => setActiveMediaPreview(media)}
+						>
 							{media.type === "image" ? (
 								<Image
 									src={media.url}
 									alt=""
 									containerSx={{ width: 1, height: 1 }}
-									onClick={() => setActiveMediaPreview(media)}
 								/>
 							) : (
-								<Box
-									component="video"
-									src={media.url}
-									width={1}
-									height={1}
-									onClick={() => setActiveMediaPreview(media)}
-								/>
+								<Box component="video" src={media.url} width={1} height={1} />
 							)}
 						</StyledMediaPreview>
 					</ListItem>
