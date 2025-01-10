@@ -17,10 +17,10 @@ type Props = ChildrenType;
 const MainLayout = ({ children }: Props) => {
 	return (
 		<Box minHeight="100vh" bgcolor="common.white">
-			<Box component="header">
+			<Paper component="header">
 				<TopBar />
 				<Navbar />
-			</Box>
+			</Paper>
 
 			<Box component="main">{children}</Box>
 

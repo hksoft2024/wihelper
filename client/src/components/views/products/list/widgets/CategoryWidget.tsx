@@ -10,9 +10,11 @@ import ListItemText, { listItemTextClasses } from "@mui/material/ListItemText";
 import Stack from "@mui/material/Stack";
 import { alpha, Theme } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
+import ListItemButton from "@mui/material/ListItemButton";
 import { useTranslations } from "next-intl";
 import { Fragment, useState } from "react";
 import DebouncedSearchBox from "~/components/ui/DebouncedSearchBox";
+import { Link } from "~/i18n/routing";
 import { Category } from "~/types/category";
 
 type Props = {
@@ -125,31 +127,39 @@ const CategoryWidget = ({ categories }: Props) => {
 												key={subcategory.id}
 												disableGutters
 												disablePadding
-												sx={{
-													mb: 1.5,
-													cursor: "pointer",
-													":hover": {
-														[`> .${listItemTextClasses.root} .${listItemTextClasses.primary}`]:
-															{
-																color: "primary.main",
-															},
-													},
-												}}
 											>
-												<ListItemText
-													primary={subcategory.name}
-													sx={{ my: 0 }}
-													slotProps={{
-														primary: {
-															variant: "body2",
-															color: "textSecondary",
+												<ListItemButton
+													disableRipple
+													disableTouchRipple
+													LinkComponent={Link}
+													href={`/categories/${subcategory.id}`}
+													sx={{
+														p: 0,
+														mb: 1.5,
+														":hover": {
+															bgcolor: "transparent",
+															[`> .${listItemTextClasses.root} .${listItemTextClasses.primary}`]:
+																{
+																	color: "primary.main",
+																},
 														},
 													}}
-												/>
+												>
+													<ListItemText
+														primary={subcategory.name}
+														sx={{ my: 0 }}
+														slotProps={{
+															primary: {
+																variant: "body2",
+																color: "textSecondary",
+															},
+														}}
+													/>
 
-												<Typography variant="caption" color="textMuted">
-													{category.product_count}
-												</Typography>
+													<Typography variant="caption" color="textMuted">
+														{category.product_count}
+													</Typography>
+												</ListItemButton>
 											</ListItem>
 										))}
 									</List>

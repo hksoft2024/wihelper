@@ -71,7 +71,7 @@ const ProductDetailSection = ({ viewType = "detail", product }: Props) => {
 			}
 		});
 
-		return [colors, sizes];
+		return [colors, sizes] as const;
 	}, [product]);
 
 	return (
