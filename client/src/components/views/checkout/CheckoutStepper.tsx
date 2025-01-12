@@ -9,10 +9,10 @@ import StepLabel from "@mui/material/StepLabel";
 import stepLabelClasses from "@mui/material/StepLabel/stepLabelClasses";
 import Stepper from "@mui/material/Stepper";
 import { alpha, styled } from "@mui/material/styles";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
+import { useRouter } from "nextjs-toploader/app";
 import { CHECKOUT_STEPS } from "~/constants/checkout";
 import { CheckoutStep } from "~/enums/CheckoutStep";
-import { useRouter } from "~/i18n/routing";
 
 type Props = {
 	currentStep: CheckoutStep;
@@ -69,13 +69,14 @@ const StyledStepLabel = styled(StepLabel, {
 
 const CheckoutStepper = ({ currentStep }: Props) => {
 	const t = useTranslations();
+	const locale = useLocale();
 	const router = useRouter();
 
 	const handleClickStep = (step: CheckoutStep) => {
 		if (step === CheckoutStep.Cart) {
-			router.push("/cart");
+			router.push(`/${locale}/cart`);
 		} else {
-			router.push(`/checkout?step=${step}`);
+			router.push(`/${locale}/checkout?step=${step}`);
 		}
 	};
 

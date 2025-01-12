@@ -4,8 +4,9 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import Button, { buttonClasses } from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
+import { useLocale } from "next-intl";
+import { useRouter } from "nextjs-toploader/app";
 import NumericPagination from "~/components/ui/pagination/NumericPagination";
-import { useRouter } from "~/i18n/routing";
 import { PaginatedData } from "~/types/common";
 import { Product } from "~/types/product";
 import { stringifyUrl } from "~/utils/string";
@@ -15,10 +16,11 @@ type Props = {
 };
 
 const ProductsPagination = ({ data }: Props) => {
+	const locale = useLocale();
 	const router = useRouter();
 
 	const handleChangePage = (page: number) => {
-		router.push(stringifyUrl("/products", { PageIndex: page }));
+		router.push(stringifyUrl(`/${locale}/products`, { PageIndex: page }));
 	};
 
 	return (
