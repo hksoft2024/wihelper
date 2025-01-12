@@ -6,10 +6,10 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid2";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
+import { useRouter } from "nextjs-toploader/app";
 import { useMemo } from "react";
 import { CheckoutStep } from "~/enums/CheckoutStep";
-import { useRouter } from "~/i18n/routing";
 
 type Props = {
 	currentStep: CheckoutStep;
@@ -18,6 +18,7 @@ type Props = {
 const MobileCheckoutActions = ({ currentStep }: Props) => {
 	const t = useTranslations();
 	const router = useRouter();
+	const locale = useLocale();
 
 	const isDownSmScreen = useMediaQuery((theme) => theme.breakpoints.down("sm"));
 
@@ -56,17 +57,17 @@ const MobileCheckoutActions = ({ currentStep }: Props) => {
 
 	const handleContinue = () => {
 		if (currentStep === CheckoutStep.Review) {
-			router.push("/checkout/complete");
+			router.push(`/${locale}/checkout/complete`);
 		} else {
-			router.push(`/checkout?step=${currentStep + 1}`);
+			router.push(`/${locale}/checkout?step=${currentStep + 1}`);
 		}
 	};
 
 	const handleBack = () => {
 		if (currentStep === CheckoutStep.Details) {
-			router.push("/cart");
+			router.push(`/${locale}/cart`);
 		} else {
-			router.push(`/checkout?step=${currentStep - 1}`);
+			router.push(`/${locale}/checkout?step=${currentStep - 1}`);
 		}
 	};
 
