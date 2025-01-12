@@ -25,7 +25,7 @@ const ProductsToolbar = ({ data }: Props) => {
 		<Stack
 			direction="row"
 			alignItems="center"
-			justifyContent="space-between"
+			justifyContent={{ xs: "center", sm: "space-between" }}
 			pt={2}
 			pb={12}
 		>

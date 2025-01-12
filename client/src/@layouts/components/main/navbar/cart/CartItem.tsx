@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import iconButtonClasses from "@mui/material/IconButton/iconButtonClasses";
 import ListItem from "@mui/material/ListItem";
-import Stack from "@mui/material/Stack";
+import Stack, { stackClasses } from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import { Link } from "~/i18n/routing";
 import { CartItem as TCartItem } from "~/types/cart";
@@ -24,7 +24,7 @@ const CartItem = ({ item }: Props) => {
 					[`> .${iconButtonClasses.root}`]: {
 						opacity: 1,
 					},
-					".cart-item-detail": {
+					[`> .${stackClasses.root}`]: {
 						transform: "translateX(0)",
 					},
 				},
@@ -46,7 +46,6 @@ const CartItem = ({ item }: Props) => {
 				direction="row"
 				alignItems="center"
 				gap={2}
-				className="cart-item-detail"
 				sx={{
 					transform: "translate(-30px)",
 					transition: (theme) => theme.transitions.create(["transform"]),
@@ -60,6 +59,7 @@ const CartItem = ({ item }: Props) => {
 					<Typography
 						component={Link}
 						href="#"
+						variant="body2"
 						fontWeight={500}
 						sx={{
 							":hover": {

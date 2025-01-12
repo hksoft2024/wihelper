@@ -82,7 +82,6 @@ const PromotionProductsCarousel = ({ products }: Props) => {
 											{product.badge && (
 												<Box>
 													<Badge
-														size="small"
 														variant="rounded"
 														color={product.badge_color ?? "default"}
 													>

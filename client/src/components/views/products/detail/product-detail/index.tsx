@@ -16,6 +16,7 @@ import Rating from "@mui/material/Rating";
 import Select from "@mui/material/Select";
 import Stack from "@mui/material/Stack";
 import svgIconClasses from "@mui/material/SvgIcon/svgIconClasses";
+import TextField from "@mui/material/TextField";
 import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
 import { styled } from "@mui/material/styles";
@@ -24,7 +25,6 @@ import { CSSProperties, useMemo } from "react";
 import Badge from "~/@core/components/mui/Badge";
 import Button from "~/@core/components/mui/Button";
 import ColorCheckbox from "~/components/ui/ColorCheckbox";
-import NumericInput from "~/components/ui/NumericInput";
 import FacebookIcon from "~/components/ui/icons/Facebook";
 import { Product, ProductColor, ProductSize } from "~/types/product";
 import ProductGallery from "../../shared/ProductGallery";
@@ -157,13 +157,7 @@ const ProductDetailSection = ({ viewType = "detail", product }: Props) => {
 								</Typography>
 							)}
 							{product.current_price < product.original_price && (
-								<Badge
-									hasShadow
-									color="error"
-									variant="rounded"
-									size="small"
-									sx={{ mb: 2 }}
-								>
+								<Badge hasShadow color="error" variant="rounded" sx={{ mb: 2 }}>
 									Sale
 								</Badge>
 							)}
@@ -269,7 +263,11 @@ const ProductDetailSection = ({ viewType = "detail", product }: Props) => {
 
 							<Stack direction="row" alignItems="center" gap={4}>
 								<Box flex={0.2}>
-									<NumericInput value={1} />
+									<TextField
+										type="number"
+										defaultValue={1}
+										slotProps={{ htmlInput: { min: 1 } }}
+									/>
 								</Box>
 
 								<Box flex={0.8}>

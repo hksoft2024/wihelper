@@ -21,6 +21,11 @@ const CarouselNavigationButton = styled("button", {
 	...(position === "absolute"
 		? { position: "absolute", top: "50%", zIndex: 2 }
 		: {}),
+	transition: theme.transitions.create(["background-color"]),
+	"&.swiper-button-disabled": {
+		backgroundColor: theme.palette.action.hover,
+		cursor: "default",
+	},
 }));
 
 export default CarouselNavigationButton;

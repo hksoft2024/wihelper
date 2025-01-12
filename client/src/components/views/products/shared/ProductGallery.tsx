@@ -55,7 +55,10 @@ const ProductGallery = ({ mediaPreviews }: Props) => {
 					my: { xs: 1.25, sm: 2.5 },
 					mr: { xs: 1.25, sm: 2.5 },
 					display: { xs: "flex", sm: "block" },
+					pr: { xs: 0, sm: 1 },
+					pb: { xs: 1, sm: 0 },
 				}}
+				className="scrollbar"
 			>
 				{mediaPreviews.map((media, index) => (
 					<ListItem

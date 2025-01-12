@@ -1,10 +1,9 @@
 import Grid from "@mui/material/Grid2";
 import { Fragment } from "react";
-import { PRODUCTS } from "~/fake-data/product";
-import Banner from "./Banner";
-import ProductCard from "../shared/product-card";
 import { PaginatedData } from "~/types/common";
 import { Product } from "~/types/product";
+import ProductCard from "../shared/product-card";
+import Banner from "./Banner";
 
 type Props = {
 	data: PaginatedData<Product>;
@@ -19,8 +18,8 @@ const ProductsGrid = ({ data }: Props) => {
 						<ProductCard product={product} />
 					</Grid>
 
-					{((PRODUCTS.length < 6 && index === PRODUCTS.length - 1) ||
-						(PRODUCTS.length >= 6 && index === 5)) && (
+					{((data.items.length < 6 && index === data.items.length - 1) ||
+						(data.items.length >= 6 && index === 5)) && (
 						<Grid size={{ xs: 12 }}>
 							<Banner />
 						</Grid>

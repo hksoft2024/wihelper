@@ -1,0 +1,100 @@
+"use client";
+
+import KeyboardArrowLeftOutlinedIcon from "@mui/icons-material/KeyboardArrowLeftOutlined";
+import KeyboardArrowRightOutlinedIcon from "@mui/icons-material/KeyboardArrowRightOutlined";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Grid from "@mui/material/Grid2";
+import { useTranslations } from "next-intl";
+import { useMemo } from "react";
+import { CheckoutStep } from "~/enums/CheckoutStep";
+import { useRouter } from "~/i18n/routing";
+
+type Props = {
+	currentStep: CheckoutStep;
+};
+
+const DesktopCheckoutActions = ({ currentStep }: Props) => {
+	const t = useTranslations();
+	const router = useRouter();
+
+	const [backButtonLabel, continueButtonLabel] = useMemo(() => {
+		let backButtonLabel = "";
+		let continueButtonLabel = "";
+
+		switch (currentStep) {
+			case CheckoutStep.Details:
+				backButtonLabel = t("BACK_TO_CART");
+				continueButtonLabel = t("PROCEED_TO_SHIPPING");
+				break;
+			case CheckoutStep.Shipping:
+				backButtonLabel = t("BACK_TO_ADDRESSES");
+				continueButtonLabel = t("PROCEED_TO_PAYMENT");
+				break;
+			case CheckoutStep.Payment:
+				backButtonLabel = t("BACK_TO_SHiPPING");
+				continueButtonLabel = t("REVIEW_YOUR_ORDER");
+				break;
+			case CheckoutStep.Review:
+				backButtonLabel = t("BACK_TO_PAYMENT");
+				continueButtonLabel = t("COMPLETE_ORDER");
+				break;
+			default:
+				break;
+		}
+
+		return [backButtonLabel, continueButtonLabel] as const;
+	}, [currentStep]);
+
+	const handleContinue = () => {
+		if (currentStep === CheckoutStep.Review) {
+			router.push("/checkout/complete");
+		} else {
+			router.push(`/checkout?step=${currentStep + 1}`);
+		}
+	};
+
+	const handleBack = () => {
+		if (currentStep === CheckoutStep.Details) {
+			router.push("/cart");
+		} else {
+			router.push(`/checkout?step=${currentStep - 1}`);
+		}
+	};
+
+	return (
+		<Box pt={6} display={{ xs: "none", lg: "block" }}>
+			<Grid container spacing={6}>
+				<Grid size={{ xs: 6 }}>
+					<Button
+						fullWidth
+						size="large"
+						startIcon={<KeyboardArrowLeftOutlinedIcon />}
+						sx={{
+							bgcolor: "#f3f5f9",
+							color: "text.primary",
+							":hover": {
+								bgcolor: "#d8deeb",
+							},
+						}}
+						onClick={handleBack}
+					>
+						{backButtonLabel}
+					</Button>
+				</Grid>
+				<Grid size={{ xs: 6 }}>
+					<Button
+						fullWidth
+						size="large"
+						endIcon={<KeyboardArrowRightOutlinedIcon />}
+						onClick={handleContinue}
+					>
+						{continueButtonLabel}
+					</Button>
+				</Grid>
+			</Grid>
+		</Box>
+	);
+};
+
+export default DesktopCheckoutActions;

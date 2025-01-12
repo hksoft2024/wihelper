@@ -2,6 +2,10 @@
 	--top-bar-height: 2.5rem;
 }
 
+*::selection {
+	background-color: rgba(78, 84, 200, 0.15);
+}
+
 a {
 	text-decoration: none;
 	display: inline-block;

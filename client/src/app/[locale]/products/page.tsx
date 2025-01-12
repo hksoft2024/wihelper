@@ -1,13 +1,8 @@
-import Box from "@mui/material/Box";
-import Container from "@mui/material/Container";
 import Divider from "@mui/material/Divider";
 import Grid from "@mui/material/Grid2";
-import Stack from "@mui/material/Stack";
-import Typography from "@mui/material/Typography";
 import { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
-import { Fragment } from "react";
-import Breadcrumbs from "~/components/ui/Breadcrumbs";
+import NegativeMarginContentWrapper from "~/@layouts/shared/NegativeMarginContentWrapper";
 import ProductsGrid from "~/components/views/products/list/ProductsGrid";
 import ProductsPagination from "~/components/views/products/list/ProductsPagination";
 import ProductsToolbar from "~/components/views/products/list/toolbar";
@@ -49,46 +44,25 @@ const ProductsPage = async (props: Props) => {
 	}
 
 	return (
-		<Fragment>
-			<Box bgcolor="background.dark" pt={6} pb={25.5}>
-				<Container>
-					<Stack
-						direction="row"
-						alignItems="center"
-						justifyContent="space-between"
-						py={4}
-					>
-						<Typography
-							variant="h1"
-							color="white"
-							fontSize={28}
-							fontWeight={500}
-						>
-							{t("GO_SHOPPING")}
-						</Typography>
-
-						<Breadcrumbs breadcrumbs={[{ label: t("PRODUCTS") }]} />
-					</Stack>
-				</Container>
-			</Box>
-
-			<Container sx={{ transform: "translateY(-4.875rem)" }}>
-				<Grid container spacing={7.5}>
-					<Grid size={{ xs: 0, lg: 4 }} display={{ xs: "none", lg: "block" }}>
-						<Widgets />
-					</Grid>
-					<Grid size={{ xs: 12, lg: 8 }}>
-						<ProductsToolbar data={res.data} />
-
-						<ProductsGrid data={res.data} />
-
-						<Divider sx={{ my: 4 }} />
-
-						<ProductsPagination data={res.data} />
-					</Grid>
+		<NegativeMarginContentWrapper
+			title={t("GO_SHOPPING")}
+			breadcrumbs={[{ label: t("PRODUCTS") }]}
+		>
+			<Grid container spacing={7.5}>
+				<Grid size={{ xs: 0, lg: 4 }} display={{ xs: "none", lg: "block" }}>
+					<Widgets />
 				</Grid>
-			</Container>
-		</Fragment>
+				<Grid size={{ xs: 12, lg: 8 }}>
+					<ProductsToolbar data={res.data} />
+
+					<ProductsGrid data={res.data} />
+
+					<Divider sx={{ my: 4 }} />
+
+					<ProductsPagination data={res.data} />
+				</Grid>
+			</Grid>
+		</NegativeMarginContentWrapper>
 	);
 };
 

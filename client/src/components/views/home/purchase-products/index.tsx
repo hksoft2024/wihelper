@@ -2,12 +2,15 @@ import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
+import { getTranslations } from "next-intl/server";
 import { Suspense } from "react";
 import MoreProductsButton from "~/components/views/home/purchase-products/MoreProductsButton";
 import PurchaseProducts from "~/components/views/home/purchase-products/PurchaseProducts";
 import ProductsCarouselSkeleton from "../../products/shared/products-carousel/ProductsCarouselSkeleton";
 
-const PurchaseProductsSection = () => {
+const PurchaseProductsSection = async () => {
+	const t = await getTranslations();
+
 	return (
 		<Box component="section">
 			<Container>
@@ -24,9 +27,8 @@ const PurchaseProductsSection = () => {
 						borderColor="divider"
 					>
 						<Typography variant="h2" pt={4}>
-							Purchase products
+							{t("PURCHASE_PRODUCTS")}
 						</Typography>
-
 						<MoreProductsButton />
 					</Stack>
 

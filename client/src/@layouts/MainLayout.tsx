@@ -11,18 +11,21 @@ import Footer from "./components/main/Footer";
 import TopBar from "./components/main/TopBar";
 import Navbar from "./components/main/navbar";
 import StyledBottomNavigationAction from "./components/main/styles/StyledBottomNavigationAction";
+import Stack from "@mui/material/Stack";
 
 type Props = ChildrenType;
 
 const MainLayout = ({ children }: Props) => {
 	return (
-		<Box minHeight="100vh" bgcolor="common.white">
+		<Stack minHeight="100vh" bgcolor="common.white">
 			<Paper component="header">
 				<TopBar />
 				<Navbar />
 			</Paper>
 
-			<Box component="main">{children}</Box>
+			<Box flex={1} component="main">
+				{children}
+			</Box>
 
 			<Footer />
 
@@ -65,7 +68,7 @@ const MainLayout = ({ children }: Props) => {
 					/>
 				</BottomNavigation>
 			</Paper>
-		</Box>
+		</Stack>
 	);
 };
 

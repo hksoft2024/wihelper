@@ -60,7 +60,6 @@ const ProductCard = ({ product, showCompareAction, disableHover }: Props) => {
 		>
 			{product.badge && (
 				<Badge
-					size="small"
 					variant="rounded"
 					color={product.badge_color ?? "default"}
 					hasShadow
