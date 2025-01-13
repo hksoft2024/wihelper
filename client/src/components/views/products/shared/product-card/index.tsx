@@ -29,34 +29,26 @@ type Props = {
 const ProductCard = ({ product, showCompareAction, disableHover }: Props) => {
 	const [isHoveredProduct, setIsHoveredProduct] = useState(false);
 
-	const productColors = useMemo(() => {
+	const [productColors, productSizes] = useMemo(() => {
 		const colors: ProductColor[] = [];
+		const sizes: ProductSize[] = [];
 
 		product.variants?.forEach((variant) => {
 			const hasColor = colors.some(
 				(color) => color.code === variant.color.code
 			);
+			const hasSize = sizes.some((size) => size.name === variant.size.name);
 
 			if (!hasColor) {
 				colors.push(variant.color);
 			}
-		});
-
-		return colors;
-	}, []);
-
-	const productSizes = useMemo(() => {
-		const sizes: ProductSize[] = [];
-
-		product.variants?.forEach((variant) => {
-			const hasSize = sizes.some((size) => size.name === variant.size.name);
 
 			if (!hasSize) {
 				sizes.push(variant.size);
 			}
 		});
 
-		return sizes;
+		return [colors, sizes] as const;
 	}, []);
 
 	return (
@@ -68,7 +60,6 @@ const ProductCard = ({ product, showCompareAction, disableHover }: Props) => {
 		>
 			{product.badge && (
 				<Badge
-					size="small"
 					variant="rounded"
 					color={product.badge_color ?? "default"}
 					hasShadow
@@ -112,16 +103,18 @@ const ProductCard = ({ product, showCompareAction, disableHover }: Props) => {
 						variant="caption"
 						color="textMuted"
 						sx={{ ":hover": { color: "text.secondary" } }}
+						noWrap
 					>
 						{product.category.name}
 					</Typography>
 					<Typography
 						variant="h3"
 						mb={3}
-						fontSize={14}
+						fontSize={{ xs: 14 }}
 						component={Link}
-						href="/products/1"
+						href={`/products/${product.id}`}
 						sx={{ ":hover": { color: "primary.main" } }}
+						noWrap
 					>
 						{product.name}
 					</Typography>

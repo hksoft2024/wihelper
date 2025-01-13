@@ -31,7 +31,13 @@ const ProductsLayoutSwitcher = () => {
 	};
 
 	return (
-		<Stack direction="row" alignItems="center" gap={2} mb={4}>
+		<Stack
+			display={{ xs: "none", sm: "flex" }}
+			direction="row"
+			alignItems="center"
+			gap={2}
+			mb={4}
+		>
 			<SwitchButton
 				size="large"
 				disabled={selectedLayout === ProductsLayout.Grid}

@@ -45,7 +45,7 @@ export type Product = {
 	original_price: number;
 	rating: number;
 	thumbnail_url: string;
-	href: string | null;
+	href: string;
 	quantity: number;
 	status: string | null;
 	extra_information: string | null;

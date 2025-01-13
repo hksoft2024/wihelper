@@ -18,3 +18,11 @@ export type Option<TValue> = {
 	label: string;
 	value: TValue;
 };
+
+export type BaseColor =
+	| "primary"
+	| "secondary"
+	| "error"
+	| "info"
+	| "success"
+	| "warning";

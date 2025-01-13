@@ -18,8 +18,18 @@ const SortProducts = () => {
 	const t = useTranslations();
 
 	return (
-		<Stack direction="row" alignItems="center" gap={2} pb={4} mr={6}>
-			<Typography variant="body2" color={alpha("#fff", 0.75)}>
+		<Stack
+			direction="row"
+			alignItems="center"
+			gap={2}
+			pb={4}
+			mr={{ xs: 4, sm: 6 }}
+		>
+			<Typography
+				variant="body2"
+				color={alpha("#fff", 0.75)}
+				display={{ xs: "none", sm: "block" }}
+			>
 				{t("SORT_BY")}:
 			</Typography>
 
@@ -39,7 +49,11 @@ const SortProducts = () => {
 				))}
 			</Select>
 
-			<Typography variant="body2" color={alpha("#fff", 0.75)}>
+			<Typography
+				variant="body2"
+				color={alpha("#fff", 0.75)}
+				display={{ xs: "none", md: "block" }}
+			>
 				{t("OF")} 287 {t("PRODUCTS").toLowerCase()}
 			</Typography>
 		</Stack>

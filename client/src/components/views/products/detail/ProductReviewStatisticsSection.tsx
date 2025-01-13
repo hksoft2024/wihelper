@@ -21,11 +21,19 @@ const StyledLinearProgress = styled(LinearProgress)({
 	backgroundColor: "#f3f5f9",
 });
 
+const StyledStarIcon = styled(StarIcon)(({ theme }) => ({
+	fontSize: 16,
+	fill: theme.palette.text.primary,
+	mb: theme.spacing(0.5),
+}));
+
 const ProductReviewStatisticsSection = ({ product }: Props) => {
 	const t = useTranslations();
 
 	const calculateDistributorPercentage = (distributorsCount: number) => {
-		if (!product.review_overview) return 0;
+		if (!product.review_overview || product.review_overview.total === 0) {
+			return 0;
+		}
 
 		return Math.ceil((distributorsCount / product.review_overview.total) * 100);
 	};
@@ -76,13 +84,7 @@ const ProductReviewStatisticsSection = ({ product }: Props) => {
 							gap={0.5}
 						>
 							5
-							<StarIcon
-								sx={(theme) => ({
-									fontSize: 16,
-									fill: theme.palette.text.primary,
-									mb: 0.5,
-								})}
-							/>
+							<StyledStarIcon />
 						</Typography>
 						<Box flex={1}>
 							<StyledLinearProgress
@@ -105,13 +107,7 @@ const ProductReviewStatisticsSection = ({ product }: Props) => {
 							gap={0.5}
 						>
 							4
-							<StarIcon
-								sx={(theme) => ({
-									fontSize: 16,
-									fill: theme.palette.text.primary,
-									mb: 0.5,
-								})}
-							/>
+							<StyledStarIcon />
 						</Typography>
 						<Box flex={1}>
 							<StyledLinearProgress
@@ -138,13 +134,7 @@ const ProductReviewStatisticsSection = ({ product }: Props) => {
 							gap={0.5}
 						>
 							3
-							<StarIcon
-								sx={(theme) => ({
-									fontSize: 16,
-									fill: theme.palette.text.primary,
-									mb: 0.5,
-								})}
-							/>
+							<StyledStarIcon />
 						</Typography>
 						<Box flex={1}>
 							<StyledLinearProgress
@@ -171,13 +161,7 @@ const ProductReviewStatisticsSection = ({ product }: Props) => {
 							gap={0.5}
 						>
 							2
-							<StarIcon
-								sx={(theme) => ({
-									fontSize: 16,
-									fill: theme.palette.text.primary,
-									mb: 0.5,
-								})}
-							/>
+							<StyledStarIcon />
 						</Typography>
 						<Box flex={1}>
 							<StyledLinearProgress
@@ -200,13 +184,7 @@ const ProductReviewStatisticsSection = ({ product }: Props) => {
 							gap={0.5}
 						>
 							1
-							<StarIcon
-								sx={(theme) => ({
-									fontSize: 16,
-									fill: theme.palette.text.primary,
-									mb: 0.5,
-								})}
-							/>
+							<StyledStarIcon />
 						</Typography>
 						<Box flex={1}>
 							<StyledLinearProgress

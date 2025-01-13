@@ -78,7 +78,7 @@ const ProductsCarousel = ({ name, products }: Props) => {
 						transform: "translate(-50%,-50%)",
 					}}
 				>
-					<ArrowBackIosNewIcon fontSize="small" />
+					<ArrowBackIosNewIcon color="action" sx={{ fontSize: 16 }} />
 				</CarouselNavigationButton>
 				<CarouselNavigationButton
 					id={swiperNextBtnId}
@@ -87,7 +87,7 @@ const ProductsCarousel = ({ name, products }: Props) => {
 						transform: "translate(50%,-50%)",
 					}}
 				>
-					<ArrowForwardIosIcon fontSize="small" />
+					<ArrowForwardIosIcon color="action" sx={{ fontSize: 16 }} />
 				</CarouselNavigationButton>
 			</Box>
 		</Box>

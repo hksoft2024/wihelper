@@ -17,10 +17,9 @@ export const NAVIGATION_MENU: NavigationItemType[] = [
 					<Fragment>
 						Therapeutic diabetic shoes
 						<Badge
-							size="small"
 							color="error"
 							variant="rounded"
-							sx={{ fontSize: 10, ml: 1 }}
+							sx={{ fontSize: "10px !important", ml: 1 }}
 						>
 							MEDICARE
 						</Badge>
@@ -55,10 +54,9 @@ export const NAVIGATION_MENU: NavigationItemType[] = [
 					<Fragment>
 						Your first visit
 						<Badge
-							size="small"
 							color="error"
 							variant="rounded"
-							sx={{ fontSize: 10, ml: 1 }}
+							sx={{ fontSize: "10px !important", ml: 1 }}
 						>
 							NEW
 						</Badge>

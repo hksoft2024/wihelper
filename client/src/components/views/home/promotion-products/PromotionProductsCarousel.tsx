@@ -82,7 +82,6 @@ const PromotionProductsCarousel = ({ products }: Props) => {
 											{product.badge && (
 												<Box>
 													<Badge
-														size="small"
 														variant="rounded"
 														color={product.badge_color ?? "default"}
 													>
@@ -180,7 +179,7 @@ const PromotionProductsCarousel = ({ products }: Props) => {
 					transform: "translate(-50%,-50%)",
 				}}
 			>
-				<ArrowBackIosNewIcon fontSize="small" />
+				<ArrowBackIosNewIcon color="action" sx={{ fontSize: 16 }} />
 			</CarouselNavigationButton>
 			<CarouselNavigationButton
 				id={swiperNextBtnId}
@@ -189,7 +188,7 @@ const PromotionProductsCarousel = ({ products }: Props) => {
 					transform: "translate(50%,-50%)",
 				}}
 			>
-				<ArrowForwardIosIcon fontSize="small" />
+				<ArrowForwardIosIcon color="action" sx={{ fontSize: 16 }} />
 			</CarouselNavigationButton>
 		</Box>
 	);

@@ -3,13 +3,12 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Container from "@mui/material/Container";
 import Divider from "@mui/material/Divider";
-import Stack from "@mui/material/Stack";
-import Typography from "@mui/material/Typography";
 import { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { Fragment } from "react";
-import Breadcrumbs from "~/components/ui/Breadcrumbs";
+import { Locale } from "~/@core/types";
+import NegativeMarginContentWrapper from "~/@layouts/shared/NegativeMarginContentWrapper";
 import ProductDetailSection from "~/components/views/products/detail/product-detail";
 import ProductReviewsSection from "~/components/views/products/detail/product-reviews";
 import ProductDescriptionSection from "~/components/views/products/detail/ProductDescriptionSection";
@@ -18,7 +17,7 @@ import ProductSuggestionsSection from "~/components/views/products/detail/Produc
 import productService from "~/services/productService";
 
 type Props = {
-	params: Promise<{ productId: string }>;
+	params: Promise<{ productId: string; locale: Locale }>;
 };
 
 export const generateMetadata = async ({
@@ -40,8 +39,18 @@ export const generateMetadata = async ({
 	};
 };
 
-const ProductDetailPage = async (props: Props) => {
-	const { productId } = await props.params;
+// export const generateStaticParams = async () => {
+// 	const res = await productService.getProducts();
+
+// 	if (!res.is_succeeded) return [];
+
+// 	return res.data.items.map((product) => ({
+// 		productId: product.id,
+// 	}));
+// };
+
+const ProductDetailPage = async ({ params }: Props) => {
+	const { productId } = await params;
 	const t = await getTranslations();
 
 	const res = await productService.getProductById(productId);
@@ -56,30 +65,13 @@ const ProductDetailPage = async (props: Props) => {
 
 	return (
 		<Fragment>
-			<Box bgcolor="background.dark" pt={6} pb={25.5}>
-				<Container>
-					<Stack
-						direction={{ xs: "column-reverse", lg: "row" }}
-						alignItems="center"
-						justifyContent="space-between"
-						py={{ xs: 2, lg: 3.75 }}
-						gap={4}
-					>
-						<Typography variant="h3" color="white" fontWeight={500}>
-							{res.data.name}
-						</Typography>
-
-						<Breadcrumbs
-							breadcrumbs={[
-								{ label: t("SHOP"), href: "/products" },
-								{ label: t("PRODUCT") },
-							]}
-						/>
-					</Stack>
-				</Container>
-			</Box>
-
-			<Container sx={{ transform: "translateY(-4.875rem)" }}>
+			<NegativeMarginContentWrapper
+				title={res.data.name}
+				breadcrumbs={[
+					{ label: t("SHOP"), href: "/products" },
+					{ label: t("PRODUCT") },
+				]}
+			>
 				<Card sx={{ mb: 12, overflow: "visible" }}>
 					<CardContent sx={{ px: 6 }}>
 						<ProductDetailSection product={res.data} />
@@ -87,7 +79,7 @@ const ProductDetailPage = async (props: Props) => {
 				</Card>
 
 				<ProductDescriptionSection />
-			</Container>
+			</NegativeMarginContentWrapper>
 
 			<Box borderTop={1} borderBottom={1} borderColor="divider" py={12} my={4}>
 				<Container>

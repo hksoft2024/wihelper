@@ -1,4 +1,5 @@
 import { Theme } from "@mui/material/styles";
+import { BaseColor } from "~/@core/types";
 import themeConfig from "~/configs/themeConfig";
 
 const button: Theme["components"] = {
@@ -19,11 +20,23 @@ const button: Theme["components"] = {
 				...(ownerState.variant === "outlined"
 					? {
 							":hover": {
-								backgroundColor: theme.palette.secondary.main,
-								color: theme.palette.secondary.contrastText,
+								backgroundColor:
+									theme.palette[ownerState.color as BaseColor].main,
+								color:
+									theme.palette[ownerState.color as BaseColor].contrastText,
 							},
 					  }
 					: {}),
+				...(ownerState.variant === "text"
+					? {
+							":hover": {
+								backgroundColor: "transparent",
+							},
+					  }
+					: {}),
+			}),
+			sizeLarge: ({ theme }) => ({
+				padding: theme.spacing(2.3125, 5.25),
 			}),
 		},
 	},

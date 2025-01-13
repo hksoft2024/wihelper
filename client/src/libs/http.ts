@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { getLocale } from "next-intl/server";
 import { auth } from "~/auth";
-import { redirect } from "~/i18n/routing";
+import { redirect, routing } from "~/i18n/routing";
 import { HttpResponse } from "~/types/common";
 import { logErrorToFile } from "~/utils/logger";
 import { stringifyUrl } from "~/utils/string";
@@ -23,8 +22,7 @@ const request = async <TData = unknown>(
 	url: string,
 	options: RequestOptions
 ): Promise<HttpResponse<TData>> => {
-	const locale = await getLocale();
-
+	const locale = routing.defaultLocale;
 	let baseUrl = "";
 
 	switch (options.apiClassification) {

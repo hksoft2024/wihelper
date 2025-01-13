@@ -16,6 +16,7 @@ import { useTranslations } from "next-intl";
 import { MouseEvent, useState } from "react";
 import Button from "~/@core/components/mui/Button";
 import { CART_ITEMS } from "~/fake-data/cart";
+import { Link } from "~/i18n/routing";
 import CartItem from "./CartItem";
 
 const Cart = () => {
@@ -33,6 +34,8 @@ const Cart = () => {
 
 	return (
 		<Stack
+			component={Link}
+			href="/cart"
 			direction="row"
 			alignItems="center"
 			gap={2.5}
@@ -88,9 +91,7 @@ const Cart = () => {
 				anchorEl={anchorEl}
 				transition
 				placement="bottom-end"
-				sx={{
-					zIndex: zIndex.tooltip,
-				}}
+				sx={{ zIndex: zIndex.tooltip }}
 			>
 				{({ TransitionProps }) => (
 					<Fade {...TransitionProps}>
@@ -150,7 +151,12 @@ const Cart = () => {
 								</Button>
 							</Stack>
 
-							<Button fullWidth startIcon={<PaymentOutlinedIcon />}>
+							<Button
+								LinkComponent={Link}
+								href="/checkout"
+								fullWidth
+								startIcon={<PaymentOutlinedIcon />}
+							>
 								{t("CHECKOUT")}
 							</Button>
 						</Paper>

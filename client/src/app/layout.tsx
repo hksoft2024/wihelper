@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Rubik } from "next/font/google";
+import NextTopLoader from "nextjs-toploader";
 import { ToastContainer } from "react-toastify";
 import AuthProvider from "~/@core/components/AuthProvider";
 import ReactQueryProvider from "~/@core/components/ReactQueryProvider";
@@ -33,6 +34,7 @@ const RootLayout = async ({ children, params: { locale } }: Props) => {
 	return (
 		<html lang={locale} suppressHydrationWarning>
 			<body className={rubik.className}>
+				<NextTopLoader showSpinner={false} color="#fe696a" />
 				<AuthProvider locale={locale}>
 					<ReactQueryProvider>
 						<ThemeProvider>

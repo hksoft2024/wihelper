@@ -8,30 +8,34 @@ const typography: Theme["components"] = {
 			}),
 			h1: ({ theme }) => ({
 				lineHeight: 1.2,
-				fontSize: theme.breakpoints.down("lg")
-					? "calc(1.475rem + 2.7vw)"
-					: "3.5rem",
+				fontSize: "3.5rem",
+				[theme.breakpoints.down("lg")]: {
+					fontSize: "calc(1.475rem + 2.7vw)",
+				},
 				fontWeight: 700,
 			}),
 			h2: ({ theme }) => ({
 				lineHeight: 1.2,
-				fontSize: theme.breakpoints.down("lg")
-					? "calc(1.325rem + 0.9vw)"
-					: "2rem",
+				fontSize: "2rem",
+				[theme.breakpoints.down("lg")]: {
+					fontSize: "calc(1.325rem + 0.9vw)",
+				},
 				fontWeight: 600,
 			}),
 			h3: ({ theme }) => ({
 				lineHeight: 1.2,
-				fontSize: theme.breakpoints.down("lg")
-					? "calc(1.3rem + 0.6vw)"
-					: "1.75rem",
+				fontSize: "1.75rem",
+				[theme.breakpoints.down("lg")]: {
+					fontSize: "calc(1.3rem + 0.6vw)",
+				},
 				fontWeight: 500,
 			}),
 			h4: ({ theme }) => ({
 				lineHeight: 1.2,
-				fontSize: theme.breakpoints.down("lg")
-					? "calc(1.275rem + 0.3vw)"
-					: "1.5rem",
+				fontSize: "1.5rem",
+				[theme.breakpoints.down("lg")]: {
+					fontSize: "calc(1.275rem + 0.3vw)",
+				},
 				fontWeight: 500,
 			}),
 			h5: {

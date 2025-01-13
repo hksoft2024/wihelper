@@ -2,7 +2,7 @@ import http from "~/libs/http";
 import { PaginatedData, PaginationQuery } from "~/types/common";
 import { Product, ProductReview, ProductReviewsQuery } from "~/types/product";
 
-const getProducts = async (query: PaginationQuery) => {
+const getProducts = async (query?: PaginationQuery) => {
 	return await http.get<PaginatedData<Product>>("/products/getdetailpaging", {
 		apiClassification: "data",
 		next: { tags: ["products"] },
